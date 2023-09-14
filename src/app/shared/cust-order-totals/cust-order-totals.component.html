@@ -1,0 +1,33 @@
+<table class="table">
+    <thead class="bg-light text-uppercase">
+        <tr>
+            <th><div class="py-2 px-4">Order Summary</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <div class="p-4">
+                <p class="fst-italic mb-4">
+                    Delivery fee will be calculated at checkout
+                </p>
+                <ul class="list-unstyled mb-4" *ngIf="(cartService.cartTotalSource$ | async) as totals">
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                        <strong class="text-muted">Order subtotal</strong>
+                        <strong>{{totals.subtotal | currency: "R"}}</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                        <strong class="text-muted">Shipping</strong>
+                        <strong>{{totals.shipping | currency: "R"}}</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                        <strong class="text-muted">Total</strong>
+                        <strong>{{totals.total | currency: "R"}}</strong>
+                    </li>
+                </ul>
+            </div>
+        </tr>
+    </tbody>
+</table>
+
+
+

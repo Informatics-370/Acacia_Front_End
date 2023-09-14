@@ -1,0 +1,99 @@
+<div class="sidenav fixed-left">
+  <button class="dropdown-btn" routerLink="/dashboard">
+    <i class="fa fa-cog" aria-hidden="true"></i>
+    Dashboard
+  </button>
+  <button class="dropdown-btn" (click)="toggleDropdown('products')">
+    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+    Products
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container" *ngIf="isDropdownOpen('products')"  [@dropdownState]="isDropdownOpen('products') ? 'show' : 'hide'">
+    <a routerLink="/dashboard/products-list" routerLinkActive="active" id="sidenav-item">Products</a>
+    <a routerLink="/dashboard/product-category-list" routerLinkActive="active" id="sidenav-item">Product Categories</a>
+    <a routerLink="/dashboard/product-type-list" routerLinkActive="active" id="sidenav-item">Product Types</a>
+  </div>
+  <button class="dropdown-btn" routerLink="/dashboard/giftbox-list">
+    <i class="fa fa-gift" aria-hidden="true"></i>
+    GiftBoxes
+  </button>
+  <button class="dropdown-btn" routerLink="/dashboard/promotions-list">
+    <i class="fa fa-money" aria-hidden="true"></i>
+    Promotions
+  </button>
+  <button class="dropdown-btn" routerLink="/dashboard/reviews">
+    <i class="fa fa-commenting-o" aria-hidden="true"></i>
+    Product Reviews 
+  </button>
+  <button class="dropdown-btn" (click)="toggleDropdown('inventory')">
+    <i class="fa fa-archive" aria-hidden="true" ></i>
+    Inventory Management
+    <i class="fa fa-caret-down"></i> 
+  </button>
+  <div class="dropdown-container" *ngIf="isDropdownOpen('inventory')" [@dropdownState]="isDropdownOpen('inventory') ? 'show' : 'hide'">
+    <a routerLink="/dashboard/writeoffs" id="sidenav-item">Write-Off Log</a>
+    <a routerLink="/dashboard/returns" id="sidenav-item">Customer Returns</a>
+    <a routerLink="/dashboard/SupplierReturns" id="sidenav-item">Supplier Returns</a>
+  </div>
+  <button class="dropdown-btn" (click)="toggleDropdown('orders')" >
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    Orders
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container" *ngIf="isDropdownOpen('orders')"  [@dropdownState]="isDropdownOpen('orders') ? 'show' : 'hide'">
+    <a routerLink="/dashboard/orders" id="sidenav-item">Sale Orders</a>
+    <a routerLink="/dashboard/SupplierOrders" id="sidenav-item">Supplier Orders</a>
+    <a routerLink="/dashboard/MakeSupplierOrder" id="sidenav-item">Make Supplier Order</a>
+  </div>
+  <button routerLink="/dashboard/supplier-list" class="dropdown-btn">
+    <i class="fa fa-truck" aria-hidden="true"></i>
+    Supplier
+  </button>
+  <button routerLink="/dashboard/DeliveryMethods" class="dropdown-btn">
+    <i class="fa fa-truck" aria-hidden="true"></i>
+    Delivery Methods
+  </button>
+  <button class="dropdown-btn" (click)="toggleDropdown('users')">
+    <i class="fa fa-user" aria-hidden="true"></i> 
+    Users
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container" *ngIf="isDropdownOpen('users')"  [@dropdownState]="isDropdownOpen('users') ? 'show' : 'hide'">
+    <a routerLink="/dashboard/user-list" id="sidenav-item">Customers</a>
+  </div>
+  <button class="dropdown-btn" (click)="toggleDropdown('reports')">
+    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+    Reports
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container" *ngIf="isDropdownOpen('reports')"  [@dropdownState]="isDropdownOpen('reports') ? 'show' : 'hide'">
+    <a routerLink="/dashboard/SalesReport" id="sidenav-item">Sales Report</a>
+    <a routerLink="/dashboard/SupplierOrderReport" id="sidenav-item">Supplier Order Report</a>
+    <a routerLink="/dashboard/ProfitabilityReport" id="sidenav-item">Profitability Report</a>
+    <a routerLink="/dashboard/PromotionsReport" id="sidenav-item">Promotions Report</a>
+    <a routerLink="/dashboard/TrendsReport" id="sidenav-item">Trends Report</a>
+    <a routerLink="/dashboard/supplierReport" id="sidenav-item">Supplier List Report</a>
+    <a routerLink="/dashboard/ProductReport" id="sidenav-item">Product List Report</a>
+    <a routerLink="/dashboard/UserReport" id="sidenav-item">User List Report</a>
+  </div>
+  <button routerLink="/dashboard/vat-list" class="dropdown-btn">
+    <i class="fa fa-percent" aria-hidden="true"></i>
+    VAT 
+  </button>
+  <button routerLink="/dashboard/faq-list" class="dropdown-btn">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+    FAQs
+  </button>
+  <button routerLink="/dashboard/Media" class="dropdown-btn">
+    <i class="fa fa-address-card-o" aria-hidden="true"></i>
+    Media
+  </button>
+  <button routerLink="/dashboard/company-details/1" class="dropdown-btn">
+    <i class="fa fa-address-card-o" aria-hidden="true"></i>
+    Company Details
+  </button>
+  <button class="dropdown-btn">
+    <i class="fa fa-info-circle" aria-hidden="true"></i>
+    Help
+  </button>
+</div>

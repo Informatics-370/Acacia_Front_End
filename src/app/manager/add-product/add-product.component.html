@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add Product</h5>
+    <form class="row" [formGroup]="ProductForm" (ngSubmit)="addProduct()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Name'" [formControl]="ProductForm.controls['name']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="ProductForm.controls['description']"></app-text-input>
+            <app-text-input type="number" [label]="'Price'" [formControl]="ProductForm.controls['price']"></app-text-input>
+            <app-text-input type="number" [label]="'Threshold Value'" [formControl]="ProductForm.controls['tresholdValue']"></app-text-input>
+            <label for="floatingInput">Product Picture</label>
+            <app-text-input (change)="uploadFile($event)" [accept]="'image/*'" type="file"  [formControl]="ProductForm.controls['pictureUrl']"></app-text-input>
+            <label for="floatingInput">Category</label>
+            <select class="form-select mb-4" (change)="onCategorySelected($event)" formControlName="productCategoryId">
+                <option *ngFor="let category of categories" [value]="category.id"> 
+                    {{category.name}}
+                </option>
+            </select>
+            <label for="floatingInput">Type</label>
+            <select class="form-select mb-4" (change)="onTypeSelected($event)" formControlName="productTypeId">
+                <option *ngFor="let type of types" [value]="type.id"> 
+                    {{type.name}}
+                </option>
+            </select>
+            <label for="floatingInput">Supplier</label>
+            <select class="form-select mb-4" (change)="onSupplierSelected($event)" formControlName="supplierId">
+                <option *ngFor="let supplier of suppliers" [value]="supplier.id"> 
+                    {{supplier.name}}
+                </option>
+            </select>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="ProductForm.invalid" class="btn btn-primary" type="submit">Add</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/products-list">Cancel</button>
+        </div>
+    </form>
+</div>

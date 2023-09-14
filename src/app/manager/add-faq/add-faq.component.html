@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add FAQ</h5>
+    <form class="row" [formGroup]="FaqForm" (ngSubmit)="addFaq()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Question'" [formControl]="FaqForm.controls['question']"></app-text-input>
+            <app-text-input [label]="'Answer'" [formControl]="FaqForm.controls['answer']"></app-text-input>
+            <div class="text-danger" *ngIf="FaqForm.get('question')?.hasError('profanity') || FaqForm.get('answer')?.hasError('profanity')">
+                Please remove offensive language.
+            </div>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="FaqForm.invalid" class="btn btn-primary" type="submit">Add</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/faq-list">Cancel</button>
+        </div>
+    </form>
+</div>

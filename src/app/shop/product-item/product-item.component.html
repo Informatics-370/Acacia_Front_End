@@ -1,0 +1,24 @@
+<div class="card h-100" *ngIf="product">
+    <div class="image position-relative" style="cursor: pointer">
+      <img src='{{product.pictureUrl}}' class="img-fluid bg-info" alt="{{product.name}}" style="height: 270px; width: 100%;">
+      <div class="d-flex align-items-center justify-content-center hover-overlay">
+        
+        <button (click)="addItemToCart()" class="btn btn-sm btn-primary me-2"> <i class="fa fa-shopping-cart"></i> Add to cart </button>
+      </div>
+    </div>
+    <div class="card-body d-flex flex-column">
+        <a class="text-decoration-none">
+            <h5 class="text-uppercase">
+                {{product.name}}
+            </h5>
+        </a>
+        <p>
+          <span *ngIf="product.promotion"><strong>{{product.price * (1- product.promotion /100) | currency: "R"}}</strong><s style="color: red;">{{product.price | currency: "R"}}</s></span>
+          <span *ngIf="!product.promotion"><strong>{{product.price | currency: "R"}}</strong></span>
+        </p>
+       
+        <button routerLink="/shop/{{product.id}}" class="btn btn-sm" style="width: 100%;">View</button>    
+    </div>
+</div>
+
+

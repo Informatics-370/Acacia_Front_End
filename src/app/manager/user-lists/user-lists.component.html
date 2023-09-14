@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <div class="row" *ngIf="roles.length > 0">
+        <div class="d-flex justify-content-between align-items-center pb-2">
+            <app-paging-header [totalCount]="totalCount" [pageNumber]="userParams.pageNumber" [pageSize]="userParams.pageSize"></app-paging-header>
+            <div class="d-flex mt-2">
+                <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control" #search>
+                <button class="btn mx-2" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
+                <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
+                <select class="form-select mx-2" style="max-width: 40px; min-width: none;"  (change)="onSortSelected($event)">
+                    <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                        {{sort.name}}
+                    </option>
+                </select>
+                <div class="dropdown mx-2" dropdownToggle dropdown>
+                    <button style="background-color: #958F8A;" class="btn btn-primary"><i class="fa fa-filter"></i></button>
+                    <div *dropdownMenu class="dropdown-menu py-0">
+                        <ul class="list-group">
+                            <li class="list-group-item"*ngFor="let role of roles"
+                                    [class.active]="role.name === userParams.userRole"
+                                    [value]="role.name"
+                                    (click)="onRoleSelected(role.name)"
+                                >{{role.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="text-uppercase">
+                    <tr>
+                        <th><div class="py-2">Photo</div></th>
+                        <th><div class="py-2">Display Name</div></th>
+                        <th><div class="py-2">Email</div></th>
+                        <th><div class="py-2">Role</div></th>
+                        <th><div class="py-2">View</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td class="align-middle"><img src='{{user.profilePicture}}' class="img-fluid bg-info" alt="{{user.displayName}}" style="max-height: 50px;"></td>
+                        <td class="align-middle"><strong>{{user.displayName}}</strong></td>
+                        <td class="align-middle"><strong>{{user.email}}</strong></td>
+                        <td class="align-middle"><strong>{{user.roles}}</strong></td>
+                        <td class="align-middle">
+                            <button type="button" class="btn px-2 py-2" style="background-color: #676767;"><a style="text-decoration: none; color: white; font-weight:lighter;" routerLink="/dashboard/user-details/{{user.email}}"> <i class="fa fa-edit align-middle" style="font-size: 2em; cursor: pointer; color: white;"></i> View </a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end" *ngIf="totalCount > 0" >
+        <app-pager [totalCount]="totalCount" [pageSize]="userParams.pageSize" (pageChanged)="onPageChanged($event)"></app-pager>
+    </div>
+</div>

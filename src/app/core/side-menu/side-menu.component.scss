@@ -1,0 +1,85 @@
+
+.sidenav {
+  margin-top: 65px;
+  max-width: auto;
+  left: 0;
+  height:100%;
+  background-color: #f7f7f9;
+  overflow-y: scroll;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* width */
+.sidenav::-webkit-scrollbar {
+  width: 0.5em;
+}
+/* Track */
+.sidenav::-webkit-scrollbar-track {
+  background: #f7f7f9;
+}
+/* Handle */
+.sidenav::-webkit-scrollbar-thumb {
+  background: #e0e0e2;
+}
+/* Handle on hover */
+.sidenav::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  display: block;
+  border: none;
+  background-color: white;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 0.5em;
+}
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: white;
+  background-color: #6B6B6B;
+}
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: #686868;
+  color: white;
+}
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  background-color: white;
+  /* Modify to include height and opacity properties */
+  max-height: auto;
+  opacity: 0;
+ //overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow-y:visible;
+}
+/* Apply styles when the dropdown is open */
+.dropdown-container.show {
+max-height: 10000px; /* Adjust this value to control the max height when open */
+opacity: 1;
+}
+#sidenav-item {
+  background-color: #D5C9B7;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.25em;
+  padding-left: 3em;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 1em;
+}

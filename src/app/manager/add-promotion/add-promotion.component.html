@@ -1,0 +1,87 @@
+<div class="container mt-4">
+    <div class="row">
+        <form class="col-6" [formGroup]="promoForm" (ngSubmit)="addPromotion()">
+            <h5 class="ms-3 my-2">Add Promotion</h5>
+            <app-text-input [label]="'Name'" [formControl]="promoForm.controls['name']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="promoForm.controls['description']"></app-text-input>
+            <app-text-input [label]="'Percentage'" [type]="'number'" [formControl]="promoForm.controls['percentage']"></app-text-input>
+            <label for="floatingInput">Status</label>
+            <select class="form-select form-control-sm"  (change)="onStatusSelected($event)">
+                <option *ngFor="let status of Statuses" [value]="status.value"> 
+                    {{status.name}}
+                </option>
+            </select>
+            <label for="floatingInput">Promotion Products</label>
+            <div class="table-responsive" *ngIf="promoProducts.length > 0">
+                <table class="table table-hover">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of promoProducts">
+                            <td class="align-middle"><img src='{{product.pictureUrl}}' class="img-fluid bg-info" style="max-height: 50px;"></td>
+                            <td class="align-middle">{{product.name}}</td>
+                            <td class="align-middle">
+                                <button (click)="removeProdToPromotion(product.id)" class="btn btn-sm mx-1" type="button" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> Remove </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="promoProducts.length <= 0">
+                <p class="text-info">There are currently no products in the Promotion</p>
+            </div>
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    {{error}}
+                </li>
+            </ul>
+            <div>
+                <button [disabled]="promoForm.invalid || promoProducts.length <= 0" class="btn btn-primary" type="submit">Add</button>
+                <button  class="mx-2 btn btn-danger" routerLink="/dashboard/promotions-list">Cancel</button>
+            </div>
+        </form>
+        <div class="col-6">
+            <h5 class="ms-3 my-2">Store Products</h5>
+            <div class="d-flex my-1">
+                    <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control form-control-sm" #search>
+                    <button class="btn btn-sm mx-2" type="button" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
+                    <button style="background-color: #958F8A; color: white;" type="button" (click)="onReset()" class="btn mx-2 btn-sm">Reset</button>
+                    <select class="form-select mx-2 form-control-sm" style="max-width: 40px; min-width: none;"  (change)="onSortSelected($event)">
+                        <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                            {{sort.name}}
+                        </option>
+                    </select>
+            </div>
+            <div class="table-responsive" *ngIf="products.length > 0">
+                <table class="table table-hover">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products">
+                            <td class="align-middle"><img src='{{product.pictureUrl}}' class="img-fluid bg-info" style="max-height: 50px;"></td>
+                            <td class="align-middle"><strong>{{product.name}}</strong></td>
+                            <td class="align-middle">
+                                <button (click)="addProdToPromotion(product.id)" type="button" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> Add </button>
+                                <button routerLink="/dashboard/product-details/{{product.id}}" type="button" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> View </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end" *ngIf="totalCount > 0" >
+                <app-pager [totalCount]="totalCount" [pageSize]="shopParams.pageSize" (pageChanged)="onPageChanged($event)"></app-pager>
+                </div>
+        </div>
+    </div>
+</div>
+

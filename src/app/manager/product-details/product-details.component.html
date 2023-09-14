@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <div class="row">
+        <form class="col-6" [formGroup]="ProductForm" (ngSubmit)="updateProduct()">
+            <h5 >Product Details</h5>
+            <div class="form-group">
+                <img class="form-control mb-2 p-0" src="{{product.pictureUrl}}" style="max-height: 150px; width: 150px; object-fit: cover;">
+                <app-text-input [label]="'Name'" [formControl]="ProductForm.controls['name']"></app-text-input>
+                <app-text-input [label]="'Description'" [formControl]="ProductForm.controls['description']"></app-text-input>
+                <app-text-input type="number" [label]="'Price'" [formControl]="ProductForm.controls['price']"></app-text-input>
+                <app-text-input type="number" [label]="'Threshold Value'" [formControl]="ProductForm.controls['tresholdValue']"></app-text-input>
+                <app-text-input type="number" [label]="'Quantity'" [formControl]="ProductForm.controls['quantity']"></app-text-input>
+                <label for="floatingInput">Product Picture</label>
+                <input class="form-control mb-4" [accept]="'image/*'" type="file" (change)="uploadFile($event)" formControlName="pictureUrl">
+                <label for="floatingInput">Category: {{product.productCategory}}</label>
+                <select class="form-select mb-4" (change)="onCategorySelected($event)" formControlName="productCategoryId">
+                    <option *ngFor="let category of categories" [value]="category.id"> 
+                        {{category.name}}
+                    </option>
+                </select>
+                <label for="floatingInput">Type: {{product.productType}}</label>
+                <select class="form-select mb-4" (change)="onTypeSelected($event)" formControlName="productTypeId">
+                    <option *ngFor="let type of types" [value]="type.id"> 
+                        {{type.name}}
+                    </option>
+                </select>
+                <label for="floatingInput">Supplier: {{product.supplier}}</label>
+                <select class="form-select mb-4" (change)="onSupplierSelected($event)" formControlName="supplierId">
+                    <option *ngFor="let supplier of suppliers" [value]="supplier.id"> 
+                        {{supplier.name}}
+                    </option>
+                </select>
+            </div>
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    {{error}}
+                </li>
+            </ul>
+            <div>
+                <button [disabled]="ProductForm.invalid" class="btn btn-primary" type="submit">Update</button>
+                <button  class="mx-2 btn btn-danger" routerLink="/dashboard/products-list">Cancel</button>
+            </div>
+        </form>
+        <div class="col-6">
+            <h5 class="ms-3 my-2">QR Code </h5>
+            <qrcode id="capture" [qrdata]="qrCodeStr" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
+            <button type="button" class="btn btn-primary" (click)="printQRCode()"> Print QR Code </button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,18 @@
+ul.list-group {
+    border-radius: 0;
+}
+
+li.list-group-item {
+    border: 0;
+    color: black;
+    background-color: #f7f7f9;
+}
+
+li.list-group-item.active {
+    color: black;
+}
+
+li.list-group-item:hover{
+    background-color: #6B6B6B;
+    color: white;
+}

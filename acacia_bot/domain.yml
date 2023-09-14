@@ -1,0 +1,107 @@
+version: "3.1"
+intents:
+- greet
+- goodbye
+- ask_products
+- purchase_product
+- return_product
+- ask_orders
+- ask_wishlist
+- ask_create_account
+- ask_edit_account
+- ask_contact_us
+- ask_store_location
+- nlu_fallbackcls
+
+responses:
+  utter_greet:
+  - text: "Welcome to our online store! How can I be of service today? Whether you're looking for products, have questions about orders, or need assistance with anything else, I'm here to help!"
+  # - text: "Welcome to EPI-USE's E-Commerce Store! 🛍️ How can we enhance your shopping experience today? Whether you're looking for locally made products, clothing, branded merchandise, snacks, condiments, or unique gifts, we're here to assist you. Our mission is to support the preservation, protection, and upliftment of Elephants, Rhinos, and People through your purchases."
+  # - text: "Hello there! Delighted to have you at EPI-USE's E-Commerce Store. 🌟 Explore our collection of locally made products, clothing, branded merchandise, snacks, condiments, and delightful gifts. By shopping with us, you're contributing to the conservation of Elephants, Rhinos, and People. How may we make your shopping journey extraordinary?"
+  # - text: "Greetings from EPI-USE's E-Commerce Store! 🌍 Discover a diverse range of products including locally made items, clothing, branded merchandise, snacks, condiments, and unique gifts. With every purchase, you're playing a vital role in our mission to protect and uplift Elephants, Rhinos, and People. How may we assist you today?"
+  
+  
+  utter_goodbye:
+  - text: "Thank you for visiting EPI-USE's E-Commerce Store! 🛍️ Your support helps us continue our mission of preserving and uplifting Elephants, Rhinos, and People. We look forward to welcoming you back for more delightful shopping experiences. Goodbye for now!"
+  - text: "Farewell from EPI-USE's E-Commerce Store! 🌟 Your engagement with us contributes to the conservation of Elephants, Rhinos, and People. We appreciate your support and look forward to your next visit. Until then, take care and goodbye!"
+  - text: "Warm regards from EPI-USE's E-Commerce Store! 🌍 Thank you for shopping with us and supporting our cause. Remember, each purchase makes a positive impact on Elephants, Rhinos, and People. We can't wait to have you back. Goodbye and stay connected!"
+
+
+  utter_ask_products:
+  - text: "Welcome to EPI-USE's E-Commerce Store! 🛍️ Browse our selection of locally made products, including clothing, branded merchandise, snacks, condiments, and gifts. Explore our range that supports the preservation, protection, and upliftment of Elephants, Rhinos, and People. Check out our offerings on the shop link located in the navigation bar on the homepage. Enjoy your shopping experience!"
+
+  utter_purchase_product:
+  - text: "Ready to make a purchase? We're here to guide you through the process! Here's how you can buy products from our EPI-USE E-Commerce Store:
+    1. Start by exploring our fantastic range of products on the 'Shop' page.
+    2. Once you've found something you love, simply click on the item to view more details.
+    3. Ready to make it yours? Click the 'Add to Cart' button to place the item in your shopping cart.
+    4. When you're finished shopping, head over to your cart and review your selections.
+    5. To complete your purchase, follow the 'Proceed to Checkout' link. We'll guide you through the rest of the process!
+    If you have any questions or need assistance at any point, don't hesitate to reach out. We're here to make your shopping experience as seamless as possible!"
+
+
+  utter_return_product:
+  - text: "We're here to assist you with returns! Please note that returns for our products can be done in-store rather than online. When you visit our store, our friendly store manager will assess the condition of the product and make a decision regarding the return based on its state. We want to ensure you have the best experience possible, so please feel free to visit our store for assistance with returns. If you have any more questions, don't hesitate to ask. We're here to help!"
+
+  utter_ask_orders:
+  - text: "Checking your orders is easy! Just follow these simple steps:
+    1. Look for the 'User' icon in the navigation bar and click on it.
+    2. This will take you to the Orders Page, where you can see all your orders.
+    3. You'll find a list of your orders along with their details right there.
+    If you need any further assistance or have questions, don't hesitate to reach out. We're here to help!"
+
+  utter_ask_wishlist:
+  - text: "Checking your wishlist is a breeze! Just follow these simple steps:
+    1. Look for the 'Heart' icon in the navigation bar and give it a click.
+    2. This will whisk you away to the Wishlist Page, where all your favorite items are waiting.
+    3. Voila! You'll find a delightful list of your wishlist items right there.
+    If you have any more questions or need assistance, we're here to help. Happy shopping!"
+
+  utter_ask_create_account:
+  - text: "Creating your account is as easy as 1, 2, 3! Just follow these steps:
+    1. Look for the 'Register' button in the navigation bar and give it a click.
+    2. You'll be whisked away to the Register Page where the magic happens.
+    3. Fill in your details with a sprinkle of your personal info and a dash of excitement, then hit the 'Register' button to seal the deal!
+    If you need any help or have questions along the way, don't hesitate to ask. Welcome to our online family!"
+
+  utter_ask_edit_account:
+  - text: "Making your account truly yours is a piece of cake! Here's how:
+    1. Spot the 'User' icon in the navigation bar and give it a tap.
+    2. Click on the 'Account' link to gracefully glide over to your account page.
+    3. Ta-da! You'll land on the Account Page, where all your account details await.
+    4. Feel free to sprinkle some updates on your account info, and when you're ready, just click 'Save' to make it official.
+    Have any questions or need a hand? We're here to help, so don't hesitate to ask. Your account is your canvas!"
+
+  utter_ask_contact_us:
+  - text: "Need a friendly chat or some assistance? We're all ears and ready to help!
+    You can find our contact details right in the footer section of our homepage. Simply scroll down, and you'll spot the golden link to 'Contact Us.' Our dedicated customer support team is standing by, excited to lend a hand.
+    Whether you have questions, feedback, or just want to say hi, we're here for you. Drop us a line and let's make things happen!"
+
+
+utter_ask_store_location:
+  - text: "Need a friendly chat or some assistance? We're all ears and ready to help!
+    You can find our store location right in the footer section of our homepage. 
+    Whether you have questions, feedback, or just want to say hi, we're here for you. Drop us a line and let's make things happen!"
+
+utter_default:
+    - text: "I didn't quite catch that. Could you please rephrase your question or contact us to get in touch with our support team."
+
+actions:
+- utter_greet
+- utter_goodbye
+- utter_ask_products
+- utter_purchase_product
+- utter_return_product
+- utter_ask_orders
+- utter_ask_wishlist
+- utter_ask_create_account
+- utter_ask_edit_account
+- utter_ask_contact_us
+- utter_ask_store_location
+- utter_default
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+
+

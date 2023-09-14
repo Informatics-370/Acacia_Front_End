@@ -1,0 +1,60 @@
+<div class="container" >
+    <div class="d-flex justify-content-between align-items-center pb-2">
+        <div class="d-flex mt-2">
+            <app-text-input class="mx-2" [label]="'Start Date'" [type]="'date'" [formControl]="dateForm.controls['startDate']"></app-text-input>
+            <app-text-input class="mx-2" [label]="'End Date'" [type]="'date'" [formControl]="dateForm.controls['endDate']"></app-text-input>
+            <button class="btn btn-primary" style="background-color: #958F8A; color: white;" (click)="onDateSelected()"><i class="fa fa-filter"></i></button>
+            <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
+            <button class="btn" style="background-color: #958F8A; color: white;" (click)="printPdf()">Print Report</button>
+        </div>
+    </div>
+    <div id="content" #content >
+        <div class="row">
+            <h4> Supplier Report </h4>
+            <div id="divChart">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="row" *ngIf="Report">
+            <p *ngIf="Report.data.length <= 0"> There is currently no data that matches your request on the system </p>
+        </div>
+        <div class="row" *ngIf="Report">
+            <div *ngFor="let supplier of Report.data">
+                <h4 *ngIf="Report.data.length > 0"> Supplier Name: {{supplier.supplierName}} </h4>
+                <div class="table-responsive">
+                    <table class="table" >
+                        <thead class="text-uppercase">
+                            <tr>
+                                <th><div class="py-2">Product</div></th>
+                                <th><div class="py-2">Cost</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let subcategory of supplier.subCategories">
+                                <td class="align-middle">
+                                    <strong>{{ subcategory.productName }}</strong>
+                                    </td>
+                                    <td class="align-middle">
+                                    <strong>{{ subcategory.total  | currency:'R'}}</strong>
+                                    </td>
+                            </tr>
+                            <tr style="font-weight: bolder;">
+                                <td class="align-middle">
+                                    <strong>Total Orders from {{supplier.supplierName}} </strong>
+                                </td>
+                                    <td class="align-middle">
+                                    <strong>{{ supplier.total | currency:'R' }}</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <hr>
+                <h4> Total Supplier Orders Cost: {{Report.total | currency:'R'}}</h4>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

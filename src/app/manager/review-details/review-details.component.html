@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Product Review Details</h5>
+    <form class="row" [formGroup]="reviewForm">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Title'" [formControl]="reviewForm.controls['title']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="reviewForm.controls['description']"></app-text-input>
+            <app-text-input [label]="'Email'" [formControl]="reviewForm.controls['customerEmail']"></app-text-input>
+            <app-text-input [label]="'Product'" [formControl]="reviewForm.controls['product']"></app-text-input>
+            <app-text-input [label]="'Date'"  [formControl]="reviewForm.controls['date']"></app-text-input>
+            <app-text-input [label]="'Rating'" [type]="'number'" [formControl]="reviewForm.controls['rating']"></app-text-input>
+            <app-text-input [label]="'Status'" [formControl]="reviewForm.controls['status']"></app-text-input>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button (click)="FlagReview()" *ngIf="review?.status == 'Available'" [disabled]="reviewForm.invalid" class="btn btn-primary" type="submit">Flag Review</button>
+            <button (click)="UnFlagReview()" *ngIf="review?.status == 'Flagged'" [disabled]="reviewForm.invalid" class="btn btn-primary" type="submit">UnFlag Review</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/reviews">Cancel</button>
+        </div>
+    </form>
+</div>

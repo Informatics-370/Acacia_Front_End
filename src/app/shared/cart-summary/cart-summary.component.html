@@ -1,0 +1,47 @@
+<div class="table-responsive" *ngIf="(cartService.cartSource$ | async) as cart">
+    <table class="table">
+        <thead class="text-uppercase" [class.bg-light]="isCart">
+            <tr>
+                <th><div class="py-2">Product</div></th>
+                <th><div class="py-2">Price</div></th>
+                <th [class.text-center]="!isCart"><div class="py-2">Quantity</div></th>
+                <th><div class="py-2">Total</div></th>
+                <th *ngIf="isCart"  colspan="2"><div class="py-2"></div></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cart.items">
+                    <div class="p-2 d-inline-block">
+                        <img src="{{item.pictureUrl}}" alt="{{item.productName}}" style="max-height: 50px;"class="img-fluid">
+                        <div class="ms-3 d-inline-block align-middle">
+                            <h5 class="mb-0"> 
+                                <a routerLink="/shop/{{item.id}}" class="text-dark text-decoration-none">
+                                    {{item.productName}}
+                                </a>
+                            </h5>
+                            <span class="text-muted font-italic">
+                                Category: {{item.category}}
+                            </span>
+                        </div>
+                    </div>
+                <td class="align-middle">
+                    <strong>{{item.price | currency: "R"}}</strong>
+                </td>
+                <td class="align-middle">
+                    <div class="d-flex align-items-center" [class.justify-content-center]="!isCart">
+                        <i *ngIf="isCart" (click)="removeCartItem(item.id, 1)" class="fa fa-minus-square me-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
+                            <strong style="font-size: 1.2em;">{{item.quantity}}</strong>
+                        <i *ngIf="isCart" (click)="addCartItem(item)" class="fa fa-plus-square mx-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
+                    </div>
+                </td>
+                <td class="align-middle"><strong>{{item.price * item.quantity | currency: "R"}}</strong></td>
+                <td *ngIf="isCart" class="align-middle">
+                    <button type="button" class="btn px-2 py-2" style="background-color: #958F8A;"><a><i (click)="removeCartItem(item.id, item.quantity)" class="fa fa-trash" style="font-size: 2em; cursor: pointer; color: white;"></i></a></button>
+                </td>
+                <!-- <td class="align-middle">                                 
+                    <button type="button" class="btn px-2 py-2" style="background-color: #958F8A;"><a><i (click)="addItemToWishlist(item)" class="fa fa-heart" style="font-size: 2em; cursor: pointer; color: white;" ></i></a></button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>

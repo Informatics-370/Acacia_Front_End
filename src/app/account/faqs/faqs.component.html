@@ -1,0 +1,16 @@
+<div class="container">
+  <h5 class="my-2">FAQs</h5>
+  <div *ngIf="faqs.length > 0"  class="row">
+    <accordion panelClass="accordion" [isAnimated]="true">
+      <accordion-group panelClass="accordion-item" *ngFor="let faq of faqs" heading="{{faq.question}}">
+        <p>Answer: </p>
+        <div>{{faq.answer}}</div>
+      </accordion-group>
+    </accordion>
+  </div>
+  <div *ngIf="faqs.length <= 0" class="row">
+    <p> There are currently no FAQs on the system </p>
+  </div>
+</div>
+
+  

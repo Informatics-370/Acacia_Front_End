@@ -1,0 +1,58 @@
+import { Component } from '@angular/core';
+import { MediaService } from '../media.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BreadcrumbService } from 'xng-breadcrumb';
+import { ToastrService } from 'ngx-toastr';
+import { Media } from 'src/app/shared/models/Media';
+
+@Component({
+  selector: 'app-media-details',
+  templateUrl: './media-details.component.html',
+  styleUrls: ['./media-details.component.scss']
+})
+export class MediaDetailsComponent {
+  errors: string[] | null = null;
+  whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
+  mediaForm = new FormGroup({
+    id: new FormControl(0),
+    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    fileUrl: new FormControl('', Validators.required),
+  });
+  media?: Media;
+
+  
+  constructor(private mediaService: MediaService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService) { 
+    this.bcService.set('@mediaDetails', '');
+  }
+
+  ngOnInit(): void {
+    this.loadMedia();  
+  }
+
+  loadMedia(){
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (id) this.mediaService.getMedia(+id).subscribe({
+      next: media => {
+        media && this.mediaForm.patchValue(media);
+        this.media = media,
+        this.bcService.set('@mediaDetails', media.name);
+        console.log(this.mediaForm.value);
+      },
+      error: err => console.log(err)
+    })
+  }
+  
+  updateMedia(){
+    this.mediaService.updateMedia(this.mediaForm.value).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/dashboard/Media');
+        this.toaster.success('Media updated');
+      },
+      error: error => {
+        this.errors = error.errors
+      } 
+    })
+  }
+}

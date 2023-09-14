@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Company Details</h5>
+    <form class="row" [formGroup]="companyForm" (ngSubmit)="updateCompany()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'VAT Number'" [formControl]="companyForm.controls['vatNumber']" [type]="'number'"></app-text-input>
+            <app-text-input [label]="'Address Line 1'" [formControl]="companyForm.controls['addressLine1']"></app-text-input>
+            <app-text-input [label]="'Address Line 2'" [formControl]="companyForm.controls['addressLine2']"></app-text-input>
+            <app-text-input [label]="'Suburb'" [formControl]="companyForm.controls['suburb']"></app-text-input>
+            <app-text-input [label]="'City'" [formControl]="companyForm.controls['city']"></app-text-input>
+            <app-text-input [label]="'Postal Code'" [formControl]="companyForm.controls['postalCode']" [type]="'number'"></app-text-input>
+            <label for="floatingInput">Province</label>
+            <select class="form-select mb-4" (change)="onProvinceSelected($event)" formControlName="province">
+                <option *ngFor="let province of provinceList" [value]="province.value"> 
+                    {{province.name}}
+                </option>
+            </select>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="companyForm.invalid" class="btn btn-primary" type="submit">Update</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard">Cancel</button>
+        </div>
+    </form>
+</div>
+

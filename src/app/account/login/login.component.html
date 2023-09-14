@@ -1,0 +1,65 @@
+<!-- <div class="d-flex justify-content-center mt-5">
+    <div class="col-3">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="text-center mb-4">
+                <h1 class="mb-3">Login</h1>
+            </div>
+            <app-text-input [formControl]="loginForm.controls['email']" [label]="'Email Address'"></app-text-input>
+            <app-text-input [formControl]="loginForm.controls['password']" [type]="'password'" [label]="'Password'"></app-text-input>
+            <p><a (click)="openModal(template)" style="text-decoration: underline;">Forgot Password?</a></p>
+            <div class="d-grid">
+              <button [disabled]="loginForm.invalid"class="btn btn-primary" type="submit">Sign In</button>
+            </div>
+            <p>Don't have an account? <a routerLink="/account/register">Register here</a></p>
+        </form>
+    </div>
+</div> -->
+
+
+
+<div class="container" id="container" style="margin-top: 100px;" >
+  <div class="form-container log-in-container" >
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="text-center mb-4">
+        <br />
+        <br />
+        <br />
+        <h1>Login</h1>
+      </div>
+      <app-text-input [formControl]="loginForm.controls['email']" [label]="'Email Address'"></app-text-input>
+      <app-text-input [formControl]="loginForm.controls['password']" [type]="'password'" [label]="'Password'"></app-text-input>
+      <p><a (click)="openModal(template)" style="text-decoration: underline;">Forgot Password?</a></p>
+      <div class="d-grid">
+        <button [disabled]="loginForm.invalid"class="btn btn-primary" type="submit">Sign In</button>
+      </div>
+      <p>Don't have an account? <a routerLink="/account/register" style="color: rgba(0, 102, 255, 0.486);">Register here</a></p>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <!-- <div class="overlay">
+      <div class="overlay-panel overlay-right">
+        <h1>HTML CSS Login Form</h1>
+        <p>This login form is created using pure HTML and CSS. For social icons, FontAwesome is used.</p>
+      </div>
+    </div> -->
+    <img src="https://assets.website-files.com/5f4403514f0915cea7c6f0a1/602fcb284b4bc5201989a550_sample-box4.jpg" alt="Login image" width="500" height="600">
+  </div>
+</div>
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Forgot Password</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <p>
+            Please enter your email address
+        </p>
+        <app-text-input [formControl]="forgotPasswordForm.controls['email']" [label]="'Email Address'"></app-text-input>
+      <button [disabled]="forgotPasswordForm.invalid" type="submit" class="btn btn-primary" (click)="forgotPassword()">Submit</button>
+    </div>
+  </ng-template>
+
+
+

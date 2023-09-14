@@ -1,0 +1,64 @@
+version: "3.1"
+
+rules:
+
+- rule: Greet back
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Provide information about products when the user asks about products
+  steps:
+  - intent: ask_products
+  - action: utter_ask_products
+
+- rule: Provide steps on how to purchase a product on the eCommerce store
+  steps:
+  - intent: purchase_product
+  - action: utter_purchase_product
+
+- rule: Provide information on how to return a product 
+  steps:
+  - intent: return_product  
+  - action: utter_return_product
+
+- rule: Provide information on how to view orders anytime the user asks
+  steps:
+  - intent: ask_orders 
+  - action: utter_ask_orders
+  
+- rule: Provide information on the wishlist anytime the user asks
+  steps:
+  - intent: ask_wishlist
+  - action: utter_ask_wishlist
+
+
+- rule: Provide information on creating an account when a user asks
+  steps:
+  - intent: ask_create_account
+  - action: utter_ask_create_account
+
+- rule: Provide information on editing an account information when a user asks
+  steps:
+  - intent: ask_edit_account
+  - action: utter_ask_edit_account
+
+- rule: Provide information when customer asks for contact information
+  steps:
+  - intent: ask_contact_us
+  - action: utter_ask_contact_us
+
+- rule: Provide information when customer asks about the location information
+  steps:
+  - intent: ask_store_location
+  - action: utter_ask_store_location
+
+- rule: Fallback rule
+  steps:
+  - intent: nlu_fallback
+  - action: utter_default

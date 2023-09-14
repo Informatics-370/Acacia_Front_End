@@ -1,0 +1,18 @@
+/*Section for table styling*/
+table{
+    width: 100%;
+    color: black;
+    font-family:'Inter';
+  }
+  th,tr{
+      font-family:'Inter';
+      color: black;
+      padding: 2px;
+  }
+  th{
+      font-weight: bold;
+      background-color: #D5C9B7;
+  }
+  tr{
+      background-color: #F8F9FA;
+  }

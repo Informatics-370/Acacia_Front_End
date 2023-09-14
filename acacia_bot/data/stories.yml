@@ -1,0 +1,81 @@
+version: "3.1"
+
+stories:
+- story: Basic hello
+  steps: 
+  - intent: greet
+  - action: utter_greet
+
+- story: Basic goodbye
+  steps: 
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: Customer wants to browse products
+  steps: 
+  - intent: ask_products
+  - action: utter_ask_products
+
+
+- story: Customer wants to purchase products
+  steps: 
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_products
+  - action: utter_ask_products
+  - intent: purchase_product
+  - action: utter_purchase_product
+
+- story: Customer wants to know about returning a product
+  steps: 
+  - intent: greet
+  - action: utter_greet
+  - intent: return_product
+  - action: utter_return_product
+
+- story: Customer wants to know where to view their orders
+  steps: 
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_orders
+  - action: utter_ask_orders
+
+
+- story: Customer wants to know where to view their wishlist
+  steps: 
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_wishlist
+  - action: utter_ask_wishlist
+
+- story: Customer wants to know where to create an account
+  steps: 
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_create_account
+  - action: utter_ask_create_account
+
+
+- story: Customer wants to know where to edit their account
+  steps: 
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_edit_account
+  - action: utter_ask_edit_account
+
+- story: Customer wants to know how to contact the store
+  steps: 
+  - intent: ask_contact_us
+  - action: utter_ask_contact_us
+
+- story: Customer wants to know where the store is located
+  steps: 
+  - intent: ask_store_location
+  - action: utter_ask_store_location
+
+
+- story: Fallback story
+  steps:
+  - intent: nlu_fallback
+  - action: utter_default
+

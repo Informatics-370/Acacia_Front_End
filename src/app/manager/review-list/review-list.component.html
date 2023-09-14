@@ -1,0 +1,52 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="d-flex justify-content-between align-items-center pb-2">
+            <app-paging-header [totalCount]="totalCount" [pageNumber]="reviewParams.pageNumber" [pageSize]="reviewParams.pageSize"></app-paging-header>
+            <div class="d-flex mt-2">
+                <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control" #search>
+                <button class="btn mx-2" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
+                <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
+                <select class="form-select mx-2" style="max-width: 40px; min-width: none;"  (change)="onSortSelected($event)">
+                    <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                        {{sort.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="reviews.length <= 0">
+            <p> There are currently no reviews on the system </p>
+        </div>
+        <div class="table-responsive" *ngIf="reviews.length > 0">
+            <table class="table">
+                <thead class="text-uppercase">
+                    <tr>
+                        <th><div class="py-2">Date</div></th>
+                        <th><div class="py-2">Title</div></th>
+                        <th><div class="py-2">Email</div></th>
+                        <th><div class="py-2">Product</div></th>
+                        <th><div class="py-2">Rating</div></th>
+                        <th><div class="py-2">Status</div></th>
+                        <th><div class="py-2">View</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let review of reviews">
+                        <td class="align-middle"><strong>{{review.date | date}}</strong></td>
+                        <td class="align-middle"><strong>{{review.title }}</strong></td>
+                        <td class="align-middle"><strong>{{review.customerEmail}}</strong></td>
+                        <td class="align-middle"><strong>{{review.product}}</strong></td>
+                        <td class="align-middle"><strong>{{review.rating}}</strong></td>
+                        <td class="align-middle"><strong>{{review.status}}</strong></td>
+
+                        <td class="align-middle">
+                            <button type="button" class="btn px-2 py-2" style="background-color: #676767;"><a style="text-decoration: none; color: white; font-weight:lighter;" routerLink="/dashboard/reviews/{{review.id}}"> <i class="fa fa-edit align-middle" style="font-size: 2em; cursor: pointer; color: white;"></i> View </a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end" *ngIf="totalCount > 0" >
+        <app-pager [totalCount]="totalCount" [pageSize]="reviewParams.pageSize" (pageChanged)="onPageChanged($event)"></app-pager>
+    </div>
+</div>

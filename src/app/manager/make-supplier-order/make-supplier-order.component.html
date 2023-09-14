@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="d-flex justify-content-between align-items-center pb-2">
+            <app-paging-header [totalCount]="totalCount" [pageNumber]="specParams.pageNumber" [pageSize]="specParams.pageSize"></app-paging-header>
+            <div class="d-flex mt-2">
+                <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control" #search>
+                <button class="btn mx-2" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
+                <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
+                <select class="form-select mx-2" style="max-width: 40px; min-width: none;"  (change)="onSortSelected($event)">
+                    <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                        {{sort.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive" *ngIf="suppliers.length > 0">
+            <table class="table">
+                <thead class="text-uppercase">
+                    <tr>
+                        <th><div class="py-2">Name</div></th>
+                        <th><div class="py-2">Email</div></th>
+                        <th><div class="py-2">Number</div></th>
+                        <th><div class="py-2">Place Order</div></th>
+                        <th><div class="py-2">View</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let supplier of suppliers">
+                        <td class="align-middle"><strong>{{supplier.name}}</strong></td>
+                        <td class="align-middle"><strong>{{supplier.email}}</strong></td>
+                        <td class="align-middle"><strong>{{supplier.phoneNumber}}</strong></td>
+                        <td class="align-middle">
+                            <button routerLink="/dashboard/MakeSupplierOrder/{{supplier.id}}" type="button" class="btn px-2 py-2" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="font-size: 2em; cursor: pointer; color: white;"></i> Place Order </button>
+                        </td>
+                        <td class="align-middle">
+                            <button routerLink="/dashboard/supplier-details/{{supplier.id}}" type="button" class="btn px-2 py-2" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="font-size: 2em; cursor: pointer; color: white;"></i> View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end" *ngIf="totalCount > 0" >
+        <app-pager [totalCount]="totalCount" [pageSize]="specParams.pageSize" (pageChanged)="onPageChanged($event)"></app-pager>
+    </div>
+</div>

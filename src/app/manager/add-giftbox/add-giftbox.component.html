@@ -1,0 +1,84 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add GiftBox</h5>
+    <div class="row">
+        <form class="row" [formGroup]="gbForm" (ngSubmit)="addGiftbox()" class="col-6">
+            <app-text-input [label]="'Name'" [formControl]="gbForm.controls['name']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="gbForm.controls['description']"></app-text-input>
+            <app-text-input type="number" [label]="'Price'" [formControl]="gbForm.controls['price']"></app-text-input>
+            <app-text-input type="number" [label]="'Packaging Costs'" [formControl]="gbForm.controls['packagingCosts']"></app-text-input>
+            <label for="floatingInput">Giftbox Image</label>
+            <app-text-input (change)="uploadFile($event)"  type="file" accept="image/*" [formControl]="gbForm.controls['giftBoxImage']"></app-text-input>
+
+            <label for="floatingInput">Giftbox Products</label>
+            <div class="table-responsive" *ngIf="gbproducts.length > 0">
+                <table class="table table-hover">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of gbproducts">
+                            <td class="align-middle"><img src='{{product.pictureUrl}}' class="img-fluid bg-info" style="max-height: 50px;"></td>
+                            <td class="align-middle">{{product.name}}</td>
+                            <td class="align-middle">
+                                <button (click)="removeProdToGiftbox(product.id)" class="btn btn-sm mx-1" type="button" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> Remove </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="gbproducts.length <= 0">
+                <p class="text-info">There are currently no products in the GiftBox</p>
+            </div>
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    {{error}}
+                </li>
+            </ul>
+            <div>
+                <button [disabled]="gbForm.invalid || gbproducts.length <= 0" class="btn btn-primary" type="submit">Add</button>
+                <button  class="mx-2 btn btn-danger" routerLink="/dashboard/giftbox-list">Cancel</button>
+            </div>
+        </form>
+        <div class="col-6">
+            <label for="floatingInput">Store Products</label>
+            <div class="d-flex my-1">
+                    <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control form-control-sm" #search>
+                    <button class="btn btn-sm mx-2" type="button" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
+                    <button style="background-color: #958F8A; color: white;" type="button" (click)="onReset()" class="btn mx-2 btn-sm">Reset</button>
+                    <select class="form-select mx-2 form-control-sm" style="max-width: 40px; min-width: none;"  (change)="onSortSelected($event)">
+                        <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                            {{sort.name}}
+                        </option>
+                    </select>
+            </div>
+            <div class="table-responsive" *ngIf="products.length > 0">
+                <table class="table table-hover">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products">
+                            <td class="align-middle"><img src='{{product.pictureUrl}}' class="img-fluid bg-info" style="max-height: 50px;"></td>
+                            <td class="align-middle"><strong>{{product.name}}</strong></td>
+                            <td class="align-middle">
+                                <button (click)="addProdToGiftbox(product.id)" type="button" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> Add </button>
+                                <button routerLink="/dashboard/product-details/{{product.id}}" type="button" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> View </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end" *ngIf="totalCount > 0" >
+                <app-pager [totalCount]="totalCount" [pageSize]="shopParams.pageSize" (pageChanged)="onPageChanged($event)"></app-pager>
+                </div>
+        </div>
+    </div>
+</div>

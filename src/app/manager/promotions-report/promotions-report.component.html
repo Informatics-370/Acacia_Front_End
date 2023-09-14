@@ -1,0 +1,60 @@
+<div class="container" >
+    <div class="d-flex justify-content-between align-items-center pb-2">
+        <div class="d-flex mt-2">
+            <button class="btn" style="background-color: #958F8A; color: white;" (click)="printPdf()">Print Report</button>
+            <div class="dropdown mx-2" dropdownToggle dropdown>
+                <button style="background-color: #958F8A;" class="btn btn-primary"><i class="fa fa-filter"></i></button>
+                <div *dropdownMenu class="dropdown-menu py-0">
+                    <ul class="list-group">
+                        <li class="list-group-item"*ngFor="let category of categories"
+                            [value]="category.id"
+                            (click)="onCategorySelected(category.id)"
+                            >{{category.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+            <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
+        </div>
+    </div>
+    <div id="content" #content>
+        <div class="row" >
+            <h4 > Promotions Report </h4>
+            <div id="divChart">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="row" *ngIf="Report">
+            <p *ngIf="Report.data.length <= 0"> There is currently no data that matches your request on the system </p>
+        </div>
+        <div class="row" *ngIf="Report">
+            <h4 *ngIf="Report.data.length > 0"> Promotions applied at Checkout </h4>
+            <div class="table-responsive" *ngIf="Report.data.length > 0">
+                <table class="table">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th><div class="py-2">Promotion</div></th>
+                            <th><div class="py-2">Promotions Applied</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let label of Report.labels; let i = index">
+                            <td class="align-middle">
+                            <strong>{{ label }}</strong>
+                            </td>
+                            <td class="align-middle">
+                            <strong>{{ Report.data[i] }}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <hr>
+            <h4> Total Promotions Applied: {{Total}}</h4>   
+            <hr>
+        </div>
+    </div>
+</div>
+

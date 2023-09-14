@@ -1,0 +1,20 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add Delivery Method </h5>
+    <form class="row" [formGroup]="deliveryMethodForm" (ngSubmit)="addDeliveryMethod()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'name'" [formControl]="deliveryMethodForm.controls['name']"></app-text-input>
+            <app-text-input [label]="'DeliveryTime'" [formControl]="deliveryMethodForm.controls['deliveryTime']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="deliveryMethodForm.controls['description']"></app-text-input>
+            <app-text-input [label]="'Price'" type="number" [formControl]="deliveryMethodForm.controls['price']"></app-text-input>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="deliveryMethodForm.invalid" class="btn btn-primary" type="submit">Add</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/DeliveryMethods">Cancel</button>
+        </div>
+    </form>
+</div>

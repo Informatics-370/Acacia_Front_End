@@ -1,0 +1,25 @@
+<div class="container mt-4">
+    <div class="row">
+        <form class="col-6" [formGroup]="mediaForm" (ngSubmit)="updateMedia()">
+            <h5 class="ms-3 my-2">Update Media</h5>
+            <div class="form-group">
+                <app-text-input [label]="'Name'" [formControl]="mediaForm.controls['name']"></app-text-input>
+                <app-text-input [label]="'Description'" [formControl]="mediaForm.controls['description']"></app-text-input>
+                <app-text-input [label]="'URL'" [formControl]="mediaForm.controls['fileUrl']"></app-text-input>
+            </div>
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    {{error}}
+                </li>
+            </ul>
+            <div>
+                <button [disabled]="mediaForm.invalid" class="btn btn-primary" type="submit">Update</button>
+                <button  class="mx-2 btn btn-danger" routerLink="/dashboard/Media">Cancel</button>
+            </div>
+        </form>
+        <div class="col-6" *ngIf="media">
+            <h5 class="ms-3 my-2">Media</h5>
+            <iframe src="https://www.youtube.com/embed/SNTtKyGgqUo?si=rr8PEOiFlTADntD3"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>

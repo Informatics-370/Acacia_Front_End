@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add VAT</h5>
+    <form class="row" [formGroup]="VatForm" (ngSubmit)="openModal(template)">
+        <div class="form-group col-6">
+            <app-text-input type="number" [label]="'Percentage'" [formControl]="VatForm.controls['vatPercentage']"></app-text-input>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="VatForm.invalid" class="btn btn-primary" type="submit">Add</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/vat-list">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left text-danger">Add Vat</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-danger">
+        <p>
+            Are you sure you want to Add this new VAT value? This action cannot be undone.
+        </p>
+      <button [disabled]="VatForm.invalid" type="button" class="btn btn-danger" (click)="addVat()">Add VAT</button>
+    </div>
+  </ng-template>
+

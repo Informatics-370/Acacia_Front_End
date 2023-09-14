@@ -1,0 +1,19 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add Supplier</h5>
+    <form class="row" [formGroup]="SupplierForm" (ngSubmit)="addSupplier()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Name'" [formControl]="SupplierForm.controls['name']"></app-text-input>
+            <app-text-input [label]="'Email'" [formControl]="SupplierForm.controls['email']"></app-text-input>
+            <app-text-input [label]="'Phone Number'" [type]="'number'" [formControl]="SupplierForm.controls['phoneNumber']"></app-text-input>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="SupplierForm.invalid" class="btn btn-primary" type="submit">Add</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/supplier-list">Cancel</button>
+        </div>
+    </form>
+</div>

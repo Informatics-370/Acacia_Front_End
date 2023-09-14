@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="max-height: 64px;background-color: #383838">
+  <div class="container-fluid">
+    <img class="navbar-brand logo" src="assets/images/logo.png" alt="logo" style="max-height: 40px; border: none;" routerLink="/">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" style="color: white;" routerLink="/" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white;" routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white;" routerLink="/aboutus" routerLinkActive="active" href="#">About Us</a> 
+        </li>
+        <ng-container *ngIf="accountService.currentUser$ | async as user">
+          <li class="nav-item" *ngIf="user.roles[0] == 'Manager'">
+            <a class="nav-link" style="color: white;" routerLink="/dashboard" routerLinkActive="active">Manage Store </a>
+          </li>
+        </ng-container>
+        <!-- <li class="nav-item">
+          <a class="nav-link" style="color: white;" routerLink="/test-error" routerLinkActive="active">Errors</a>
+        </li> -->
+      </ul>
+      <form class="d-flex navbar-nav">
+        <div class="nav-item">
+          <a routerLink="/cart" class="position-relative nav-link">
+            <i class="fa fa-shopping-cart fa-2x text-light"></i>
+            <div *ngIf="(cartService.cartSource$ | async) as cart" class="cart-no">
+                {{getCount(cart.items)}}
+            </div>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a routerLink="/wishlist" class="position-relative nav-link">
+            <i class="fa fa-heart fa-2x text-light"></i>
+            <div *ngIf="(wishlistService.wishlistSource$ | async) as wishlist" class="cart-no">
+              {{getWishlistCount(wishlist.items)}}
+            </div>
+          </a>
+        </div>
+        <ng-container *ngIf="(accountService.currentUser$ | async) === null">
+          <div class="nav-item">
+            <a class="nav-link" style="color: white;" routerLink="/account/login">Login</a>
+          </div>
+          <div class="nav-item">
+            <a class="nav-link" style="color: white;" routerLink="/account/register">Register</a>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="accountService.currentUser$ | async as user">
+          <div class="nav-item dropdown" dropdown>
+            <a style="color: white;" dropdownToggle class="nav-link dropdown-toggle" role="button" aria-haspopup="true"><img src="{{user.profilePicture}}" style="object-fit: cover;" alt="Avatar" class="avatar"> Welcome {{user.displayName}} </a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+              <a routerLink="/account" class="dropdown-item">
+                <i class="fa fa-address-book me-3"></i> Account
+              </a>
+              <a routerLink="/cart" class="dropdown-item">
+                <i class="fa fa-shopping-cart me-3"></i> View Cart
+              </a>
+              <a routerLink="/wishlist" class="dropdown-item">
+                <i class="fa fa-heart me-3"></i> View Wishlist
+              </a>
+              <a routerLink="account/orders" class="dropdown-item">
+                <i class="fa fa-history me-3"></i> View Orders
+              </a>
+              <div class="dropdown-divider"></div>
+              <a (click)="accountService.logout()" class="dropdown-item">
+                <i class="fa fa-sign-out me-3"></i> Logout
+              </a>
+            </div>
+          </div>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</nav>

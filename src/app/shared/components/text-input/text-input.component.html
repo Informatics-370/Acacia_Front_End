@@ -1,0 +1,31 @@
+<input 
+*ngIf="type == 'file'"
+type={{type}} 
+[formControl]="control"
+accept={{accept}}
+placeholder="uploaded"
+class="form-control" 
+[ngClass]="(control.touched) ? control.invalid ? 'is-invalid' : 'is-valid' : null">
+
+<div class="form-floating mb-3">
+
+    <input
+    type={{type}} 
+    *ngIf="type !== 'file'"
+    src="{{src}}"
+    [formControl]="control"
+    placeholder="{{label}}"
+    class="form-control" 
+    [ngClass]="(control.touched) ? control.invalid ? 'is-invalid' : 'is-valid' : null">
+
+    <div *ngIf="control.status === 'PENDING'" class="fa fa-spinner fa-spin loader">
+
+    </div>
+    
+    <label for="floatingInput">{{label}}</label>
+    <div *ngIf="control.errors?.['required']" class="invalid-feedback">Please enter your {{label}}</div>
+    <div *ngIf="control.errors?.['email']" class="invalid-feedback">Invalid email address</div>
+    <div *ngIf="control.errors?.['pattern'] && type == 'password'" class="invalid-feedback">Password must have 1 Uppercase, 1 Lowercase, 1 Number, 1 non-alphanumeric and at least 6 characters</div>
+    <div *ngIf="control.errors?.['pattern'] && type != 'password'" class="invalid-feedback">Please remove the whitespace from the beginning of the text. </div>
+    <div *ngIf="control.errors?.['emailExists']" class="invalid-feedback">This email has been detected on the system.</div>
+  </div>

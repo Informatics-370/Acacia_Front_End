@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div *ngIf="(wishlistService.wishlistSource$ | async) === null">
+        <p> There are no items in your wishlist</p>
+    </div>
+    <ng-container *ngIf="(wishlistService.wishlistSource$ | async) as wishlist">
+        <div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-uppercase">
+                            <tr>
+                                <th><div class="py-2">Product</div></th>
+                                <th><div class="py-2">Price</div></th>
+                                <th><div class="py-2">Remove</div></th>
+                                <th><div class="py-2">Add to Cart</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of wishlist.items">
+                                
+                                    <div class="p-2 d-inline-block">
+                                        <img src="{{item.pictureUrl}}" alt="{{item.productName}}" style="max-height: 50px;"class="img-fluid">
+                                        <div class="ms-3 d-inline-block align-middle">
+                                            <h5 class="mb-0"> 
+                                                <a routerLink="/shop/{{item.id}}" class="text-dark text-decoration-none">
+                                                    {{item.productName}}
+                                                </a>
+                                            </h5>
+                                            <span class="text-muted font-italic">
+                                                Category: {{item.category}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                
+                                <td class="align-middle"><strong>{{item.price | currency: "R"}}</strong></td>
+                                <td class="align-middle">
+                                        <button type="button" class="btn px-2 py-2" style="background-color: #958F8A;"><a><i (click)="removeItem(item.id)" class="fa fa-trash" style="font-size: 2em; cursor: pointer; color: white;"></i></a></button>
+                                </td>
+                                <td class="align-middle">                                 
+                                        <button type="button" class="btn px-2 py-2" style="background-color: #958F8A;"><a><i (click)="addItemToCart(item)" class="fa fa-cart-plus" style="font-size: 2em; cursor: pointer; color: white;" ></i></a></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <!-- <app-cust-order-totals></app-cust-order-totals> -->
+                    <div class="d-grid">
+                        <a routerLink="/cart" class="btn btn-outline-primary py-2">
+                            View Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+

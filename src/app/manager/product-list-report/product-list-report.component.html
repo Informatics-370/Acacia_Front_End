@@ -1,0 +1,44 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="d-flex justify-content-between align-items-center pb-2">
+            <h2>Products List Report</h2>
+            <button class="btn" style="background-color: #958F8A; color: white;" (click)="printPdf()">Print Report</button>
+            <select class="form-select mx-2" (change)="onSortSelected($event)">
+                <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                    {{sort.name}}
+                </option>
+            </select>
+        </div>
+        <div *ngIf="products.length <= 0" class="row">
+            <p> There are currently no products on the system </p>
+        </div>
+        <div class="table-responsive" *ngIf="products.length > 0" id="content" #content>
+            <table class="table">
+                <thead class="text-uppercase">
+                    <tr>
+                        <th><div class="py-2">Product</div></th>
+                        <th><div class="py-2">Category</div></th>
+                        <th><div class="py-2">Type</div></th>
+                        <th><div class="py-2">Price</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td class="align-middle"><strong>{{product.name }}</strong></td>
+                        <td class="align-middle"><strong>{{product.productCategory}}</strong></td>
+                        <td class="align-middle"><strong>{{product.productType}}</strong></td>
+                        <td class="align-middle"><strong>{{product.price | currency: "R"}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="products.length <= 0" class="d-flex ">
+            <p> There are currently no products on the system </p>
+        </div>
+    </div>
+    <div>
+        <hr>
+        <h4> Total Products: {{products.length}}</h4>   
+        <hr>
+    </div>
+</div>

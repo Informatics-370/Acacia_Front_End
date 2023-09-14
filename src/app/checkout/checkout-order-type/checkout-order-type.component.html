@@ -1,0 +1,21 @@
+<div class="mt-4" *ngIf="checkoutForm" [formGroup]="checkoutForm">
+    <div class="row" formGroupName="orderTypeForm">
+        <div class="col-6 form-group" *ngFor="let type of orderTypes">
+                <input  value="{{type.id}}"  formControlName="orderTypeId" (change)="onSelection()"
+                type="radio" class="form-check-input">
+                <label for="{{type.id}}" class="form-check-label ms-2 mb-3">
+                    <strong>{{type.name}}</strong>
+                </label>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between flex-row mb-5">
+    <button class="btn btn-outline-primary" routerLink="/cart">
+        <i class="fa fa-angle-left"></i> Back to Cart
+    </button>
+    <button [disabled]="checkoutForm?.get('orderTypeForm')?.invalid" class="btn btn-primary" cdkStepperNext>
+        Go to Address<i class="fa fa-angle-right"></i>
+    </button>
+</div>
+

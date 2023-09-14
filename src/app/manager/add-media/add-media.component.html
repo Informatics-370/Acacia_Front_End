@@ -1,0 +1,19 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add Media</h5>
+    <form class="row" [formGroup]="mediaForm" (ngSubmit)="addMedia()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Name'" [formControl]="mediaForm.controls['name']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="mediaForm.controls['description']"></app-text-input>
+            <app-text-input [label]="'URL'" [formControl]="mediaForm.controls['fileUrl']"></app-text-input>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="mediaForm.invalid" class="btn btn-primary" type="submit">Add</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/Media">Cancel</button>
+        </div>
+    </form>
+</div>

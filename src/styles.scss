@@ -1,0 +1,27 @@
+
+
+label.xng-breadcrumb-trail{
+    color: white;
+}
+
+:root {
+    --Beige: #ACA59D;
+    --font: Inter
+  }
+  
+  html {
+    font-family: var(--font) !important;
+}
+
+.footer{
+  
+}
+
+
+
+
+/* Importing Bootstrap SCSS file. */
+// @import "./node_modules/bootstrap/scss/bootstrap";
+
+// /* Importing Datepicker SCSS file. */
+// @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

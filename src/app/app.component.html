@@ -1,0 +1,10 @@
+
+<ngx-spinner type="square-loader">
+  <h3>Loading...</h3>
+</ngx-spinner>
+<ng-container>
+  <app-nav-bar></app-nav-bar>
+  <app-section-header *ngIf="!hasDashboardLabel()"></app-section-header>
+    <router-outlet></router-outlet>
+</ng-container>
+<app-chatbot></app-chatbot>

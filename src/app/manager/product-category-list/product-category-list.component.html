@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="d-flex justify-content-between align-items-center pb-2">
+            <div class="d-flex mt-2">
+                <button class="btn" style="background-color: #958F8A; color: white;" routerLink="/dashboard/add-product-category">Add Product Category</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pb-2">
+            <app-paging-header [totalCount]="totalCount" [pageNumber]="pageNumber" [pageSize]="pageSize"></app-paging-header>
+            <div class="d-flex mt-2">            
+                <input [(ngModel)]="searchTerm" type="text" placeholder="Search" class="form-control" #search>
+                <button class="btn mx-2" style="background-color: #958F8A; color: white;" >Search</button>
+                <button style="background-color: #958F8A; color: white;" class="btn mx-2" (click)="onReset()">Reset</button>
+            </div>
+        </div>
+        <div *ngIf="categories.length <= 0" >
+            <p> There are currently no product categories on the system </p>
+        </div>
+        <div class="table-responsive" *ngIf="categories.length > 0" >
+            <table class="table">
+                <thead class="text-uppercase">
+                    <tr>
+                        <th><div class="py-2">Category</div></th>
+                        <th><div class="py-2">View</div></th>
+                        <th><div class="py-2">Delete</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of filteredData">
+                        <td class="align-middle"><strong>{{category.name }}</strong></td>
+                        <td class="align-middle">
+                            <button type="button" class="btn px-2 py-2" style="background-color: #676767;"><a style="text-decoration: none; color: white; font-weight:lighter;" routerLink="/dashboard/update-product-category/{{category.id}}"> <i class="fa fa-edit align-middle" style="font-size: 2em; cursor: pointer; color: white;"></i> Update </a></button>
+                        </td>
+                        <td class="align-middle">                                 
+                            <button type="button" class="btn px-2 py-2" style="background-color: #676767;"><a  style="text-decoration: none; color: white; font-weight:lighter;" (click)="openModal(template)"><i class="fa fa-trash align-middle" style="font-size: 2em; cursor: pointer; color: white;" ></i> Delete </a></button>
+                        </td>
+
+                        <ng-template #template>
+                            <div class="modal-header">
+                              <h4 class="modal-title pull-left">Delete Category</h4>
+                              <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body text-danger">
+                                <p>
+                                    Are you sure you want to delete this product category? This action cannot be undone.
+                                </p>
+                              <button type="button" class="btn btn-danger" (click)="deleteProductCategory(category.id)">Delete Product Category</button>
+                            </div>
+                          </ng-template>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

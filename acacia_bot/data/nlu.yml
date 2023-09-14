@@ -1,0 +1,571 @@
+version: "3.1"
+nlu:
+#-------------------------GREATINGS AND GOODBYES--------------------#
+- intent: greet
+  examples: |
+    - Hey
+    - Hello
+    - Hi
+    - Hello there
+    - Good morning
+    - Good afternoon
+    - Good evening
+    - Morning
+    - Hey there
+    - Hey dude
+    - Goodmorning
+    - Goodevening
+    - Goodafternoon
+    - Hiya
+    - Hi there
+    - Hey buddy
+    - Howdy
+    - Sup
+    - Yo
+    - Hi folks
+    - Hiya there
+    - Hola
+    - Bonjour
+    - Ciao
+    - Namaste
+    - Konnichiwa
+    - Salaam
+    - How's it going?
+    - Hey, good morning
+    - Good afternoon, how are you?
+    - Hi bot
+    - Hey bot
+    - Hello bot
+    - Hello, can you help me?
+    - Salutations
+    - Hey, can you help me?
+    - Hello, how are you?
+    - Hi, how are you?
+    - Hi, how are you?
+    - How are you doing?
+    - How are you?
+    - How are you
+    - Hello, can you please help me?
+    - Hey hope all is well today
+    - Hey I hope you are doing well today
+    - Hi I hope you are doing well today
+    - What's new?
+    - What's up?
+    - Hello bot
+    - Hi bot
+    - Hey bot
+    - Gooday bot
+    - Yo
+    - Hello I need some assistance
+    - Hello I need some help
+    - Hi I need some assistance
+    - Hi I need some helo
+    - Hey I need some assistance
+    - Hey I need some help
+
+- intent: goodbye
+  examples: |
+    - Bye
+    - Goodbye
+    - See you later
+    - Goodbye
+    - Farewell
+    - Goodnight
+    - Bye bot
+    - Goodbye bot
+    - Later
+    - Catch you later
+    - See you later
+    - Have a nice day
+    - Have a nice one
+    - Have a nice everning
+    - Have a nice afternoon
+    - Have a good one
+    - Catch you later
+    - Catch you next time
+    - Bye for now
+    - See you
+    - See you soon
+    - See you next time
+    - I'll see you later
+    - I'll catch up with you later
+    - Till next time
+    - So long
+    - I'm out
+    - Take care 
+    - Goodnight
+    - Goodby for now
+    - See you around
+    - Bye bye
+    - Thank you
+    - Thank you for your help
+    - Thank you very much
+    - I'm off
+    - Cheers
+
+  #----------------ASK ABOUT PRODUCTS------------------#
+- intent: ask_products
+  examples: |
+    - Can I see the product selection?
+    - I would like to browse your available items.
+    - What kinds of products are there?
+    - Can you display your available items?
+    - I want to look at your product selection.
+    - I'd like to see your available products.
+    - Can I peruse your products?
+    - Show me what products you have.
+    - Could I see your available items?
+    - I would like to view your available products.
+    - Can I get a look at your products?
+    - Do you have a product catalog I can see?
+    - Let me browse your available items.
+    - How do I view your product selection?
+    - Can you present your products?
+    - I'd like to go over your product options.
+    - How can I browse your products?
+    - Where can I observe your products?
+    - Can I survey your products?
+    - Hello, can you please help me locate the products?
+    - Hello, can you please suggest me some products?
+    - Hello, can you please help me find the products?
+    - Can I see your merchandise options?
+    - I'm interested in your products.
+    - Do you have a product list?
+    - Let me see your available items.
+    - Can you direct me to your products?
+    - How can I see your product selection?
+    - Can you show me your available items?
+    - I want to know about your product offerings.
+    - Can you tell me about your available products?
+    - Where can I view your available items?
+    - I want to see your selection of products.
+    - What's in your product collection?
+    - What's your product selection like?
+    - Where can I find your product options?
+    - What types of products do you carry?
+    - Show me the products
+    - I want to see the product offerings
+    - Where can I find the products?
+    - Where are your products located?
+    - Can you show me your product collection?
+    - Can I look at your product range?
+    - What products do you have?
+    - What are the products you offer?
+    - Can I see your product catalog?
+    - Where is your product list?
+    - Can I check out your products?
+    - Hi, can you please help me find the product list?
+    - Hi, I hope you're doing well today. Can you please help me find the product list?
+
+#---------------------------------------------------PRODUCTS PURCHASE RELATED---------------------------------------------------#
+- intent: purchase_product
+  examples: |
+    - Where can I buy clothing to support Elephants, Rhinos, and People?
+    - How do I purchase branded merchandise for the cause?
+    - Can you guide me through buying snacks that contribute to preservation efforts?
+    - Tell me how to support Elephants, Rhinos, and People by purchasing condiments.
+    - I'm interested in buying gifts to uplift communities. What should I do?
+    - What are the steps to purchase specialty water bottles that support the initiative?
+    - How can I add a clothing item to my cart for purchase?
+    - I want to make a purchase for the cause. What's the next step?
+    - How can I finalize my order for branded merchandise?
+    - How do I pay for the specialty water bottle I want to buy?
+    - What should I know before purchasing snacks that contribute to protection efforts?
+    - How does the purchase process work for gifts that uplift communities?
+    - Can you explain the workflow for buying clothing to support Elephants, Rhinos, and People?
+    - Where can I find the 'Add to Cart' option for specialty water bottles?
+    - Is there a specific way to buy branded merchandise?
+    - Are there any special requirements for purchasing condiments that support the cause?
+    - What do I need to do to order a gift set for upliftment initiatives?
+    - Can you assist me with the process of purchasing clothing items?
+    - How can I review my order before finalizing the purchase?
+    - Can I track the status of my purchase for branded merchandise?
+    - How can I pay for the water bottle I want to buy in support of Elephants, Rhinos, and People?
+    - Can you provide information about the checkout process for specialty items?
+    - What are the payment options for purchasing condiments that contribute to the initiative?
+    - How long does it take to complete a purchase for gifts?
+    - Is there a specific page for completing the purchase of specialty water bottles?
+    - Can you guide me on how to place an order for a clothing item?
+    - What information do I need to provide during the purchase of branded merchandise?
+    - Can I make changes to my order after adding items to the cart?
+    - Are there any discounts available for items that support the cause?
+    - Can you explain the return policy for items purchased for the initiative?
+    - How can I cancel a purchase for upliftment gifts?
+    - What should I do if I face any issues during the purchase process?
+    - Are there any restrictions for purchasing certain products to support Elephants, Rhinos, and People?
+    - Can you provide a step-by-step guide for buying items that contribute to the cause?
+    - Hello, how can I purchase products to support Elephants, Rhinos, and People on your website?
+    - How can I make a purchase to support the initiative?
+    - Hello, how can I purchase clothing items for the cause on your site?
+    - How can I buy gifts that uplift communities?
+    - Where can I purchase a product?
+    - Can you guide me through the product purchase?
+    - Tell me how to purchase a product.
+    - What's the procedure for buying a product?
+    - What are the steps to purchase a product?
+    - How do I proceed with the product purchase?
+    - How can I add a product to my cart?
+    - I want to make a product purchase. What's the next step?
+    - How can I finalize my product purchase?
+    - How do I pay for the product I want to buy?
+    - What should I know before purchasing a product?
+    - How does the product buying work?
+    - Can you explain the product purchase workflow?
+    - Where can I find the 'Add to Cart' option for products?
+    - Is there a specific way to buy a product?
+    - Are there any special requirements for buying a product?
+    - What do I need to do to order a product?
+    - Can you assist me with the product buying process?
+    - How can I review my product order before buying?
+    - Can I track the status of my product purchase?
+    - How can I pay for the product I want to buy?
+    - Can you provide information about the product checkout?
+    - What are the payment options for buying a product?
+    - How long does it take to complete a product purchase?
+    - Is there a specific page for completing the product purchase?
+    - Can you guide me on how to place an order for a product?
+    - What information do I need to provide during the product purchase?
+    - Can I make changes to my product order after adding it to the cart?
+    - Are there any discounts available for product purchases?
+    - Can you explain the return policy for product purchases?
+    - How can I cancel a product purchase?
+    - What should I do if I face any issues during the product purchase?
+    - Are there any restrictions for purchasing certain products?
+    - Can you provide a step-by-step guide for buying a product?
+    - Hello, how can I purchase a product on your website?
+    - How can I purchase a product?
+    - Hello, how can I purchase a product on your site?
+
+
+#--------------------------------------------------PRODUCT RETURNS---------------------------------------------------#
+- intent: return_product
+  examples: |
+    - Do I need to return the purchased product?
+    - Should I send the product back?
+    - Do I have to return the item to the store?
+    - Is it necessary to return the product for a refund?
+    - Will I be required to return the item to get a refund?
+    - Can I keep the product after requesting a refund?
+    - Do I need to bring the product back for a refund?
+    - Should I return the product to the store?
+    - Do I have to return the product to the venue for a refund?
+    - Is returning the product mandatory?
+    - Can I keep the product if I request a refund?
+    - What should I do with the product after requesting a refund?
+    - Can I get a refund without returning the purchased product?
+    - How does the return process work for products?
+    - What's the policy on returning the item for a refund?
+    - Can I request a refund and keep the product?
+    - Is returning the product optional for a refund?
+    - What happens to the product after I request a refund?
+    - Do I have to pay for return shipping of the item?
+    - Can I return the item to any venue?
+    - Is the return of the product time-limited for a refund?
+    - Can I return the product if it's already used?
+    - Should I return the product in its original packaging?
+    - Can I return a partially used product?
+    - Is there a restocking fee for returning the product?
+    - How soon should I return the product for a refund?
+    - Can I return the product if I don't like it?
+    - Do I need a receipt to return the purchased product?
+    - Can I return a gift for a refund?
+    - What is the process for returning the product?
+    - Can I return the product by visiting the store?
+    - Is returning the product available for online purchases?
+    - Can I return the product if it's damaged?
+    - What if I don't have the original packaging to return the product?
+    - Do I need to provide a reason for returning the item?
+    - Can I exchange the product for a different one?
+    - Is there a time limit for returning the product?
+    - Can I return the product if it was a gift?
+    - What if I used the product but didn't like it?
+    - Can I return the product if it's expired?
+    - Is there a fee for returning the product?
+    - Can I return the product if it's been stored improperly?
+    - Do I need to come to the store to make a return?
+
+
+#---------------------------------------------------ORDER HISTORY---------------------------------------------------#
+- intent: ask_orders
+  examples: |
+    - Where can I view my order history?
+    - How do I check my order details and history?
+    - Can you guide me to access my order records?
+    - Where do I find my order information and history?
+    - How can I see my past orders and order status?
+    - Is there a way to track my order history?
+    - Can you help me find my previous order information?
+    - Where can I review my order details and history?
+    - How do I access my order records and order summary?
+    - Can you show me my order history and order status?
+    - Where can I find my order history and purchase records?
+    - How can I view my previous orders and order details?
+    - Can you assist me in checking my order information and history?
+    - Where do I go to see my past orders and order status?
+    - How do I find my order history and tracking information?
+    - Can you guide me to find my order details and purchase records?
+    - Where can I see the list of my orders and order history?
+    - How can I access my order information and previous purchases?
+    - Can you help me locate my order history and tracking details?
+    - Where do I find my previous orders and order summary?
+    - How do I check my order records and order status?
+    - Can you assist me in finding my order history and tracking info?
+    - Where can I view my order summary and purchase history?
+    - How can I see the details of my orders and order history?
+    - Can you show me my order history and purchase records?
+    - Where can I find my order history and order status details?
+    - How do I access my past orders and order summary?
+    - Can you guide me to check my order history and order details?
+    - Where do I find my order information and purchase history?
+    - How can I track my orders and view my order history?
+    - Can you assist me in accessing my order records and order summary?
+    - Where can I see my order history and order status updates?
+    - How do I review my previous orders and order details?
+    - Can you show me my order history and purchase information?
+    - Where can I find my order summary and tracking details?
+    - How can I check my order history and access my order records?
+    - Can you guide me to find my previous orders and order history?
+    - Where do I go to see my order information and order status?
+    - How do I find my order records and view my order summary?
+    - Can you assist me in checking my order history and order status?
+    - Where can I view my order history and purchase details?
+    - How can I access my previous orders and order information?
+    - Can you help me locate my order history and order status?
+    - Where do I find my order summary and order status updates?
+    - How do I track my orders and check my order history?
+    - Can you guide me to access my order details and order summary?
+    - Where can I see my order history and order records?
+    - How do I review my previous purchases and order details?
+    - Can you show me my order history and order status updates?
+    - Where can I find my order summary and purchase records?
+
+#---------------------------------------------------WISHLIST ACCESS---------------------------------------------------#
+- intent: ask_wishlist
+  examples: |
+    - Where can I view my saved items?
+    - How do I check my wishlist and saved items?
+    - Can you guide me to access my wishlist?
+    - Where do I find my wishlist and saved products?
+    - How can I see my list of saved items?
+    - Is there a way to view my wishlist and saved products?
+    - Can you help me locate my wishlist and saved items?
+    - Where can I find my saved items and wishlist?
+    - How do I access my wishlist and saved products?
+    - Can you show me my wishlist and saved items?
+    - Where can I see the list of items I've saved?
+    - How do I check my list of saved products?
+    - Can you guide me to view my wishlist and saved items?
+    - Where do I go to find my saved items and wishlist?
+    - How can I access my list of saved items?
+    - Is there a way to check my wishlist and saved selections?
+    - Can you assist me in finding my wishlist and saved items?
+    - Where can I see my list of favorite items?
+    - How do I view my wishlist and saved products?
+    - Can you show me my saved items and wishlist?
+    - Where can I find my list of bookmarked products?
+    - How do I access my wishlist and saved selections?
+    - Can you help me locate my saved items and wishlist?
+    - Where can I check my list of preferred products?
+    - How can I see my list of bookmarked items?
+    - Is there a way to access my wishlist and saved products?
+    - Can you guide me to find my saved items and wishlist?
+    - Where can I find my list of selected favorites?
+    - How do I view my wishlist and saved items?
+    - Can you show me my saved products and wishlist?
+    - Where can I access my list of preferred items?
+    - How can I access my list of selected favorites?
+    - Is there a way to view my wishlist and saved items?
+    - Can you help me locate my saved products and wishlist?
+    - Where can I find my list of favorite selections?
+    - Where can I access my list of preferred choices?
+
+#---------------------------------------------------ACCOUNT CREATION---------------------------------------------------#
+- intent: create_account
+  examples: |
+    - How do I create an account to shop?
+    - What's the process to register on your store?
+    - Can you guide me through creating an account for shopping?
+    - How can I sign up and become a member?
+    - How do I register for a shopping account?
+    - Can you help me with the account creation process?
+    - How to set up an account for shopping?
+    - Where do I go to create a shopping account?
+    - What are the steps to register for shopping?
+    - Can you show me how to create a new shopping account?
+    - How do I create a new account for shopping?
+    - What do I need to do to register and shop?
+    - Can you assist me in signing up for shopping access?
+    - How can I set up a shopping account?
+    - I want to create an account for shopping. What should I do?
+    - Is there a registration process for shopping accounts?
+    - Can you explain the shopping account creation steps?
+    - Where can I find the registration form for shopping accounts?
+    - What information do I need for creating a shopping account?
+    - Do I need an email address to sign up for shopping?
+    - How long does it take to register for shopping?
+    - Are there any requirements for creating a shopping account?
+    - Can you provide a step-by-step guide to register for shopping?
+    - Is there a specific page for creating a shopping account?
+    - How can I join your platform for shopping?
+    - Can you help me with the sign-up procedure for shopping?
+    - Do I need to provide personal details during shopping account registration?
+    - Are there any age restrictions for creating a shopping account?
+    - Can I register for shopping with my social media accounts?
+    - How can I access the registration form for shopping accounts?
+    - What happens after I complete the registration process for shopping?
+    - Can you assist me in setting up my shopping account?
+    - How can I create a shopping account on your website?
+    - Can you walk me through the shopping account setup?
+    - Is there a fee for registering for shopping?
+    - Can I create multiple accounts for shopping?
+    - How can I validate my shopping account after registration?
+    - Do I need to choose a username and password for shopping?
+    - What should I do if I encounter issues during shopping account registration?
+    - Can I edit my shopping account details after signing up?
+    - Is there a confirmation email sent after shopping account registration?
+    - Can you provide instructions for shopping account activation?
+    - How can I delete my shopping account if needed?
+    - Are there any security measures for shopping account creation?
+    - Can I use my existing account for shopping on multiple devices?
+    - How can I access my shopping account after registration?
+    - Can you clarify the benefits of creating a shopping account?
+    - What happens if I forget my shopping account password?
+    - Can I register for shopping with a phone number instead of an email?
+    - How can I create a shopping account with a unique username?
+    - Do I need to agree to any terms and conditions during shopping account registration?
+    - Can I sign up for newsletters or updates during shopping account registration?
+
+#---------------------------------EDIT ACCOUNT INFORMATION-----------------#
+- intent: ask_edit_account
+  examples: |
+    - How do I edit my user profile for shopping?
+    - Where can I update my account information for shopping?
+    - Can you assist me in modifying my account details for shopping?
+    - How can I change my profile settings for shopping?
+    - What steps should I follow to edit my account for shopping?
+    - Is there a way to update my personal information for shopping?
+    - Can you provide guidance on editing my account for shopping?
+    - How do I go about changing my account details for shopping?
+    - Where can I find the option to edit my user profile for shopping?
+    - What's the process to modify my user account for shopping?
+    - Can you explain how to edit my profile information for shopping?
+    - Is it possible to update my account settings for shopping?
+    - How can I make changes to my user profile for shopping?
+    - Can you guide me through the account editing process for shopping?
+    - How can I access the account editing feature for shopping?
+    - What actions should I take to modify my account for shopping?
+    - Can you show me the steps for editing my user profile for shopping?
+    - Where should I go to update my account details for shopping?
+    - How do I navigate to the account editing page for shopping?
+    - Can you explain the steps for updating my user profile for shopping?
+    - What options are available for editing my account for shopping?
+    - How can I modify my account preferences for shopping?
+    - Is there a specific page for editing my user profile for shopping?
+    - Can you help me with the process of changing my account information for shopping?
+    - How do I update my personal details in my account for shopping?
+    - What should I do if I want to edit my user account for shopping?
+    - Can you provide instructions on how to edit my account settings for shopping?
+    - How can I make adjustments to my account profile for shopping?
+    - Can you walk me through the steps to modify my account details for shopping?
+    - How can I access the account editing functionality for shopping?
+    - What information can I update in my user account for shopping?
+    - Can you guide me on how to edit my profile settings for shopping?
+    - How do I go about updating my user account information for shopping?
+    - What are the options for editing my account preferences for shopping?
+    - Can you explain how to modify my account profile for shopping?
+    - How can I change my email address in my user account for shopping?
+    - Is there a specific form for editing my account information for shopping?
+    - Can you provide the necessary steps to update my account profile for shopping?
+    - How do I navigate to the account editing section for shopping?
+    - What steps should I follow to modify my profile settings for shopping?
+
+#---------------------------------------------------CONTACT US---------------------------------------------------#
+- intent: ask_contact_us
+  examples: |
+    - How can I get in touch with you?
+    - What are your contact details for assistance?
+    - How can I reach out to your support team?
+    - Can you provide me with your contact information?
+    - What's your email address for inquiries?
+    - What's your telephone number for customer support?
+    - How can I contact your team?
+    - How can I reach your customer service?
+    - How can I get in contact with your support?
+    - What are the ways to reach out to you?
+    - How can I get in touch with a representative?
+    - Can you share your contact details with me?
+    - What's the best way to contact you?
+    - How can I reach your assistance team?
+    - Can you give me your contact information?
+    - How do I contact you for help?
+    - Can you provide me your contact options?
+    - How can I communicate with your support?
+    - What's the contact information for your team?
+    - How can I get assistance from your store?
+    - How can I reach your customer care?
+    - Can you provide your contact details?
+    - What's your preferred way of contact?
+    - How can I connect with your support team?
+    - What's the contact info to reach you?
+    - How do I get in touch with your assistance?
+    - How can I ask for help from your team?
+    - Can you share your contact details?
+    - What's the process to contact you?
+    - How can I inquire about your products?
+    - How can I reach your customer assistance?
+    - Can you provide your contact information?
+    - What's the contact method for inquiries?
+    - How can I get in contact with you for help?
+    - How can I ask questions about your products?
+    - What are the ways to connect with you?
+    - How can I seek assistance from your team?
+    - How can I contact you regarding my order?
+    - Can you provide me with your contact info?
+    - What's your recommended way to contact you?
+    - How can I reach out to your customer service?
+    - How can I get in touch with your team?
+    - What's the process to get in contact with you?
+
+#-----------------------------------LOCATION--------------------------#
+- intent: ask_store_location
+  examples: |
+    - Where is the store situated?
+    - What's the exact location of the store?
+    - Can you give me the precise address of the store?
+    - Where can I locate the physical store of the business?
+    - What's the street address of the store?
+    - Can you tell me the whereabouts of the store?
+    - Where can I find the physical presence of the store?
+    - What's the location of the store on the map?
+    - Can you provide directions to the store?
+    - Where should I go to reach the store?
+    - What's the geographical position of the store?
+    - Can you give me the coordinates of the store?
+    - Where can I visit the physical store?
+    - What's the registered address of the store?
+    - Can you point me to the exact spot of the store?
+    - Where can I physically go to visit the store?
+    - What's the specific area where the store is located?
+    - Can you guide me to the store's physical location?
+    - Where can I find the store on the city map?
+    - What's the landmark near the store's address?
+    - Can you tell me the street and number of the store?
+    - Where exactly can I find the store on the street?
+    - What's the locality of the store's physical presence?
+    - Can you provide the full address of the store?
+    - Where is the store situated within the city?
+    - What's the district where the store is located?
+    - Can you give me the specific zone of the store?
+    - Where is the exact place I need to go for the store?
+    - What's the neighborhood of the store's physical address?
+    - Can you tell me the city where the store is positioned?
+    - Where exactly can I find the store?
+    - What's the region where the store is situated?
+    - Can you give me the precise location coordinates of the store?
+    - Where can I physically go to visit the store?
+    - What's the physical position of the store on the map?
+    - Can you guide me on how to reach the store's location?
+    - Where should I head to find the store?
+    - What's the exact street name of the store's address?
+    - Can you tell me the specific city where the store is?
+    - Where is the store's physical address situated?

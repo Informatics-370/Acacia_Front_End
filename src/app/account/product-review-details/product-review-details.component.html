@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Update Review</h5>
+    <form class="row" [formGroup]="reviewForm" (ngSubmit)="updateReview()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Title'" [formControl]="reviewForm.controls['title']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="reviewForm.controls['description']"></app-text-input>
+            <app-text-input [label]="'Email'" [formControl]="reviewForm.controls['customerEmail']"></app-text-input>
+            <app-text-input [label]="'Product'" [formControl]="reviewForm.controls['product']"></app-text-input>
+            <app-text-input [label]="'Date'" [type]="'date'" [formControl]="reviewForm.controls['date']"></app-text-input>
+            <app-text-input [label]="'Rating'" [type]="'number'" [formControl]="reviewForm.controls['rating']"></app-text-input>
+            <app-text-input [label]="'Status'" [formControl]="reviewForm.controls['status']"></app-text-input>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="reviewForm.invalid" class="btn btn-primary" type="submit">Update</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/account">Cancel</button>
+        </div>
+    </form>
+</div>

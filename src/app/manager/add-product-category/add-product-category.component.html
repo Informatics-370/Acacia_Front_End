@@ -1,0 +1,17 @@
+<div class="container mt-4">
+    <h5 class="ms-3 my-2">Add Product Category</h5>
+    <form class="row" [formGroup]="CategoryForm" (ngSubmit)="addCategory()">
+        <div class="form-group col-6">
+            <app-text-input [label]="'Name'" [formControl]="CategoryForm.controls['name']"></app-text-input>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="CategoryForm.invalid" class="btn btn-primary" type="submit">Add</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/product-category-list">Cancel</button>
+        </div>
+    </form>
+</div>

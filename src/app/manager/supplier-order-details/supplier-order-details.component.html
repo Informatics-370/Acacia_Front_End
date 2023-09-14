@@ -1,0 +1,159 @@
+<div class="container mt-4">
+    <div class="row">
+        <div  class="d-flex flex-column align-items-center justify-content-center">
+            <div class="row">
+                <i *ngIf="order?.status != 'Cancelled'" class="fa fa-check-circle-o fa-5x" aria-hidden="true"></i>
+                <i *ngIf="order?.status == 'Cancelled'" class="fa fa-times-circle-o fa-5x" aria-hidden="true"></i>
+            </div>
+            <p class="text"> {{order?.status}} </p>
+        </div>
+    </div>
+    <div class="container" *ngIf="order">
+        <button *ngIf="order.status == 'Order Recieved' || order.status == 'Payment Confirmed'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="printInvoice()">Print Invoice </button>
+        <button *ngIf="order.status == 'Order Recieved' || order.status == 'Payment Confirmed'"  class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="printPOP()">Print POP </button>
+        <button *ngIf="order.status == 'Pending' || order.status == 'Email Sent'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="openModal(template)">Cancel Order </button>
+        <button *ngIf="order.status == 'Email Sent'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="openModal(documentation)">Upload Documents </button>
+        <button *ngIf="order.status == 'Payment Confirmed'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="openModal(confirmDelivery)">Confirm Delivery</button>
+    </div>
+    <div class="row" *ngIf="order && order.status == 'Pending'">
+        <app-approve-supplier-order [supplierid]="order.supplier.id" [orderid]="order.id"></app-approve-supplier-order>
+    </div>
+    <div class="row" *ngIf="order?.status != 'Pending'">
+        <div class="col-6">
+            <div *ngIf="order">
+                <div class="container mb-4">
+                    <h5>Order Details</h5>
+                    <p>ID: {{order.id }} </p>
+                    <p>Date: {{order.orderDate | date }} </p>
+                    <p>Total: {{order.total | currency: "R"}} </p>
+                </div>
+                <div class="container mb-4">
+                    <h5>Manager Details</h5>
+                    <p>Manager Email: {{order.managerEmail}} </p>
+                </div>
+                <div class="container mb-4">
+                    <h5>Supplier Details</h5>
+                    <p>Supplier Name: {{order.supplier.name}} </p>
+                    <p>Supplier Email: {{order.supplier.email}}</p>
+                    <p>Supplier Number: 0{{order.supplier.phoneNumber}}</p>
+                </div>
+                <div class="container mb-4">
+                    <h5>Company Details</h5>
+                    <p>Vat Number: {{order.companyDetails.vatNumber}}</p>
+                    <p>Street Address 1: {{order.companyDetails.addressLine1}}</p>
+                    <p>Street Address 1: {{order.companyDetails.addressLine2}}</p>
+                    <p>Suburb: {{order.companyDetails.suburb}}</p>
+                    <p>City: {{order.companyDetails.city}}</p>
+                    <p>Province: {{order.companyDetails.province}}</p>
+                    <p>PostalCode: {{order.companyDetails.postalCode}}</p>
+                </div>
+            </div>
+            <button  class="mx-2 btn btn-primary" routerLink="/dashboard/SupplierOrders">Back</button>
+        </div>
+        <div class="col-6">
+            <h5 >Ordered Products</h5>
+            <div class="table-responsive" *ngIf="order">
+                <table class="table table-hover">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th *ngIf="order.status != 'Payment Confirmed'">View</th>
+                            <th *ngIf="order.status == 'Payment Confirmed'">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of order.orderItems">
+                            <td class="align-middle"><img src='{{item.pictureUrl}}' class="img-fluid bg-info" style="max-height: 50px;"></td>
+                            <td class="align-middle"><strong>{{item.productName}}</strong></td>
+                            <td class="align-middle"><strong>{{item.quantity}}</strong></td>
+                            <td class="align-middle"><strong>{{item.price| currency: "R"}}</strong></td>
+                            <td class="align-middle" *ngIf="order.status != 'Payment Confirmed'">
+                                <button type="button" routerLink="/dashboard/product-details/{{item.productId}}" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> View </button>
+                            </td>
+                            <td class="align-middle" *ngIf="order.status == 'Payment Confirmed'">
+                                <button type="button" (click)="openModal(delivery)" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> Edit Quantities </button>
+                            </td>
+                            <ng-template #delivery>
+                                <div class="modal-header" *ngIf="order.status == 'Payment Confirmed'">
+                                  <h4 class="modal-title pull-left">Quantity Recieved</h4>
+                                  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                                    <span aria-hidden="true" class="visually-hidden">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        Please select the quantity recieved
+                                        <app-text-input [label]="'Quantity'" [type]="'number'" [formControl]="QuantityForm.controls['quantity']"></app-text-input>
+                                    </p>
+                                  <button type="button" class="btn btn-primary" [disabled]="QuantityForm.invalid!" (click)="editQuantity(item, QuantityForm.value.quantity!)" > Confirm Quantity</button>
+                                </div>
+                            </ng-template>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="align-middle"><strong>Total</strong></td>
+                            <td colspan="3" class="align-middle"><strong>{{order?.total | currency: "R"}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Cancel Supplier Order</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-danger">
+        <p>
+            Are you sure you want to cancel this Supplier Order? This action cannot be undone.
+        </p>
+      <button type="button" class="btn btn-danger" (click)="cancelOrder()">Cancel Order</button>
+    </div>
+  </ng-template>
+
+  <ng-template #confirmDelivery>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Confirm Delivery</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-danger">
+        <p>
+            Are you sure that the quantity of items specificed is correct? This action cannot be undone.
+        </p>
+      <button type="button" class="btn btn-danger" (click)="confirmOrderDelivery()">Confirm Delivery</button>
+    </div>
+  </ng-template>
+
+
+  <ng-template #documentation>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Upload Documentation</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="documentationForm" (ngSubmit)="uploadDocumentation()">
+            <label for="invoiceUrl">Invoice</label>
+            <app-text-input (change)="uploadInvoice($event)" [accept]="'application/pdf'" [type]="'file'" [formControl]="documentationForm.controls['invoiceUrl']"></app-text-input>
+            <label for="proofOfPaymentUrl">Proof of payment</label>
+            <app-text-input (change)="uploadPOP($event)" [accept]="'application/pdf'" [type]="'file'" [formControl]="documentationForm.controls['proofOfPaymentUrl']"></app-text-input>
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    {{error}}  
+                </li>
+            </ul>
+            <button type="submit" class="btn btn-primary" [disabled]="documentationForm.invalid!">Upload</button>
+        </form>
+    </div>             
+  </ng-template>

@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <div class="row">
+        <form class="col-6">
+            <h5 class="ms-3 my-2">Return Details</h5>
+            <app-text-input [label]="'Supplier Order ID'" [type]="'number'" [formControl]="returnForm.controls['supplierOrderId']"></app-text-input>
+            <app-text-input [label]="'Date'" [formControl]="returnForm.controls['date']"></app-text-input>
+            <app-text-input [label]="'Manager Email'" [formControl]="returnForm.controls['managerEmail']"></app-text-input>
+            <app-text-input [label]="'Description'" [formControl]="returnForm.controls['description']"></app-text-input>
+            <app-text-input [label]="'Total'" [type]="'number'" [formControl]="returnForm.controls['total']"></app-text-input>
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    {{error}}
+                </li>
+            </ul>
+            <button  class="mx-2 btn btn-primary" routerLink="/dashboard/SupplierReturns">Back</button>
+        </form>
+        <div class="col-6">
+            <h5 class="ms-3 my-2">Returns List</h5>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of supplierReturn?.returnItems">
+                            <td class="align-middle">{{product.productName}}</td>
+                            <td class="align-middle">{{product.price}}</td>
+                            <td class="align-middle">{{product.quantity}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

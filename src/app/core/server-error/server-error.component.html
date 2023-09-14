@@ -1,0 +1,16 @@
+<div class="container mt-5">
+    <h4> Internal server error - refreshing the page will make the error disappear</h4>
+    <ng-container *ngIf="error">
+        <h5 class="text-danger"> Error: {{error.message}} </h5>
+        <p class="font-weight-bold">This error comes from our side not yours </p>
+        <p> What to do next? </p>
+        <ol>
+            <li> Please contact our IT team at it@gmail.com </li>
+            <li> Please contact our IT team at quintessentialtuks@gmail.com </li>
+            <li> Alternatively call +27 79 991 2889 </li>
+        </ol>
+        <h5> Stack Trace: </h5>
+        <code class="mt-5" style="background-color: whitesmoke"> {{error.details}} </code>
+    </ng-container>
+</div>
+

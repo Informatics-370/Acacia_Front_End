@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <h5 class="my-2">User Details</h5>
+    <form class="row" [formGroup]="userForm" (ngSubmit)="updateUser()">
+        <div class="form-group col-6">
+            <ng-container *ngIf="user != null">
+                <img class="form-control mb-3 p-0" src='{{user.profilePicture}}' style="max-height: 150px; width: 150px; object-fit: cover;">
+            </ng-container>
+            <app-text-input [label]="'Display Name'" [formControl]="userForm.controls['displayName']"></app-text-input>
+            <app-text-input [label]="'Email'" [formControl]="userForm.controls['email']"></app-text-input>
+            <select class="form-select" (change)="onRoleSelected($event)" formControlName="roles">
+                <option *ngFor="let role of roles" [value]="role.name">{{role.name}}</option>
+            </select>
+        </div>
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+            <li *ngFor="let error of errors">
+                {{error}}
+            </li>
+        </ul>
+        <div>
+            <button [disabled]="!userForm.valid" class="btn btn-primary" type="submit">Update</button>
+            <button  class="mx-2 btn btn-danger" routerLink="/dashboard/user-list">Cancel</button>
+        </div>
+    </form>
+</div>

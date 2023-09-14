@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row"  *ngIf="product">
+        <div class="col-6 mt-5">
+            <img src="{{product.pictureUrl}}" class="w-100" alt="{{product.name}}">
+        </div>
+        <div class="col-6 mt-5">
+            <h2> {{product.name}} </h2>
+            <p *ngIf="product.promotion" style="font-size: 1.5em;"> <strong>{{product.price * (1 - product.promotion/100) | currency: "R"}}</strong><s style="color: red;">{{product.price | currency: "R"}}</s></p>
+            <p *ngIf="!product.promotion" style="font-size: 1.5em;"> {{product.price | currency: "R" }}</p>
+            
+            <div class="d-flex justify-content-start align-items-center">
+                <i (click)="decrementQuanity()" class="fa fa-minus-square me-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
+                <span class="font-weight-bold" style="font-size: 1.5em;"> {{quantity}} </span>
+                <i (click)="incrementQuanity()" class="fa fa-plus-square ms-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
+                <button (click)="updateCart()" [disabled]="quantity === quantityInCart" class="btn btn-outline-primary ms-4">{{CartbuttonText}}</button>
+                <button (click)="updateWishlist()" [disabled]="productInWishlist === true" class="btn btn-outline-primary ms-4">{{wishlistButtonText}}</button>
+            </div>
+            <p class="text-info mt-3" *ngIf="quantityInCart > 0">
+                You have {{quantityInCart}} items of this particular product in your cart
+            </p>
+            <div class="row mt-4">
+                <h4>Description</h4>
+                <p>{{product.description}}</p>
+            </div>
+            <div class="row mt-4">
+                <accordion panelClass="accordion" [isAnimated]="true">
+                    <accordion-group panelClass="accordion-item" heading="Product Reviews">
+                        <ng-container  *ngFor="let review of reviews">
+                            <div class="row mb-2" *ngIf="review.status !== 'Flagged'">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1"> Title: {{review.title}}</h5>
+                                        <small>Date: {{review.date | date}}</small>
+                                        </div>
+                                        <p class="mb-1">Description: {{review.description}}</p> 
+                                        <small>
+                                            Rating: {{review.rating}} 
+                                            <span *ngFor="let item of [].constructor(review.rating); let i = index" style="color: orange;" class="fa fa-star checked"></span> 
+                                            <span *ngFor="let item of [].constructor(5 - review.rating); let i = index" class="fa fa-star checked"></span> 
+                                            
+                                        </small>
+                                        <br>
+                                        <small>Email: {{review.customerEmail}}</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="row">
+                            <button type="button" class="btn btn-primary" (click)="openModal(template)">Post Review</button>
+                        </div>
+                    </accordion-group>
+                  </accordion>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete Review</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form class="row" [formGroup]="reviewForm" (ngSubmit)="createReview()">
+            <div class="form-group">
+                <app-text-input [label]="'Title'" [formControl]="reviewForm.controls['title']"></app-text-input>
+                <app-text-input [label]="'Description'" [formControl]="reviewForm.controls['description']"></app-text-input>
+                <app-text-input [label]="'Rating'" [type]="'number'" [formControl]="reviewForm.controls['rating']"></app-text-input>
+                <div class="text-danger" *ngIf="reviewForm.get('title')?.hasError('profanity') || reviewForm.get('description')?.hasError('profanity')">
+                    Please remove offensive language.
+                </div>
+            </div>
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    {{error}}
+                </li>
+            </ul>
+            <div>
+                <button [disabled]="reviewForm.invalid" class="btn btn-primary" type="submit">Create Review</button>
+            </div>
+        </form>
+    </div>
+  </ng-template>
+
+
