@@ -17,7 +17,6 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of wishlist.items">
-                                
                                     <div class="p-2 d-inline-block">
                                         <img src="{{item.pictureUrl}}" alt="{{item.productName}}" style="max-height: 50px;"class="img-fluid">
                                         <div class="ms-3 d-inline-block align-middle">
@@ -37,7 +36,7 @@
                                         <button type="button" class="btn px-2 py-2" style="background-color: #958F8A;"><a><i (click)="removeItem(item.id)" class="fa fa-trash" style="font-size: 2em; cursor: pointer; color: white;"></i></a></button>
                                 </td>
                                 <td class="align-middle">                                 
-                                        <button type="button" class="btn px-2 py-2" style="background-color: #958F8A;"><a><i (click)="addItemToCart(item)" class="fa fa-cart-plus" style="font-size: 2em; cursor: pointer; color: white;" ></i></a></button>
+                                        <button type="button" class="btn px-2 py-2" style="background-color: #958F8A;"><a><i (click)="addItemToCart(item, item.id)" class="fa fa-cart-plus" style="font-size: 2em; cursor: pointer; color: white;" ></i></a></button>
                                 </td>
                             </tr>
                         </tbody>

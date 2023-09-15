@@ -130,9 +130,9 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   updateCart(){
-    if (this.product){
+    const itemsToAdd = this.quantity - this.quantityInCart;
+    if (this.product && this.product.quantity > 0 && this.product.quantity >=  (this.quantityInCart + itemsToAdd)){
       if (this.quantity > this.quantityInCart){
-        const itemsToAdd = this.quantity - this.quantityInCart;
         this.quantityInCart += itemsToAdd;
         this.cartService.addItemToCart(this.product, itemsToAdd);
       }else{
@@ -140,6 +140,9 @@ export class ProductDetailsComponent implements OnInit{
         this.quantityInCart -= itemsToRemove;
         this.cartService.removeItemFromCart(this.product.id, itemsToRemove);
       }
+    }
+    else{
+      this.toaster.warning("Sorry, there is not enough stock.")
     }
   }
 

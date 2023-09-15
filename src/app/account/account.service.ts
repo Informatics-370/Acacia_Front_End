@@ -110,6 +110,10 @@ export class AccountService {
     return this.http.post<string>(this.baseUrl + 'account/forgot-password?email=' + email, email);
   }
 
+  resendForgotPasswordRequest(userId: any){
+    return this.http.post<string>(this.baseUrl + 'account/resend-forgot-password-OTP?userId=' + userId, userId);
+  }
+
   getFaqs(specParams: specParams){
     let params = new HttpParams();
     params = params.append('sort', specParams.sort);
