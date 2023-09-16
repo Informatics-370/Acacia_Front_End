@@ -66,6 +66,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { MediaListComponent } from './media-list/media-list.component';
 import { MediaDetailsComponent } from './media-details/media-details.component';
 import { AddMediaComponent } from './add-media/add-media.component';
+import { AuditTrailsComponent } from './audit-trails/audit-trails.component';
 
 
 
@@ -128,7 +129,8 @@ import { AddMediaComponent } from './add-media/add-media.component';
         AddDeliveryMethodComponent,
         MediaListComponent,
         MediaDetailsComponent,
-        AddMediaComponent
+        AddMediaComponent,
+        AuditTrailsComponent
     ],
     imports: [
         CommonModule,
