@@ -26,7 +26,8 @@ export class AuditTrailsComponent {
     {name: 'Sale Order', value: 'Sale Order'},
     {name: 'Supplier Order', value: 'Supplier Order'},
     {name: 'Sale Return', value: 'Sale Return'},
-    {name: 'Supplier Return', value: 'Supplier Return'},
+    {name: 'Supplier Return', value: 'Supplier Return'}, 
+    {name: 'Write-Offs', value: 'Write Off'}
   ];
   totalCount = 0;
 

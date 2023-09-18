@@ -31,17 +31,21 @@
                 <thead class="text-uppercase">
                     <tr>
                         <th><div class="py-2">Date</div></th>
+                        <th><div class="py-2">Manager</div></th>
                         <th><div class="py-2">Product</div></th>
-                        <th><div class="py-2">Quantity</div></th>
                         <th><div class="py-2">Reason</div></th>
+                        <th><div class="py-2">Quantity</div></th>
+                        <th><div class="py-2">Total</div></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let writeOff of writeOffs">
                         <td class="align-middle"><strong>{{writeOff.date | date}} </strong></td>
+                        <td class="align-middle"><strong>{{writeOff.managerEmail }}</strong></td>
                         <td class="align-middle"><strong>{{writeOff.product }}</strong></td>
+                        <td class="align-middle"><strong>{{writeOff.reason}}</strong></td> 
                         <td class="align-middle"><strong>{{writeOff.quantity}}</strong></td>
-                        <td class="align-middle"><strong>{{writeOff.reason}}</strong></td>
+                        <td class="align-middle"><strong>{{writeOff.productPrice * writeOff.quantity| currency:"R"}}</strong></td>
                     </tr>
                 </tbody>
             </table>

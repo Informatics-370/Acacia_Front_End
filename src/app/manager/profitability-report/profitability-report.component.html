@@ -30,35 +30,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="color: green;">
+                        <tr>
                             <td class="align-middle">
                             <strong>Revenue</strong>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color: green;">
                             <strong>{{Report.income}}</strong>
                             </td>
                         </tr>
-                        <tr style="color: green;">
+                        <tr>
                             <td class="align-middle">
                             <strong>Sales Returns</strong>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color: green;">
                             <strong>{{Report.salesReturns}}</strong>
                             </td>
                         </tr>
-                        <tr style="color: green;">
+                        <tr>
                             <td class="align-middle">
                             <strong>Supplier Returns</strong>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color: green;">
                             <strong>{{Report.supplierReturns}}</strong>
                             </td>
                         </tr>
-                        <tr style="color: red;">
+                        <tr >
                             <td class="align-middle">
                             <strong>Expenses</strong>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color: red;">
                             <strong>{{Report.expenses}}</strong>
                             </td>
                         </tr>
@@ -67,7 +67,7 @@
             </div>
             <div *ngIf="Report.income != 0 || Report.expenses != 0 || Report.salesReturns != 0 || Report.supplierReturns != 0">
                 <hr>
-                <h4 style="color:green" *ngIf="Report.profit > 0"> Total Profit: {{Report.profit | currency:'R'}}</h4>
+                <h4 style="color:green" *ngIf="Report.profit >= 0"> Total Profit: {{Report.profit | currency:'R'}}</h4>
                 <h4 style="color:red" *ngIf="Report.profit < 0"> Total Loss: {{Report.profit | currency:'R'}}</h4>
                 <hr>
             </div>

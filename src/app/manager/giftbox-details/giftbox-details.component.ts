@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GiftBox } from 'src/app/shared/models/GiftBox';
 import { BreadcrumbService } from 'xng-breadcrumb';
@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Product } from 'src/app/shared/models/product';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { GiftBoxPrice } from 'src/app/shared/models/GiftBoxPrice';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-giftbox-details',
@@ -16,10 +17,10 @@ import { GiftBoxPrice } from 'src/app/shared/models/GiftBoxPrice';
 })
 export class GiftboxDetailsComponent {
   id = this.activatedRoute.snapshot.paramMap.get('id');
-  constructor(private gbService: GiftboxService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService, private fb: FormBuilder) { 
+  constructor(private gbService: GiftboxService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService, private fb: FormBuilder, private modalService: BsModalService) { 
     this.bcService.set('@giftboxDetails', '');
   }
-
+  modalRef?: BsModalRef;
   shopParams: ShopParams = new ShopParams();
   sortOptions = [
     {name: 'Alphabetical', value: 'name'},
@@ -145,5 +146,22 @@ addProdToGiftbox(id: number){
 
 removeProdToGiftbox(id: number){
   this.gbproducts = this.gbproducts.filter(x => x.id != id)
+}
+
+openModal(template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template);
+  }
+
+deleteGiftbox(){
+  if(this.giftbox){
+    this.gbService.deleteGiftBox(this.giftbox.id).subscribe({
+      next: () => {
+        this.modalRef?.hide(),
+        this.router.navigateByUrl('/dashboard/giftbox-list');
+        this.toaster.success('GiftBox Deleted');
+      },
+      error: error => console.log(error)
+    })
+  }
 }
 }
