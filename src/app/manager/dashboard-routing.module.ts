@@ -59,6 +59,7 @@ import { DeliveryMethodDetailsComponent } from './delivery-method-details/delive
 import { MediaDetailsComponent } from './media-details/media-details.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { MediaListComponent } from './media-list/media-list.component';
+import { AuditTrailsComponent } from './audit-trails/audit-trails.component';
 
 
 const routes: Routes = [
@@ -123,6 +124,7 @@ const routes: Routes = [
       {path: 'Media', component: MediaListComponent},
       {path: 'Media/add', component: AddMediaComponent},
       {path: 'Media/:id', component: MediaDetailsComponent, data: {breadcrumb: {alias: 'mediaDetails'}}},
+      {path: 'AuditTrail', component: AuditTrailsComponent}
     ]
   }
 ]

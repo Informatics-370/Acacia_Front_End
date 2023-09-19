@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Promotion } from 'src/app/shared/models/Promotion';
 import { Product } from 'src/app/shared/models/product';
@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ToastrService } from 'ngx-toastr';
 import { ShopParams } from 'src/app/shared/models/shopParams';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-promotion-details',
@@ -15,7 +16,9 @@ import { ShopParams } from 'src/app/shared/models/shopParams';
 })
 export class PromotionDetailsComponent {
   id = this.activatedRoute.snapshot.paramMap.get('id');
-  constructor(private promoService: PromotionService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService) { 
+  modalRef?: BsModalRef;
+
+  constructor(private promoService: PromotionService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService, private modalService: BsModalService) { 
     this.bcService.set('@promoDetails', '');
   }
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
@@ -142,4 +145,21 @@ onReset(){
   this.shopParams = new ShopParams();
   this.getProducts();
 }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  deletePromotion(){
+    if(this.promotion){
+      this.promoService.deletePromotion(this.promotion.id).subscribe({
+        next: () => {
+          this.modalRef?.hide(),
+          this.router.navigateByUrl('/dashboard/promotions-list');
+          this.toaster.success('Promotion Deleted');
+        },
+        error: error => console.log(error)
+      })
+    }
+  }
 }

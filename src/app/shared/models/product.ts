@@ -8,5 +8,7 @@ export interface Product {
     productCategory: any;
     promotion: number;
     supplier: string;
+    quantity: number;
+    tresholdValue: number;
 }
 

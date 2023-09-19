@@ -97,6 +97,9 @@ export class CartService {
     localStorage.removeItem('cart_id');
   }
   
+  VerifyCartStock(cartId: string){
+    return this.http.get<boolean>(this.baseUrl + 'Orders/VerifyCartStock/' + cartId)
+  }
 
   private mapProductItemToCartItem(item: Product): CartItem {
     var price = 0

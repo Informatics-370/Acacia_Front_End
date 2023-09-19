@@ -30,6 +30,10 @@ export class ProductsListComponent implements OnInit {
     {name: 'Alphabetical', value: 'name'},
     {name: 'Price: Low to high', value: 'priceAsc'},
     {name: 'Price: High to Low', value: 'priceDesc'},
+    {name: 'Quantity: Low to high', value: 'quantityAsc'},
+    {name: 'Quantity: High to Low', value: 'quantityDesc'},
+    {name: 'Threshold Value: Low to high', value: 'thresholdAsc'},
+    {name: 'Threshold Value: High to Low', value: 'thresholdDesc'},
   ];
   totalCount = 0;
 
