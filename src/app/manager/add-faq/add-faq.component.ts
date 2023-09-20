@@ -12,14 +12,14 @@ const Filter = require('bad-words');
 })
 export class AddFaqComponent {
   errors: string[] | null = null;
-  whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
+  whitespace = "[a-zA-Z0-9][a-zA-Z0-9]+"
   FaqForm = new FormGroup({
     id: new FormControl(0),
     question: new FormControl('', {
-      validators: [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)],
+      validators: [Validators.required, this.validateProfanity]
     }),
     answer: new FormControl('', {
-      validators: [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)],
+      validators: [Validators.required, this.validateProfanity]
     })
   });
 

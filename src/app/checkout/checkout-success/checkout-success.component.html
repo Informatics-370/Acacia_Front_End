@@ -2,6 +2,6 @@
     <div><i class="fa fa-check-circle fa-5x" style="color: green"></i></div>
     <h2>Your order has been confirmed... Thank you</h2>
     <p class="mb-4"> Your order is now being processed for dispatching </p>
-    <button *ngIf="order?.id" routerLink="account/orders/{{order?.id}}" class="btn btn-outline-success">View Order</button>
-    <button *ngIf="!order" routerLink="account/orders" class="btn btn-outline-success">View Orders</button>
+    <button *ngIf="order?.id" routerLink="/account/orders/{{order?.id}}" class="btn btn-outline-success">View Order</button>
+    <button *ngIf="!order" routerLink="/account/orders" class="btn btn-outline-success">View Orders</button>
 </div>

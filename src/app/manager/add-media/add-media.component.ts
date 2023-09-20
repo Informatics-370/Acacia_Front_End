@@ -16,8 +16,8 @@ export class AddMediaComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   mediaForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
     fileUrl: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
   });
   media?: Media;

@@ -34,7 +34,7 @@ export class AddSupplierReturnComponent {
   returnForm = new FormGroup({
     supplierOrderId: new FormControl(0, [Validators.required, Validators.min(1)]),
     managerEmail: new FormControl('', [Validators.required, Validators.email]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    description: new FormControl('', [Validators.required]),
     date: new FormControl(),
     total: new FormControl(),
     returnItems: new FormControl(),
