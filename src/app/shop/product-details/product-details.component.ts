@@ -35,8 +35,8 @@ export class ProductDetailsComponent implements OnInit{
   modalRef?: BsModalRef;
 
   reviewForm = new FormGroup({
-    title: new FormControl('', [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)]),
+    title: new FormControl('', [Validators.required, this.validateProfanity]),
+    description: new FormControl('', [Validators.required, this.validateProfanity]),
     rating: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(5)]),
     customerEmail: new FormControl('', Validators.email),
     productId: new FormControl(0),

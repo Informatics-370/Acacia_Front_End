@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ProductService } from '../product.service';
-import { Product } from 'src/app/shared/models/product';
+import { ProductDto } from 'src/app/shared/models/product';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category';
 import { Type } from 'src/app/shared/models/type';
@@ -18,23 +18,23 @@ import { Supplier } from 'src/app/shared/models/Supplier';
 })
 export class ProductDetailsComponent implements OnInit {
   errors: string[] | null = null;
-  categories: Category[] = [];
+  categories?: Category[] = [];
   types: Type[] = [];
   suppliers: Supplier[] = [];
-  product?: any;
+  product?: ProductDto;
   formData = new FormData();
   fileNameUploaded = '';
   qrCodeStr = 'www.google.com';
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   ProductForm = new FormGroup({
     id: new FormControl(0, Validators.required),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
     price: new FormControl(0,  [Validators.required, Validators.min(1)]),
-    description: new FormControl("", [Validators.required, Validators.pattern(this.whitespace)]),
+    description: new FormControl("", [Validators.required]),
     pictureUrl: new FormControl(),
     productCategoryId: new FormControl(0, [Validators.required, Validators.min(1)]),
     productTypeId: new FormControl(0, [Validators.required, Validators.min(1)]),
-    supplierId: new FormControl(0,  [Validators.required, Validators.min(1)]),
+    supplierId: new FormControl(0, [Validators.required, Validators.min(1)]),
     tresholdValue: new FormControl(0,  [Validators.required, Validators.min(1)]),
     quantity: new FormControl({value: 0, disabled: true})
   });
@@ -54,9 +54,19 @@ export class ProductDetailsComponent implements OnInit {
   }
   
   loadProduct(){
-    if (this.id) this.productService.getProduct(+this.id).subscribe({
+    if (this.id) this.productService.getProductForUpdate(+this.id).subscribe({
       next: product => {
-        this.ProductForm.patchValue(product);
+        this.ProductForm.patchValue({
+          id: product.id,
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          productCategoryId: product.productCategory.id,
+          productTypeId: product.productType.id,
+          supplierId: product.supplier.id,
+          tresholdValue: product.tresholdValue,
+          quantity: product.quantity
+        });
         this.product = product,
         this.qrCodeStr = 'http://localhost:4200/shop/' + this.product.id;
         this.bcService.set('productDetails', product.name);
@@ -87,19 +97,16 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
-  onCategorySelected(event: any)
-  {
-    this.ProductForm.value.productCategoryId = event.target.value;
+  onCategorySelected(event: any){
+      this.ProductForm.value.productCategoryId = event.target.value;;
   }
 
-  onSupplierSelected(event: any)
-  {
-    this.ProductForm.value.supplierId = event.target.value;
+  onSupplierSelected(event: any){
+      this.ProductForm.value.supplierId = event.target.value;;
   }
 
-  onTypeSelected(event: any)
-  {
-    this.ProductForm.value.productTypeId = event.target.value;
+  onTypeSelected(event: any){
+      this.ProductForm.value.productTypeId = event.target.value;
   }
   
   updateProduct(){
@@ -109,7 +116,7 @@ export class ProductDetailsComponent implements OnInit {
       this.formData.append('name', this.ProductForm.value.name!);
       this.formData.append('description', this.ProductForm.value.description!);
       this.formData.append('price', this.ProductForm.value.price?.toString()!);
-      this.formData.append('tresholdValue', this.ProductForm.value.supplierId?.toString()!);
+      this.formData.append('tresholdValue', this.ProductForm.value.tresholdValue?.toString()!);
       this.formData.append('productCategoryId', this.ProductForm.value.productCategoryId?.toString()!);
       this.formData.append('productTypeId',this.ProductForm.value.productTypeId?.toString()!);
       this.formData.append('supplierId', this.ProductForm.value.supplierId?.toString()!);
@@ -119,7 +126,7 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.updateProduct(this.formData, this.id).subscribe(
         () => {
         this.router.navigateByUrl('/dashboard/products-list');
-        this.toaster.success('Product added successfully');
+        this.toaster.success('Product updated successfully');
         },
         error => {
           this.errors = error.errors;

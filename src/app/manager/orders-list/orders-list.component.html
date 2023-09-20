@@ -6,7 +6,7 @@
                 <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control" #search>
                 <button class="btn mx-2" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
                 <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
-                <select class="form-select mx-2" style="max-width: 40px; min-width: none;"  (change)="onSortSelected($event)">
+                <select class="form-select mx-2" style="min-width: none;"  (change)="onSortSelected($event)">
                     <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
                         {{sort.name}}
                     </option>

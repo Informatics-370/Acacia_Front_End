@@ -34,8 +34,8 @@ export class AddGiftboxComponent {
   giftbox?: GiftBoxAddVM;
   formData = new FormData();
   gbForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
     giftBoxImage: new FormControl(''),
     products: new FormControl(),
     price: new FormControl('', [Validators.required, Validators.min(1)]),

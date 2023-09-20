@@ -17,7 +17,7 @@ export class SupplierDetailsComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   SupplierForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phoneNumber: new FormControl(0, Validators.required)
   });

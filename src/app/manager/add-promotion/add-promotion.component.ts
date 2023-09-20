@@ -37,8 +37,8 @@ export class AddPromotionComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   promoForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    description: new FormControl('',[Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('',[Validators.required]),
     percentage: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(99)]),
     isActive: new FormControl(false, Validators.required),
     products: new FormControl(),

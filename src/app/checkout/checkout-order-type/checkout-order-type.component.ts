@@ -58,26 +58,28 @@ export class CheckoutOrderTypeComponent {
       this.checkoutForm?.get('addressForm')?.get('complexName')?.patchValue("N/A")
       this.checkoutForm?.get('addressForm')?.get('city')?.patchValue("N/A")
       this.checkoutForm?.get('addressForm')?.get('province')?.patchValue("N/A")
-      this.checkoutForm?.get('addressForm')?.get('postalCode')?.patchValue(4399)
+      this.checkoutForm?.get('addressForm')?.get('postalCode')?.patchValue("4399")
       this.checkoutForm?.get('addressForm')?.get('suburb')?.patchValue("N/A")
       this.checkoutForm?.get('deliveryForm')?.get('deliveryMethod')?.patchValue(deliveryId?.id)
       this.checkoutForm?.get('addressForm')?.disable();
       this.checkoutForm?.get('deliveryForm')?.disable();
     }
     else{
-      this.checkoutForm?.get('addressForm')?.get('firstName')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('lastName')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('firstName')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('lastName')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('streetAddress')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('complexName')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('city')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('province')?.patchValue("")
-      this.checkoutForm?.get('addressForm')?.get('postalCode')?.patchValue(0)
-      this.checkoutForm?.get('addressForm')?.get('suburb')?.patchValue("")
       this.checkoutForm?.get('addressForm')?.enable();
       this.checkoutForm?.get('deliveryForm')?.enable();
+      this.checkoutForm?.get('deliveryForm')?.get('deliveryMethod')?.patchValue(0)
+      this.checkoutForm?.get('addressForm')?.get('firstName')?.patchValue("")
+      this.checkoutForm?.get('addressForm')?.get('lastName')?.patchValue("")
+      this.getAddressFormValues()
     }
+  }
+
+  getAddressFormValues(){
+    this.accountService.GetUserAddress().subscribe({
+      next: address => {
+        address && this.checkoutForm?.get('addressForm')?.patchValue(address)
+      }
+    })
   }
 }
 

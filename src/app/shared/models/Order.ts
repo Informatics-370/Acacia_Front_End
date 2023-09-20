@@ -1,4 +1,5 @@
 import { OrderAddress } from "./OrderAddress"
+import { Vat } from "./Vat"
 import { User_Address } from "./user"
 
 export interface Order {
@@ -8,11 +9,13 @@ export interface Order {
     shipToAddress: OrderAddress
     deliveryMethod: string
     shippingPrice: number
+    savings: number
     orderType: string
     orderItems: OrderItem[]
     subTotal: number
     groupElephantDiscount: number
     total: number
+    vat: Vat
     status: string
   }
   export interface OrderToAdd {

@@ -37,7 +37,7 @@ export class PromotionDetailsComponent {
 
   promoForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
     description: new FormControl('', Validators.required),
     percentage: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(99)]),
     isActive: new FormControl(false, Validators.required),
@@ -50,8 +50,8 @@ export class PromotionDetailsComponent {
 }
 
 Statuses = [
-  {name: 'Active', value: true},
-  {name: 'Inactive', value: false},
+  {isActive: 'Active', value: true},
+  {isActive: 'Inactive', value: false}
 ];
 
 loadPromotion(){
