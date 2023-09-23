@@ -9,6 +9,7 @@ import { User } from '../shared/models/user';
 import { SupplierReportVM } from '../shared/models/SupplierReport';
 import { SalesReportVM } from '../shared/models/SalesReportVM';
 import { ProfitabilityReportVM } from '../shared/models/ProfitabilityReportVM';
+import { DashboardVM } from '../shared/models/dashboardVM';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ import { ProfitabilityReportVM } from '../shared/models/ProfitabilityReportVM';
 export class ReportsService {
   baseUrl = environment.apiUrl
   constructor(private httpClient: HttpClient) { }
+
+  getDashboardData(){
+    return this.httpClient.get<DashboardVM>(this.baseUrl + 'Reports/DashboardReport')
+    }
 
   getPromotionsReport(specParams: ReportParams){
     let params = new HttpParams()
