@@ -38,8 +38,8 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let audit of audits">
-                        <td class="align-middle"><strong>{{audit.date | date }}</strong></td>
-                        <td class="align-middle"><strong>{{audit.user}}</strong></td>
+                        <td class="align-middle"><strong>{{audit.transactionDate | date }}</strong></td>
+                        <td class="align-middle"><strong>{{audit.email}}</strong></td>
                         <td class="align-middle"><strong>{{audit.type}}</strong></td>
                         <td class="align-middle"><strong>{{audit.amount | currency:"R"}}</strong></td>
                         <td class="align-middle"><strong>{{audit.quantity}}</strong></td>
