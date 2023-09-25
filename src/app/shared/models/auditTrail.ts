@@ -1,6 +1,6 @@
 export interface AuditTrail {
-    date: string
-    user: string
+    transactionDate: string
+    email: string
     type: string
     amount: number
     quantity: number

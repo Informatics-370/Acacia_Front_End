@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import html2canvas from 'html2canvas';
 import { SupplierService } from '../supplier.service';
 import { Supplier } from 'src/app/shared/models/Supplier';
+import { environment } from 'src/environments/enviroment';
 
 @Component({
   selector: 'app-product-details',
@@ -68,7 +69,7 @@ export class ProductDetailsComponent implements OnInit {
           quantity: product.quantity
         });
         this.product = product,
-        this.qrCodeStr = 'http://localhost:4200/shop/' + this.product.id;
+        this.qrCodeStr = environment.siteUrl + 'shop/'+ this.product.id;
         this.bcService.set('productDetails', product.name);
         console.log(this.ProductForm.value);
       },
