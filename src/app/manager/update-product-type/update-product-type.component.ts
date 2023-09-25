@@ -17,7 +17,7 @@ export class UpdateProductTypeComponent {
 
   TypeForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
   });
 
   type?: Type;

@@ -21,6 +21,10 @@ export class ProductListReportComponent {
     {name: 'Price: High to Low', value: 'priceDesc'},
     {name: 'Name: Low to High', value: 'nameAsc'},
     {name: 'Name: High to Low', value: 'nameDesc'},
+    {name: 'Quantity: Low to high', value: 'quantityAsc'},
+    {name: 'Quantity: High to Low', value: 'quantityDesc'},
+    {name: 'Threshold Value: Low to high', value: 'thresholdAsc'},
+    {name: 'Threshold Value: High to Low', value: 'thresholdDesc'},
   ];
 
   constructor(private reportService: ReportsService, private accountService: AccountService){}

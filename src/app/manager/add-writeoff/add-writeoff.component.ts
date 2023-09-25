@@ -39,7 +39,7 @@ export class AddWriteoffComponent {
   writeOffForm = new FormGroup({
     quantity: new FormControl(0, [Validators.required, Validators.min(1)]),
     productId: new FormControl(0, [Validators.required]),
-    reason: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    reason: new FormControl('', [Validators.required]),
   });
 
  ngOnInit(): void {

@@ -22,10 +22,10 @@ export class CheckoutComponent implements OnInit {
       suburb: ['', Validators.required],
     }),
     deliveryForm: this.fb.group({
-      deliveryMethod: ['', Validators.required],
+      deliveryMethod: [0, [Validators.required, Validators.min(1)]],
     }),
     orderTypeForm: this.fb.group({
-      orderTypeId: ['', Validators.required],
+      orderTypeId: [0, [Validators.required, Validators.min(1)]],
     })
   })
 
@@ -47,7 +47,7 @@ export class CheckoutComponent implements OnInit {
   getDeliveryMethod(){
     const cart = this.cartService.getCurrentCartValue();
     if(cart && cart.deliveryMethodId){
-      this.checkoutForm.get('deliveryForm')?.get('deliveryMethod')?.patchValue(cart.deliveryMethodId.toString())
+      this.checkoutForm.get('deliveryForm')?.get('deliveryMethod')?.patchValue(cart.deliveryMethodId)
     }
   }
 }

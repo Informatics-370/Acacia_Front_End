@@ -19,10 +19,10 @@ export class FaqDetailsComponent {
   faqForm = new FormGroup({
     id: new FormControl(0),
     question: new FormControl('', {
-      validators: [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)],
+      validators: [Validators.required, this.validateProfanity],
     }),
     answer: new FormControl('', {
-      validators: [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)],
+      validators: [Validators.required, this.validateProfanity],
     })
   });
 

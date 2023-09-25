@@ -44,7 +44,7 @@ export class MakeSupplierOrderDetailsComponent {
   supplier?: Supplier;
   SupplierForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl({value: '', disabled: true}, [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl({value: '', disabled: true}, [Validators.required]),
     email: new FormControl({value: '', disabled: true}, [Validators.required, Validators.email]),
     phoneNumber: new FormControl({value: 0, disabled: true}, Validators.required)
   });

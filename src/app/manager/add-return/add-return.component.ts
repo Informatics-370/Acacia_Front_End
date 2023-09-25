@@ -34,7 +34,7 @@ export class AddReturnComponent {
   returnForm = new FormGroup({
     orderId: new FormControl(0, [Validators.required, Validators.min(1)]),
     customerEmail: new FormControl('', [Validators.required, Validators.email]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    description: new FormControl('', [Validators.required]),
     returnItems: new FormControl(),
   });
 

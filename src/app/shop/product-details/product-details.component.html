@@ -9,14 +9,17 @@
             <p *ngIf="!product.promotion" style="font-size: 1.5em;"> {{product.price | currency: "R" }}</p>
             
             <div class="d-flex justify-content-start align-items-center">
-                <i (click)="decrementQuanity()" class="fa fa-minus-square me-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
-                <span class="font-weight-bold" style="font-size: 1.5em;"> {{quantity}} </span>
-                <i (click)="incrementQuanity()" class="fa fa-plus-square ms-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
-                <button (click)="updateCart()" [disabled]="quantity === quantityInCart" class="btn btn-outline-primary ms-4">{{CartbuttonText}}</button>
-                <button (click)="updateWishlist()" [disabled]="productInWishlist === true" class="btn btn-outline-primary ms-4">{{wishlistButtonText}}</button>
+                <i *ngIf="product.quantity > 0"  (click)="decrementQuanity()" class="fa fa-minus-square me-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
+                <span *ngIf="product.quantity > 0"  class="font-weight-bold" style="font-size: 1.5em;"> {{quantity}} </span>
+                <i *ngIf="product.quantity > 0"  (click)="incrementQuanity()" class="fa fa-plus-square ms-2" style="cursor: pointer; font-size: 2em; color: #958F8A;"></i>
+                <button *ngIf="product.quantity > 0" (click)="updateCart()" [disabled]="quantity === quantityInCart" class="btn btn-outline-primary ms-4 me-4">{{CartbuttonText}}</button>
+                <button (click)="updateWishlist()" [disabled]="productInWishlist === true" class="btn btn-outline-primary">{{wishlistButtonText}}</button>
             </div>
             <p class="text-info mt-3" *ngIf="quantityInCart > 0">
                 You have {{quantityInCart}} items of this particular product in your cart
+            </p>
+            <p class="text-danger mt-3" *ngIf="product.quantity <= 0">
+                Out of Stock
             </p>
             <div class="row mt-4">
                 <h4>Description</h4>
