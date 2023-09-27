@@ -23,7 +23,7 @@
     "angularx-qrcode": "^15.0.1",
     "bad-words": "^3.0.4",
     "bootstrap": "^5.3.1",
-    "bootstrap-icons": "^1.10.5",
+    "bootstrap-icons": "^1.11.1",
     "bootswatch": "^5.3.1",
     "chart.js": "^4.3.2",
     "cuid": "^3.0.0",
@@ -39,6 +39,7 @@
     "ngx-toastr": "^16.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "xng-breadcrumb": "^9.0.0",
     "zone.js": "~0.12.0"
   },
