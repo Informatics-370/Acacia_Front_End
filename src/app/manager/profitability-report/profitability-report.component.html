@@ -11,6 +11,7 @@
     <div id="content" #content>
         <div class="row" >
             <h4 > Profitability Report </h4>
+            <br>
             <div id="divChart">
                 <canvas id="myChart"></canvas>
             </div>
@@ -29,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr style="color: rgb(11, 218, 81);">
                             <td class="align-middle">
                             <strong>Revenue</strong>
                             </td>
@@ -37,7 +38,7 @@
                             <strong>{{Report.income | currency: "R"}}</strong>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="color: rgb(11, 218, 81);">
                             <td class="align-middle">
                             <strong>Sales Returns</strong>
                             </td>
@@ -45,7 +46,7 @@
                             <strong>{{Report.salesReturns | currency: "R"}}</strong>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="color: rgb(11, 218, 81);">
                             <td class="align-middle">
                             <strong>Supplier Returns</strong>
                             </td>
@@ -53,7 +54,7 @@
                             <strong>{{Report.supplierReturns | currency: "R"}}</strong>
                             </td>
                         </tr>
-                        <tr >
+                        <tr style="color: rgb(242, 0, 60);">
                             <td class="align-middle">
                             <strong>Expenses</strong>
                             </td>
@@ -66,8 +67,8 @@
             </div>
             <div *ngIf="Report.income != 0 || Report.expenses != 0 || Report.salesReturns != 0 || Report.supplierReturns != 0">
                 <hr>
-                <h4 style="color:green" *ngIf="Report.profit >= 0"> Total Profit: {{Report.profit | currency:'R'}}</h4>
-                <h4 style="color:red" *ngIf="Report.profit < 0"> Total Loss: {{Report.profit | currency:'R'}}</h4>
+                <h4 style="color:rgb(11, 218, 81)"  *ngIf="Report.profit >= 0"> Total Profit: {{Report.profit | currency:'R'}}</h4>
+                <h4 style="color: rgb(242, 0, 60)" *ngIf="Report.profit < 0"> Total Loss: {{Report.profit | currency:'R'}}</h4>
                 <hr>
             </div>
         </div>
