@@ -13,6 +13,8 @@
     </div>
     <div id="content" #content >
         <div class="row">
+            <br>
+            <br>
             <h4> Sales Report </h4>
             <br>
             <div id="divChart">
@@ -26,6 +28,7 @@
             <div *ngFor="let category of Report.data">
                 <h4 *ngIf="Report.data.length > 0"> Product Category: {{category.categoryName}} </h4>
                 <div class="table-responsive">
+                    <br>
                     <table class="table" >
                         <thead class="text-uppercase">
                             <tr>
@@ -56,6 +59,7 @@
             </div>
             <div>
                 <hr>
+                <br>
                 <h4> Total Sales Revenue: {{Report.total | currency:'R'}}</h4>
                 <hr>
             </div>

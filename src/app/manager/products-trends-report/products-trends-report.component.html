@@ -19,6 +19,8 @@
     </div>
     <div id="content" #content >
         <div class="row">
+            <br>
+            <br>
             <h4> Trends Report </h4>
             <br>
             <div id="divChart">
@@ -29,8 +31,11 @@
             <p *ngIf="Report.data.length <= 0"> There is currently no data that matches your request on the system </p>
         </div>
         <div class="row" *ngIf="Report">
+            <br>
+            <br>
             <h4 *ngIf="Report.data.length > 0"> Products Trend Table </h4>
             <div class="table-responsive" *ngIf="Report.data.length > 0">
+                <br>
                 <table class="table" >
                     <thead class="text-uppercase">
                         <tr>
@@ -55,6 +60,7 @@
                 </table>
             </div>
             <div>
+                <br>
                 <hr>
                 <h4> Products Total: {{Total | currency:'R'}}</h4>   
                 <hr>

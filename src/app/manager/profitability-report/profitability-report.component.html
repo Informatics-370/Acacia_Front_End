@@ -11,6 +11,8 @@
     </div>
     <div id="content" #content>
         <div class="row" >
+            <br>
+            <br>
             <h4 > Profitability Report </h4>
             <br>
             <div id="divChart">
@@ -23,6 +25,7 @@
         <div class="row" *ngIf="Report">
             <h4 *ngIf="Report.income != 0 || Report.expenses != 0 || Report.salesReturns != 0 || Report.supplierReturns != 0"> Profitability Table </h4>
             <div class="table-responsive" *ngIf="Report.income != 0 || Report.expenses != 0 || Report.salesReturns != 0 || Report.supplierReturns != 0">
+                <br>
                 <table class="table">
                     <thead class="text-uppercase">
                         <tr>
@@ -67,6 +70,7 @@
                 </table>
             </div>
             <div *ngIf="Report.income != 0 || Report.expenses != 0 || Report.salesReturns != 0 || Report.supplierReturns != 0">
+                <br>
                 <hr>
                 <h4 style="color:rgb(11, 218, 81)" *ngIf="Report.profit > 0"> Total Profit: {{Report.profit | currency:'R'}}</h4>
                 <h4 style="color: rgb(242, 0, 60)" *ngIf="Report.profit < 0"> Total Loss: {{Report.profit | currency:'R'}}</h4>
