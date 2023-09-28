@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ShopParams } from '../shared/models/shopParams';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Pagination } from '../shared/models/pagination';
-import { Product } from '../shared/models/product';
+import { Product, ProductDto } from '../shared/models/product';
 import { environment } from 'src/environments/enviroment';
 import { Category } from '../shared/models/category';
 import { Type } from '../shared/models/type';
@@ -30,6 +30,12 @@ export class ProductService {
   getProduct(id: number)
   {
     return this.http.get<Product>(this.baseUrl + 'products/' + id);
+  } 
+
+  
+  getProductForUpdate(id: number)
+  {
+    return this.http.get<ProductDto>(this.baseUrl + 'products/product/' + id);
   }
 
   getCategories(){
@@ -44,8 +50,12 @@ export class ProductService {
     return this.http.post(`${this.baseUrl}products/AddProduct`, file);
   }
 
-  addProductList(data: FormData){
-    return this.http.post(`${this.baseUrl}products/AddProductList`, data);
+  addJsonProductList(data: FormData){
+    return this.http.post(`${this.baseUrl}products/AddJsonProductList`, data);
+  }
+
+  addExcelProductList(data: FormData){
+    return this.http.post(`${this.baseUrl}products/AddExcelProductList`, data);
   }
 
   updateProduct(file:FormData, id?:any){

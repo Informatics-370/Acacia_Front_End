@@ -16,9 +16,9 @@ export class DeliveryMethodDetailsComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   deliveryMethodForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    deliveryTime: new FormControl('',[Validators.required, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
+    deliveryTime: new FormControl('',[Validators.required]),
+    description: new FormControl('', [Validators.required]),
     price: new FormControl(0, [Validators.required, Validators.min(1)]),
   });
 

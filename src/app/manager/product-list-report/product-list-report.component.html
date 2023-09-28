@@ -18,16 +18,17 @@
                 <thead class="text-uppercase">
                     <tr>
                         <th><div class="py-2">Product</div></th>
-                        <th><div class="py-2">Category</div></th>
-                        <th><div class="py-2">Type</div></th>
+                        <th><div class="py-2">Quantity</div></th>
+                        <th><div class="py-2">Threshold Value</div></th>
                         <th><div class="py-2">Price</div></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let product of products">
                         <td class="align-middle"><strong>{{product.name }}</strong></td>
-                        <td class="align-middle"><strong>{{product.productCategory}}</strong></td>
-                        <td class="align-middle"><strong>{{product.productType}}</strong></td>
+                        <td *ngIf="product.quantity <= product.tresholdValue" style="color: red; font-weight: bolder;" class="align-middle"><strong>{{product.quantity}}</strong></td>
+                        <td *ngIf="product.quantity > product.tresholdValue" style="color: green; font-weight: bolder;" class="align-middle"><strong>{{product.quantity}}</strong></td>
+                        <td class="align-middle"><strong>{{product.tresholdValue}}</strong></td>
                         <td class="align-middle"><strong>{{product.price | currency: "R"}}</strong></td>
                     </tr>
                 </tbody>

@@ -28,9 +28,9 @@ export class AddProductComponent {
   formData = new FormData();
 
   ProductForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
     price: new FormControl(0,  [Validators.required, Validators.min(1)]),
-    description: new FormControl("", [Validators.required, Validators.pattern(this.whitespace)]),
+    description: new FormControl("", [Validators.required]),
     pictureUrl: new FormControl(Validators.required),
     productCategoryId: new FormControl(0, [Validators.required, Validators.min(1)]),
     productTypeId: new FormControl(0, [Validators.required, Validators.min(1)]),

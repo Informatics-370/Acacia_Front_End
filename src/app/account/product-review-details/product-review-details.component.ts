@@ -17,8 +17,8 @@ export class ProductReviewDetailsComponent {
 
   reviewForm = new FormGroup({
     id: new FormControl(0),
-    title: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
     customerEmail: new FormControl({value: '', disabled: true}, Validators.required),
     product: new FormControl({value: '', disabled: true}, Validators.required),
     date: new FormControl({value: '', disabled: true}, Validators.required),

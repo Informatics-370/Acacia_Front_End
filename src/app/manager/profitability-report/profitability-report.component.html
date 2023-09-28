@@ -6,7 +6,6 @@
             <button class="btn btn-primary" style="background-color: #958F8A; color: white;" (click)="onDateSelected()"><i class="fa fa-filter"></i></button>
             <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
             <button class="btn" style="background-color: #958F8A; color: white;" (click)="printPdf()">Print Report</button>
-
         </div>
     </div>
     <div id="content" #content>
@@ -35,32 +34,32 @@
                             <td class="align-middle">
                             <strong>Revenue</strong>
                             </td>
-                            <td class="align-middle">
-                            <strong>{{Report.income}}</strong>
+                            <td class="align-middle" style="color: green;">
+                            <strong>{{Report.income | currency: "R"}}</strong>
                             </td>
                         </tr>
                         <tr style="color: rgb(11, 218, 81);">
                             <td class="align-middle">
                             <strong>Sales Returns</strong>
                             </td>
-                            <td class="align-middle">
-                            <strong>{{Report.salesReturns}}</strong>
+                            <td class="align-middle" style="color: green;">
+                            <strong>{{Report.salesReturns | currency: "R"}}</strong>
                             </td>
                         </tr>
                         <tr style="color: rgb(11, 218, 81);">
                             <td class="align-middle">
                             <strong>Supplier Returns</strong>
                             </td>
-                            <td class="align-middle">
-                            <strong>{{Report.supplierReturns}}</strong>
+                            <td class="align-middle" style="color: green;">
+                            <strong>{{Report.supplierReturns | currency: "R"}}</strong>
                             </td>
                         </tr>
                         <tr style="color: rgb(242, 0, 60);">
                             <td class="align-middle">
                             <strong>Expenses</strong>
                             </td>
-                            <td class="align-middle">
-                            <strong>{{Report.expenses}}</strong>
+                            <td class="align-middle" style="color: red;">
+                            <strong>{{Report.expenses | currency: "R"}}</strong>
                             </td>
                         </tr>
                     </tbody>
@@ -68,7 +67,7 @@
             </div>
             <div *ngIf="Report.income != 0 || Report.expenses != 0 || Report.salesReturns != 0 || Report.supplierReturns != 0">
                 <hr>
-                <h4 style="color:rgb(11, 218, 81)" *ngIf="Report.profit > 0"> Total Profit: {{Report.profit | currency:'R'}}</h4>
+                <h4 style="color:rgb(11, 218, 81)"  *ngIf="Report.profit >= 0"> Total Profit: {{Report.profit | currency:'R'}}</h4>
                 <h4 style="color: rgb(242, 0, 60)" *ngIf="Report.profit < 0"> Total Loss: {{Report.profit | currency:'R'}}</h4>
                 <hr>
             </div>

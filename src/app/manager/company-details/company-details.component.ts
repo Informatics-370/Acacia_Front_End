@@ -25,10 +25,10 @@ export class CompanyDetailsComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   companyForm = new FormGroup({
     vatNumber: new FormControl(0,[Validators.required, Validators.min(1)]),
-    addressLine1: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    addressLine1: new FormControl('', [Validators.required]),
     addressLine2: new FormControl(''),
-    suburb: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    city: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    suburb: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
     province: new FormControl('', Validators.required),
     postalCode: new FormControl(0, [Validators.required, Validators.min(1), Validators.minLength(4), Validators.maxLength(4)]),
     id: new FormControl(0, Validators.required)

@@ -20,7 +20,7 @@ export class OrderDetailsComponent {
   deliveryMethods: DeliveryMethod[] = [];
   dispatchForm = new FormGroup({
     orderId: new FormControl(0),
-    trackingNumber: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    trackingNumber: new FormControl('', [Validators.required]),
     customerEmail: new FormControl(''),
   });
 

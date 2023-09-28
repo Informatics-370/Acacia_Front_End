@@ -35,8 +35,8 @@ export class ProductDetailsComponent implements OnInit{
   modalRef?: BsModalRef;
 
   reviewForm = new FormGroup({
-    title: new FormControl('', [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, this.validateProfanity, Validators.pattern(this.whitespace)]),
+    title: new FormControl('', [Validators.required, this.validateProfanity]),
+    description: new FormControl('', [Validators.required, this.validateProfanity]),
     rating: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(5)]),
     customerEmail: new FormControl('', Validators.email),
     productId: new FormControl(0),
@@ -130,9 +130,9 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   updateCart(){
-    if (this.product){
+    const itemsToAdd = this.quantity - this.quantityInCart;
+    if (this.product && this.product.quantity > 0 && this.product.quantity >=  (this.quantityInCart + itemsToAdd)){
       if (this.quantity > this.quantityInCart){
-        const itemsToAdd = this.quantity - this.quantityInCart;
         this.quantityInCart += itemsToAdd;
         this.cartService.addItemToCart(this.product, itemsToAdd);
       }else{
@@ -140,6 +140,9 @@ export class ProductDetailsComponent implements OnInit{
         this.quantityInCart -= itemsToRemove;
         this.cartService.removeItemFromCart(this.product.id, itemsToRemove);
       }
+    }
+    else{
+      this.toaster.warning("Sorry, there is not enough stock.")
     }
   }
 

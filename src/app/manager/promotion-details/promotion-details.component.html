@@ -6,9 +6,9 @@
             <app-text-input [label]="'Description'" [formControl]="promoForm.controls['description']"></app-text-input>
             <app-text-input [label]="'Percentage'" [type]="'number'" [formControl]="promoForm.controls['percentage']"></app-text-input>
             <label for="floatingInput">Status</label>
-            <select class="form-select form-control-sm"  (change)="onStatusSelected($event)">
+            <select class="form-select form-control-sm"  (change)="onStatusSelected($event)" formControlName="isActive">
                 <option *ngFor="let status of Statuses" [value]="status.value"> 
-                    {{status.name}}
+                    {{status.isActive}}
                 </option>
             </select>
             <label for="floatingInput">Promotion Products</label>
@@ -41,7 +41,8 @@
                 </li>
             </ul>
             <div>
-                <button [disabled]="promoForm.invalid || promoProducts.length <= 0" class="btn btn-primary" type="submit">Update</button>
+                <button [disabled]="promoForm.invalid || promoProducts.length <= 0" class="btn btn-primary" type="submit">Update</button>                               
+                <!-- <button (click)="openModal(template)"  class="ms-2 btn btn-danger">Delete</button> -->
                 <button  class="mx-2 btn btn-danger" routerLink="/dashboard/promotions-list">Cancel</button>
             </div>
         </form>
@@ -84,4 +85,19 @@
         </div>
     </div>
 </div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete Promotion</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-danger">
+        <p>
+            Are you sure you want to delete this Promotion? This action cannot be undone.
+        </p>
+      <button type="button" class="btn btn-danger" (click)="deletePromotion()">Delete Promotion</button>
+    </div>
+  </ng-template>
 

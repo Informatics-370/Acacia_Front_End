@@ -11,11 +11,6 @@ import { specParams } from 'src/app/shared/models/specParams';
   styleUrls: ['./faqs.component.scss']
 })
 
-// @Component({
-//   // eslint-disable-next-line @angular-eslint/component-selector
-//   selector: 'demo-accordion-animation',
-//   templateUrl: './animated.html'
-// })
 export class FaqsComponent {
   constructor(private faqService: FaqService, private toaster: ToastrService, private router: Router) { } 
   ngOnInit(): void {

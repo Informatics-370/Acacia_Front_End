@@ -61,6 +61,8 @@ export class CheckoutReviewComponent implements OnInit{
 
 
   submitOrder(){
+    this.checkoutForm?.get('addressForm')?.enable();
+    this.checkoutForm?.get('deliveryForm')?.enable();
     const cart = this.cartService.getCurrentCartValue();
     if(!cart) return;
     const orderToAdd = this.getOrderToMake(cart)
@@ -74,10 +76,9 @@ export class CheckoutReviewComponent implements OnInit{
           const navigationExtras: NavigationExtras = { state: order };
           this.router.navigate(['checkout/success'], navigationExtras);
           console.log(order);
-          this.modalRef?.hide();
-          // this.checkoutService.confirmPayment(paypalOrderId, 1).subscribe({
-          //   next: () => {itera}
-          // })
+        },
+        error: () => {
+          this.toasterService.error('There was a problem submitting your order. Please try again later.');
         }
       });
     });
@@ -90,7 +91,6 @@ export class CheckoutReviewComponent implements OnInit{
       next: () => {
         this.modalRef = this.modalService.show(template);
         this.submitOrder();
-        // this.modalRef?.hide();
       },
       error: () => {
         this.modalRef?.hide();
@@ -99,8 +99,6 @@ export class CheckoutReviewComponent implements OnInit{
   }
 
     getOrderToMake(cart: Cart){
-      this.checkoutForm?.get('deliveryForm')?.get('deliveryMethod')?.enable()
-      this.checkoutForm?.get('orderTypeForm')?.get('orderTypeId')?.enable()
       const deliveryMethodId = this.checkoutForm?.get('deliveryForm')?.get('deliveryMethod')?.value
       const orderTypeId = this.checkoutForm?.get('orderTypeForm')?.get('orderTypeId')?.value
       const shipToAddress = this.checkoutForm?.get('addressForm')?.value as OrderAddress
@@ -135,8 +133,10 @@ export class CheckoutReviewComponent implements OnInit{
               if (details.status === 'COMPLETED') {
                 const paypalOrderId: string = details.id;
                 resolve(paypalOrderId);
+                this.modalRef?.hide();
               } else {
                 reject('Payment not completed');
+                this.modalRef?.hide();
               }
             });
           },
