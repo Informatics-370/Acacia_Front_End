@@ -7,12 +7,13 @@ import { Type } from '../shared/models/type';
 import { ShopParams } from '../shared/models/shopParams';
 import { ReviewParams } from '../shared/models/ReviewParams';
 import { ProductReview } from '../shared/models/ProductReview';
+import { environment } from 'src/environments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:7234/';
+  baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
   getProducts(shopParams: ShopParams){

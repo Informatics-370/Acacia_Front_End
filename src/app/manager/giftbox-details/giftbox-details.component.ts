@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GiftBox } from 'src/app/shared/models/GiftBox';
 import { BreadcrumbService } from 'xng-breadcrumb';
@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Product } from 'src/app/shared/models/product';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { GiftBoxPrice } from 'src/app/shared/models/GiftBoxPrice';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-giftbox-details',
@@ -16,10 +17,10 @@ import { GiftBoxPrice } from 'src/app/shared/models/GiftBoxPrice';
 })
 export class GiftboxDetailsComponent {
   id = this.activatedRoute.snapshot.paramMap.get('id');
-  constructor(private gbService: GiftboxService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService, private fb: FormBuilder) { 
+  constructor(private gbService: GiftboxService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService, private fb: FormBuilder, private modalService: BsModalService) { 
     this.bcService.set('@giftboxDetails', '');
   }
-
+  modalRef?: BsModalRef;
   shopParams: ShopParams = new ShopParams();
   sortOptions = [
     {name: 'Alphabetical', value: 'name'},
@@ -39,8 +40,8 @@ export class GiftboxDetailsComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   gbForm = new FormGroup({
     id: new FormControl(0, Validators.required),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
     giftBoxImage: new FormControl(''),
     products: new FormControl(),
     price: new FormControl(0, [Validators.required, Validators.min(1)]),
@@ -52,19 +53,30 @@ export class GiftboxDetailsComponent {
   this.getProducts();
 }
 
-loadGiftbox(){
-  if (this.id) this.gbService.getGiftbox(+this.id).subscribe({
-    next: giftbox => {
-      this.giftbox = giftbox;
-      this.gbproducts = giftbox.products;
-      this.gbForm.patchValue(giftbox)
-      this.bcService.set('@giftboxDetails', giftbox.name);
-      console.log(this.gbForm.value);
-      console.log(this.giftbox)
-    },
-    error: err => console.log(err)
-  })
+loadGiftbox() {
+  if (this.id) {
+    this.gbService.getGiftbox(+this.id).subscribe({
+      next: giftbox => {
+        this.giftbox = giftbox;
+        this.gbproducts = giftbox.products;
+        this.gbForm.patchValue({
+          id: giftbox.id,
+          name: giftbox.name,
+          description: giftbox.description,
+          price: giftbox.price,
+          packagingCosts: giftbox.packagingCosts,
+          products: giftbox.products,
+          giftBoxImage: giftbox.giftBoxImage
+        });
+        this.bcService.set('@giftboxDetails', giftbox.name);
+        console.log(this.gbForm.value);
+        console.log(this.giftbox);
+      },
+      error: err => console.log(err)
+    });
+  }
 }
+
 
  getProducts(){
   this.gbService.getProducts(this.shopParams).subscribe({
@@ -145,5 +157,22 @@ addProdToGiftbox(id: number){
 
 removeProdToGiftbox(id: number){
   this.gbproducts = this.gbproducts.filter(x => x.id != id)
+}
+
+openModal(template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template);
+  }
+
+deleteGiftbox(){
+  if(this.giftbox){
+    this.gbService.deleteGiftBox(this.giftbox.id).subscribe({
+      next: () => {
+        this.modalRef?.hide(),
+        this.router.navigateByUrl('/dashboard/giftbox-list');
+        this.toaster.success('GiftBox Deleted');
+      },
+      error: error => console.log(error)
+    })
+  }
 }
 }

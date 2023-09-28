@@ -1,0 +1,58 @@
+<div class="container-fluid mt-4">
+    <div class="row" >
+        <div class="d-flex justify-content-between align-items-center pb-2">
+            <app-paging-header [totalCount]="totalCount" [pageNumber]="auditParams.pageNumber" [pageSize]="auditParams.pageSize"></app-paging-header>
+            <div class="d-flex mt-2">
+                <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control" #search>
+                <button class="btn mx-2" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
+                <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
+                <select class="form-select mx-2" (change)="onAuditTypeSelected($event)">
+                    <option *ngFor="let type of AuditTypes" [value]="type.value"> 
+                        {{type.name}}
+                    </option>
+                </select>
+                <div class="dropdown mx-2" dropdownToggle dropdown>
+                    <button style="background-color: #958F8A;" class="btn btn-primary"><i class="fa fa-filter"></i></button>
+                    <div *dropdownMenu class="dropdown-menu py-0">
+                        <ul class="list-group">
+                            <li class="list-group-item"*ngFor="let sort of sortOptions"
+                                    [value]="sort.value"
+                                    (click)="onSortSelected(sort.value)"
+                                >{{sort.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div *ngIf="audits.length > 0" class="table-responsive">
+            <table class="table">
+                <thead class="text-uppercase">
+                    <tr>
+                        <th><div class="py-2">Date</div></th>
+                        <th><div class="py-2">User</div></th>
+                        <th><div class="py-2">Type</div></th>
+                        <th><div class="py-2">Amount</div></th>
+                        <th><div class="py-2">Quantity</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let audit of audits">
+                        <td class="align-middle"><strong>{{audit.transactionDate | date }}</strong></td>
+                        <td class="align-middle"><strong>{{audit.email}}</strong></td>
+                        <td class="align-middle"><strong>{{audit.type}}</strong></td>
+                        <td class="align-middle"><strong>{{audit.amount | currency:"R"}}</strong></td>
+                        <td class="align-middle"><strong>{{audit.quantity}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="audits.length <= 0" class="row">
+            <p>There are currently no records on the system. </p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end" *ngIf="totalCount > 0" >
+        <app-pager [totalCount]="totalCount" [pageSize]="auditParams.pageSize" (pageChanged)="onPageChanged($event)"></app-pager>
+    </div>
+</div>
+

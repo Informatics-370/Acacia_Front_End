@@ -20,7 +20,7 @@ export class ReturnDetailsComponent {
   returnForm = new FormGroup({
     orderId: new FormControl(0, Validators.required),
     customerEmail: new FormControl('', [Validators.required, Validators.email]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    description: new FormControl('', [Validators.required]),
     returnItems: new FormControl(),
     date: new FormControl(),
     total: new FormControl(),

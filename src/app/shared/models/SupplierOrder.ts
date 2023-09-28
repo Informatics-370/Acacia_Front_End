@@ -8,6 +8,7 @@ export interface SupplierOrder {
   status: string
   orderItems: SupplierOrderItem[]
   total: number
+  totalNotDelivered: number
   companyDetails: Company
   supplier: Supplier
 }
@@ -18,6 +19,7 @@ export interface SupplierOrderItem {
   pictureUrl: string
   price: number
   quantity: number
+  quantityNotDelivered?: number
 }
 
 export interface ConfigureSupplierOrder {

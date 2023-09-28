@@ -14,7 +14,7 @@ export class PersonalDetailsComponent implements OnInit {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   formData = new FormData();
   DetailsForm = new FormGroup({
-    displayName: new FormControl('', [ Validators.required, Validators.maxLength(20), Validators.minLength(3), Validators.pattern(this.whitespace)]),
+    displayName: new FormControl('', [ Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
     email: new FormControl('', [Validators.email, Validators.maxLength(30)]),
     profilePicture: new FormControl('', Validators.required),
   });

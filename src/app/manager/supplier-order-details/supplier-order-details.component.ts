@@ -15,6 +15,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class SupplierOrderDetailsComponent {
   errors: string[] = ["Note** PDF files are only accepted."];
   order?: SupplierOrder;
+  orderItems?: SupplierOrderItem[];
   modalRef?: BsModalRef;
   fileNameUploaded = ''
   formData = new FormData();
@@ -35,13 +36,14 @@ export class SupplierOrderDetailsComponent {
   }
   
   ngOnInit(): void {
-    this.loadOrder();  
+    this.loadOrder(); 
   }
 
   loadOrder(){
     if (this.id) this.orderService.getSupplierOrder(+this.id).subscribe({
       next: order => {
         this.order = order,
+        this.orderItems = JSON.parse(JSON.stringify(order.orderItems));
         this.formData.append('supplierId', order.id.toString());
         this.documentationForm.value.supplierId = order.id,
         this.bcService.set('@orderDetails', order.supplier.name);
@@ -111,15 +113,22 @@ export class SupplierOrderDetailsComponent {
     });
   }
 
-  editQuantity(orderitem: SupplierOrderItem, quantity: number) {
-    if (this.order) {
-        const existingItem = this.order.orderItems.find(x => x.productId === orderitem.productId);
-        if (existingItem) {
-            existingItem.quantity = quantity; 
-        }
+  editQuantity(orderItem: SupplierOrderItem, quantity: number) {
+    if (!this.order || !this.orderItems) {
+      return;
     }
+
+    const existingItem = this.order.orderItems.find(item => item.productId == orderItem.productId);
+    const currentItem = this.orderItems.find(item => item.productId == orderItem.productId);
+    if (existingItem && currentItem && quantity > currentItem.quantity) {
+      this.toaster.warning('Please select a quantity lower than the current value.');
+    } else if (existingItem) {
+      existingItem.quantity = quantity;
+    }
+  
     this.modalRef?.hide();
   }
+  
 
   uploadInvoice = (event: any) => {
     let fileToUpload = event.target.files[0];
