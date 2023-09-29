@@ -6,9 +6,9 @@
             <app-text-input [label]="'Description'" [formControl]="promoForm.controls['description']"></app-text-input>
             <app-text-input [label]="'Percentage'" [type]="'number'" [formControl]="promoForm.controls['percentage']"></app-text-input>
             <label for="floatingInput">Status</label>
-            <select class="form-select form-control-sm"  (change)="onStatusSelected($event)">
+            <select class="form-select form-control-sm"  (change)="onStatusSelected($event)" formControlName="isActive">
                 <option *ngFor="let status of Statuses" [value]="status.value"> 
-                    {{status.name}}
+                    {{status.isActive}}
                 </option>
             </select>
             <label for="floatingInput">Promotion Products</label>

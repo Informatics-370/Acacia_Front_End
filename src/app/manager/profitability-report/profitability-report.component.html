@@ -6,7 +6,6 @@
             <button class="btn btn-primary" style="background-color: #958F8A; color: white;" (click)="onDateSelected()"><i class="fa fa-filter"></i></button>
             <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
             <button class="btn" style="background-color: #958F8A; color: white;" (click)="printPdf()">Print Report</button>
-
         </div>
     </div>
     <div id="content" #content>
@@ -35,7 +34,7 @@
                             <strong>Revenue</strong>
                             </td>
                             <td class="align-middle" style="color: green;">
-                            <strong>{{Report.income}}</strong>
+                            <strong>{{Report.income | currency: "R"}}</strong>
                             </td>
                         </tr>
                         <tr>
@@ -43,7 +42,7 @@
                             <strong>Sales Returns</strong>
                             </td>
                             <td class="align-middle" style="color: green;">
-                            <strong>{{Report.salesReturns}}</strong>
+                            <strong>{{Report.salesReturns | currency: "R"}}</strong>
                             </td>
                         </tr>
                         <tr>
@@ -51,7 +50,7 @@
                             <strong>Supplier Returns</strong>
                             </td>
                             <td class="align-middle" style="color: green;">
-                            <strong>{{Report.supplierReturns}}</strong>
+                            <strong>{{Report.supplierReturns | currency: "R"}}</strong>
                             </td>
                         </tr>
                         <tr >
@@ -59,7 +58,7 @@
                             <strong>Expenses</strong>
                             </td>
                             <td class="align-middle" style="color: red;">
-                            <strong>{{Report.expenses}}</strong>
+                            <strong>{{Report.expenses | currency: "R"}}</strong>
                             </td>
                         </tr>
                     </tbody>

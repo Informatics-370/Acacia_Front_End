@@ -27,10 +27,10 @@ export class AddressBookComponent implements OnInit {
   ];
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   addressForm = new FormGroup({
-    streetAddress: new FormControl('',[Validators.required, Validators.pattern(this.whitespace)]),
-    complexName: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    suburb: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    city: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    streetAddress: new FormControl('',[Validators.required]),
+    complexName: new FormControl('', [Validators.required]),
+    suburb: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
     province: new FormControl('', Validators.required),
     postalCode: new FormControl(0, [Validators.required, Validators.min(1), Validators.minLength(4), Validators.maxLength(4)]),
   });

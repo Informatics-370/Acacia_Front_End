@@ -15,7 +15,7 @@ export class AddProductCategoryComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   CategoryForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
   });
 
   constructor(private productService: ProductService, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService) { 

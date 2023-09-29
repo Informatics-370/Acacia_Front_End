@@ -40,8 +40,8 @@ export class GiftboxDetailsComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   gbForm = new FormGroup({
     id: new FormControl(0, Validators.required),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
-    description: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
     giftBoxImage: new FormControl(''),
     products: new FormControl(),
     price: new FormControl(0, [Validators.required, Validators.min(1)]),
@@ -53,19 +53,30 @@ export class GiftboxDetailsComponent {
   this.getProducts();
 }
 
-loadGiftbox(){
-  if (this.id) this.gbService.getGiftbox(+this.id).subscribe({
-    next: giftbox => {
-      this.giftbox = giftbox;
-      this.gbproducts = giftbox.products;
-      this.gbForm.patchValue(giftbox)
-      this.bcService.set('@giftboxDetails', giftbox.name);
-      console.log(this.gbForm.value);
-      console.log(this.giftbox)
-    },
-    error: err => console.log(err)
-  })
+loadGiftbox() {
+  if (this.id) {
+    this.gbService.getGiftbox(+this.id).subscribe({
+      next: giftbox => {
+        this.giftbox = giftbox;
+        this.gbproducts = giftbox.products;
+        this.gbForm.patchValue({
+          id: giftbox.id,
+          name: giftbox.name,
+          description: giftbox.description,
+          price: giftbox.price,
+          packagingCosts: giftbox.packagingCosts,
+          products: giftbox.products,
+          giftBoxImage: giftbox.giftBoxImage
+        });
+        this.bcService.set('@giftboxDetails', giftbox.name);
+        console.log(this.gbForm.value);
+        console.log(this.giftbox);
+      },
+      error: err => console.log(err)
+    });
+  }
 }
+
 
  getProducts(){
   this.gbService.getProducts(this.shopParams).subscribe({

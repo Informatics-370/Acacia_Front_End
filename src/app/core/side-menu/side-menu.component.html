@@ -4,7 +4,7 @@
     Dashboard
   </button>
   <button class="dropdown-btn" (click)="toggleDropdown('products')">
-    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
     Products
     <i class="fa fa-caret-down"></i>
   </button>
@@ -22,7 +22,7 @@
     Promotions
   </button>
   <button class="dropdown-btn" routerLink="/dashboard/reviews">
-    <i class="fa fa-commenting-o" aria-hidden="true"></i>
+    <i class="fa fa-commenting" aria-hidden="true"></i>
     Product Reviews 
   </button>
   <button class="dropdown-btn" (click)="toggleDropdown('inventory')">
@@ -36,7 +36,7 @@
     <a routerLink="/dashboard/SupplierReturns" id="sidenav-item">Supplier Returns</a>
   </div>
   <button class="dropdown-btn" (click)="toggleDropdown('orders')" >
-    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
     Orders
     <i class="fa fa-caret-down"></i>
   </button>
@@ -89,7 +89,7 @@
     FAQs
   </button>
   <button routerLink="/dashboard/Media" class="dropdown-btn">
-    <i class="fa fa-address-card-o" aria-hidden="true"></i>
+    <i class="fa fa-file-video-o" aria-hidden="true"></i>
     Media
   </button>
   <button routerLink="/dashboard/company-details/1" class="dropdown-btn">
@@ -99,5 +99,9 @@
   <button class="dropdown-btn">
     <i class="fa fa-info-circle" aria-hidden="true"></i>
     Help
+  </button>
+  <button routerLink="/dashboard/Backups" class="dropdown-btn">
+    <i class="fa fa-database" aria-hidden="true"></i>
+    Backups
   </button>
 </div>

@@ -2,7 +2,7 @@
     <div class="row">
         <form [formGroup]="gbForm" class="form-group col-6">
             <h5 class="my-2">GiftBox Details</h5>
-            <img class="form-control mb-3 p-0" src='{{gbForm.value.giftBoxImage}}' style="max-height: 150px; width: 150px; object-fit: cover;">
+            <img class="form-control mb-3 p-0" src='{{giftbox?.giftBoxImage}}' style="max-height: 150px; width: 150px; object-fit: cover;">
             <app-text-input [label]="'Name'" [formControl]="gbForm.controls['name']"></app-text-input>
             <app-text-input [label]="'Description'" [formControl]="gbForm.controls['description']"></app-text-input>
             <app-text-input type="number" [label]="'Price'" [formControl]="gbForm.controls['price']"></app-text-input>

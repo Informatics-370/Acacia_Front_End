@@ -16,14 +16,21 @@
         </div>
     </div>
     <div class="container">
-        <button class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="printInvoice()">Print Invoice </button>
-        <button *ngIf="order?.orderType == 'Collection' && order?.status == 'Payment Confirmed'" (click)="packageOrder()" class="btn btn-sm mx-1" style="background-color: #676767; color:white" > Ready For Collection </button>
-    </div>
-    <div class="row">
-        <div class="col-6">
+        <div class="text-end">
+            <button class="btn btn-sm mx-1" style="background-color: #676767; color:white;  margin-bottom: -90px;" (click)="printInvoice()">Print Invoice </button>
+            <button *ngIf="order?.orderType == 'Collection' && order?.status == 'Payment Confirmed'" (click)="packageOrder()" class="btn btn-sm mx-1" style="background-color: #676767; color:white;  margin-bottom: -90px;" > Ready For Collection </button>
+        </div>
+        <button  class="mx-2 btn btn-primary" style="margin-bottom: 20px;" routerLink="/dashboard/orders">Back</button>
+
+        <!-- Single Card for All Details -->
+        <div class="card mb-4">
+            <div class="card-header"><h3>SALE ORDER DETAILS</h3></div>
+            <div class="card-body">
+            <div class="row">
+                <div class="col-5">
             <div>
                 <h5 class="my-2">Order Details</h5>
-                <p>Date:{{order?.orderDate | date}}</p>
+                <p>Date: {{order?.orderDate | date}}</p>
                 <p>Customer Name: {{order?.shipToAddress?.firstName}} {{order?.shipToAddress?.lastName}}</p>
                 <p>Customer Email: {{order?.customerEmail}}</p>
                 <p>Street Address: {{order?.shipToAddress?.streetAddress}}</p>
@@ -45,12 +52,15 @@
                         <button [disabled]="dispatchForm.invalid" class="btn btn-primary" type="submit">Dispatch Order</button>
                     </div>
                 </form>
+                <p>Subtotal (Vat Inclusive): {{order?.subTotal | currency: "R"}}</p>
+                <p>Vat: {{order?.vat?.percentage}}%</p>
                 <p>Shipping Price: {{order?.shippingPrice | currency: "R"}}</p>
+                <p style="color: red">Promotions Total: {{order?.savings | currency: "R"}}</p>
+                <p style="color: red">Group Elephant Discount: {{order?.groupElephantDiscount}}%</p>
                 <p>Total: {{order?.total | currency: "R"}}</p>
             </div>
-            <button  class="mx-2 btn btn-primary" routerLink="/dashboard/orders">Back</button>
         </div>
-        <div class="col-6">
+        <div class="col-7">
             <h5 class="my-2">Ordered Products</h5>
             <div class="table-responsive" *ngIf="order?.orderItems">
                 <table class="table table-hover">
@@ -60,6 +70,7 @@
                             <th>Name</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Promotion</th>
                             <th>View</th>
                         </tr>
                     </thead>
@@ -69,17 +80,41 @@
                             <td class="align-middle"><strong>{{item.productName}}</strong></td>
                             <td class="align-middle"><strong>{{item.quantity}}</strong></td>
                             <td class="align-middle"><strong>{{item.price| currency: "R"}}</strong></td>
+                            <td class="align-middle" style="color: red"><strong>{{(item.promotion/100) * item.price | currency: "R"}}</strong></td>
                             <td class="align-middle">
                                 <button type="button" routerLink="/dashboard/product-details/{{item.productId}}" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> View </button>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3" class="align-middle"><strong>Subtotal</strong></td>
+                            <td colspan="3" class="align-middle"><strong>Subtotal (Vat Inclusive) </strong></td>
                             <td colspan="2" class="align-middle"><strong>{{order?.subTotal | currency: "R"}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="align-middle"><strong>Vat</strong></td>
+                            <td colspan="2" class="align-middle"><strong>{{order?.vat?.percentage}}%</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="align-middle"><strong>Delivery Price</strong></td>
+                            <td colspan="2" class="align-middle"><strong>{{order?.shippingPrice | currency: "R"}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="align-middle" style="color: red"><strong>Promotions Total</strong></td>
+                            <td colspan="2" class="align-middle" style="color: red"><strong>{{order?.savings | currency: "R"}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="align-middle" style="color: red"><strong>Group Elephant Discount</strong></td>
+                            <td colspan="2" class="align-middle" style="color: red"><strong>{{order?.groupElephantDiscount}}%</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="align-middle"><strong>Total</strong></td>
+                            <td colspan="2" class="align-middle"><strong>{{order?.total | currency: "R"}}</strong></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        </div>
+       </div>
+   </div>
     </div>
 </div>

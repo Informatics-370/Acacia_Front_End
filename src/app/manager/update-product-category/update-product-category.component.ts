@@ -16,7 +16,7 @@ export class UpdateProductCategoryComponent {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   CategoryForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    name: new FormControl('', [Validators.required]),
   });
 
   category?: Category;

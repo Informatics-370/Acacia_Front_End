@@ -6,38 +6,6 @@
         <div class="col-10 p-0">
             <app-section-header></app-section-header>
             <router-outlet></router-outlet>
-            <!-- <div class="container">
-                <h2> Sales to be Dispatched </h2>
-                <div class="table-responsive" *ngIf="orders.length > 0">
-                    <table class="table">
-                        <thead class="text-uppercase">
-                            <tr>
-                                <th><div class="py-2">Date</div></th>
-                                <th><div class="py-2">Customer</div></th>
-                                <th><div class="py-2">Status</div></th>
-                                <th><div class="py-2">View</div></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let order of orders" >
-                                <ng-container *ngIf="order.status == 'Dispatched'">
-                                    <td class="align-middle"><strong>{{order.orderDate | date}}</strong></td>
-                                    <td class="align-middle"><strong>{{order.customerEmail }}</strong></td>
-                                    <td class="align-middle"><strong>{{order.status}}</strong></td>
-                                    <td class="align-middle">
-                                        <button type="button" class="btn px-2 py-2" style="background-color: #676767;"><a style="text-decoration: none; color: white; font-weight:lighter;" routerLink="/dashboard/orders/{{order.id}}"> <i class="fa fa-edit align-middle" style="font-size: 2em; cursor: pointer; color: white;"></i> View </a></button>
-                                    </td>
-                                </ng-container>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="progress" *ngFor="let category of Report?.data">
-                    {{category.categoryName}}
-                    {{category.total}}
-                    <div [ngStyle]="{'width': category.total ? '100%' : (category.total ? '50%' : null) }" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

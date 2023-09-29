@@ -1,7 +1,8 @@
 <div class="container" id="container" style="margin-top: 100px; margin-bottom: 100px;" >
-    <div class="log-in-container" >
+    <div class="register-container" >
       <form  class="" style="height: auto;" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <h1>Register</h1>
+        <br>
         <div class="form-group">
           <app-text-input [label]="'Display Name'" [formControl]="registerForm.controls['displayName']"></app-text-input>
           <app-text-input [label]="'Email'" type="email" [formControl]="registerForm.controls['email']"></app-text-input>
@@ -24,6 +25,7 @@
       </form>
     </div>
     <div class="overlay-container">
-      <img src="https://assets.website-files.com/5f4403514f0915cea7c6f0a1/60bde612136654dc7f6cebbc_erp-occasion-box-p-500.jpeg" alt="Login image" width="500" height="600">
+      <img src="../assets/images/giftbox3.jpeg" alt="Register image" class="register-image" >
     </div>
   </div>
+

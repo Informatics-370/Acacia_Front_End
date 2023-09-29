@@ -67,6 +67,8 @@ import { MediaListComponent } from './media-list/media-list.component';
 import { MediaDetailsComponent } from './media-details/media-details.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { AuditTrailsComponent } from './audit-trails/audit-trails.component';
+import { DashboardScreenComponent } from './dashboard-screen/dashboard-screen.component';
+import { BackupsComponent } from './backups/backups.component';
 
 
 
@@ -130,7 +132,9 @@ import { AuditTrailsComponent } from './audit-trails/audit-trails.component';
         MediaListComponent,
         MediaDetailsComponent,
         AddMediaComponent,
-        AuditTrailsComponent
+        AuditTrailsComponent,
+        DashboardScreenComponent,
+        BackupsComponent
     ],
     imports: [
         CommonModule,
