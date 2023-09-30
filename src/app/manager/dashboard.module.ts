@@ -68,7 +68,9 @@ import { MediaDetailsComponent } from './media-details/media-details.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { AuditTrailsComponent } from './audit-trails/audit-trails.component';
 import { DashboardScreenComponent } from './dashboard-screen/dashboard-screen.component';
-import { BackupsComponent } from './backups/backups.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { HelpComponent } from './help/help.component';
 
 
 
@@ -134,10 +136,12 @@ import { BackupsComponent } from './backups/backups.component';
         AddMediaComponent,
         AuditTrailsComponent,
         DashboardScreenComponent,
-        BackupsComponent
+        HelpComponent
     ],
     imports: [
         CommonModule,
+        NgxDocViewerModule,
+        NgxExtendedPdfViewerModule,
         DashboardRoutingModule,
         FormsModule,
         ModalModule.forRoot(),

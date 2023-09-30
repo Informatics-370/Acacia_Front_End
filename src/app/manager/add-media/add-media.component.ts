@@ -18,7 +18,7 @@ export class AddMediaComponent {
     id: new FormControl(0),
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    fileUrl: new FormControl('', [Validators.required, Validators.pattern(this.whitespace)]),
+    fileUrl: new FormControl('', [Validators.required]),
   });
   media?: Media;
 
