@@ -101,16 +101,16 @@ export class ProfitabilityReportComponent {
                 label: 'Profitability Report',
                 data:  [this.Report.income, this.Report.expenses, this.Report.supplierReturns, this.Report.salesReturns],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
+                  'rgba(66, 107, 105, 0.7)',
+                  'rgba(139, 177, 116, 0.7)',
+                  'rgba(34, 46, 80, 0.7)',
+                  'rgba(181, 202, 141, 0.7)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
+                  'rgba(66, 107, 105, 1)',
+                  'rgba(139, 177, 116, 1)',
+                  'rgba(34, 46, 80, 1)',
+                  'rgba(181, 202, 141, 1)'
                 ],
                 borderWidth: 1
             }]

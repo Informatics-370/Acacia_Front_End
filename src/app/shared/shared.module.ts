@@ -12,6 +12,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    TooltipModule.forRoot(),
     PaginationModule.forRoot(),
     CarouselModule.forRoot(),
     ReactiveFormsModule,

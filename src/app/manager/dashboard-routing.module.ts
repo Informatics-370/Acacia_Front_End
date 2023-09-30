@@ -61,8 +61,7 @@ import { AddMediaComponent } from './add-media/add-media.component';
 import { MediaListComponent } from './media-list/media-list.component';
 import { AuditTrailsComponent } from './audit-trails/audit-trails.component';
 import { DashboardScreenComponent } from './dashboard-screen/dashboard-screen.component';
-import { BackupServiceService } from './backup-service.service';
-import { BackupsComponent } from './backups/backups.component';
+import { HelpComponent } from './help/help.component';
 
 
 const routes: Routes = [
@@ -129,7 +128,7 @@ const routes: Routes = [
       {path: 'Media/add', component: AddMediaComponent},
       {path: 'Media/:id', component: MediaDetailsComponent, data: {breadcrumb: {alias: 'mediaDetails'}}},
       {path: 'AuditTrail', component: AuditTrailsComponent},
-      {path: 'Backups', component: BackupsComponent}
+      {path: 'Help', component: HelpComponent}
     ]
   }
 ]
