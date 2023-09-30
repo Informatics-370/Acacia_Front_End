@@ -36,3 +36,46 @@ table{
   td{
 padding: 1%;
 }
+
+/* Style for supplier details card */
+.supplier-details-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Style for headers inside the card */
+.supplier-details-card h5 {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/* Style for individual details in the card */
+.supplier-details-card p {
+    margin: 5px 0;
+}
+
+
+
+/* Style for modal body */
+.modal-body {
+    padding: 20px;
+}
+
+
+/* Style for red text */
+.text-danger {
+    color: red;
+}
+
+.top-right-buttons {
+   
+    top: 0;
+    bottom: 0;
+    margin-bottom: 30px; /* Adjust the margin as needed */
+    margin-left: 1000px;
+}
+
