@@ -1,5 +1,5 @@
 <div class="container">
-    <h5 class="my-2">Orders</h5>
+    <h5 class="my-2">Orders<i class="fa fa-lg fa-question-circle-o " (mouseenter)="lgModal.show()"  aria-hidden="true"></i></h5>
     <div class="row">
         <div class="d-flex justify-content-between align-items-center pb-2">
             <app-paging-header [totalCount]="totalCount" [pageNumber]="orderParams.pageNumber" [pageSize]="orderParams.pageSize"></app-paging-header>
@@ -60,5 +60,25 @@
     </div>
     <div class="d-flex justify-content-end" *ngIf="totalCount > 0" >
         <app-pager [totalCount]="totalCount" [pageSize]="orderParams.pageSize" (pageChanged)="onPageChanged($event)"></app-pager>
+    </div>
+</div>
+
+
+<!-- Orders Help Bookmark-->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1s4wAIvBhuZ0F4lbURlFzt9WxGDH2YSvi/preview#bookmark=id.rb690plrx093"
+                style="width:100%; height:100%;"></iframe>
+            </div>
+        </div>
     </div>
 </div>

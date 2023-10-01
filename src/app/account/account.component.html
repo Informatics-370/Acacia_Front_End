@@ -4,13 +4,13 @@
         <section class="col-3">
             <h5 class="ms-3 my-2">Account</h5>
             <ul class="list-group">
-                <li class="list-group-item" (click)="onMenuItemClick(0)"> Personal Details </li>
+                <li class="list-group-item" (click)="onMenuItemClick(0)"> Personal Details <i class="fa fa-lg fa-question-circle-o " (mouseenter)="lgModal.show()"  aria-hidden="true"></i> </li>
                 <li class="list-group-item" (click)="onMenuItemClick(1)"> Delivery Address </li>
                 <li class="list-group-item" (click)="onMenuItemClick(2)"> Reset Password </li>
                 <li class="list-group-item" (click)="onMenuItemClick(3)"> Orders </li>
                 <li class="list-group-item" (click)="onMenuItemClick(4)"> Product Reviews </li>
                 <li class="list-group-item" (click)="onMenuItemClick(5)"> FAQs </li>
-                <li class="list-group-item text-danger" (click)="openModal(template)"> Delete Account </li> 
+                <li class="list-group-item text-danger" (click)="openModal(template)"> Delete Account <i class="fa fa-lg fa-question-circle-o " (mouseenter)="lgModal.show()"  aria-hidden="true"></i></li> 
             </ul>
         </section>
         <section class="col-9" *ngIf="accountService.currentUser$ | async as user">
@@ -40,5 +40,42 @@
   </ng-template>
   <app-footer></app-footer>
 
+  <!-- Delete Account Help Bookmark -->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1s4wAIvBhuZ0F4lbURlFzt9WxGDH2YSvi/preview#bookmark=id.bygx78i5ca9v"
+                style="width:100%; height:100%;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- iew Profile Help Bookmark -->
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+  role="dialog" aria-labelledby="dialog-sizes-name1">
+      <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                  <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                  <span aria-hidden="true" class="visually-hidden">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body" style="height: 80vh">
+                  <iframe src="https://docs.google.com/document/d/1s4wAIvBhuZ0F4lbURlFzt9WxGDH2YSvi/preview#bookmark=id.6xbmksusmce"
+                  style="width:100%; height:100%;"></iframe>
+              </div>
+          </div>
+      </div>
+  </div>
 
 
