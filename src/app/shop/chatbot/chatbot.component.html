@@ -1,10 +1,10 @@
 <div id="assistant">
     <button id="assistant-popup-button" (click)="openSupportPopup()">
-      ChatBot Support?
+      <img src="../../../assets/images/chat.png" style="height: 50px; width: 50px">
     </button>
     <div id="assistant-popup" [style.display]="isOpen ? 'block' : 'none'">
       <div id="assistant-popup-header">
-        Customer Support ChatBot
+        Customer Support
         <button id="assistant-popup-close-button" (click)="openSupportPopup()">
          X
         </button>
