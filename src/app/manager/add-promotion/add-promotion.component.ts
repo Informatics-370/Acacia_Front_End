@@ -40,7 +40,7 @@ export class AddPromotionComponent {
     name: new FormControl('', [Validators.required]),
     description: new FormControl('',[Validators.required]),
     percentage: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(99)]),
-    isActive: new FormControl(false, Validators.required),
+    isActive: new FormControl(true, Validators.required),
     products: new FormControl(),
   });
 

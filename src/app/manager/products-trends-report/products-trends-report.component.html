@@ -19,7 +19,10 @@
     </div>
     <div id="content" #content >
         <div class="row">
-            <h4> Trends Report </h4>
+            <br/>
+            <br/>
+            <h4> Trends Report <i class="fa fa-lg fa-question-circle-o" (mouseenter)="lgModal.show()"  aria-hidden="true"></i></h4>
+            <br/>
             <div id="divChart">
                 <canvas id="myChart"></canvas>
             </div>
@@ -28,8 +31,11 @@
             <p *ngIf="Report.data.length <= 0"> There is currently no data that matches your request on the system </p>
         </div>
         <div class="row" *ngIf="Report">
+            <br/>
+            <br/>
             <h4 *ngIf="Report.data.length > 0"> Products Trend Table </h4>
             <div class="table-responsive" *ngIf="Report.data.length > 0">
+                <br/>
                 <table class="table" >
                     <thead class="text-uppercase">
                         <tr>
@@ -54,9 +60,28 @@
                 </table>
             </div>
             <div>
+                <br/>
                 <hr>
                 <h4> Products Total: {{Total | currency:'R'}}</h4>   
                 <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1cSuGqHKMcwBrrwI5vtctK0PQG7akV_Ss/preview#bookmark=id.6xi2iy84c72h"
+                style="width:100%; height:100%;"></iframe>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category';
 import { Product } from 'src/app/shared/models/product';
@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SupplierService } from '../supplier.service';
 import { Supplier } from 'src/app/shared/models/Supplier';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-add-product',
@@ -17,6 +18,7 @@ import { Supplier } from 'src/app/shared/models/Supplier';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent {
+[x: string]: any;
 
   constructor(private productService: ProductService, private supplierService: SupplierService, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService) { }
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
@@ -84,6 +86,7 @@ uploadFile = (event: any) => {
   let fileToUpload = event.target.files[0];
   this.formData.append('pictureUrl', fileToUpload);
 }
+
 
 addProduct(){
   if(this.ProductForm.valid)

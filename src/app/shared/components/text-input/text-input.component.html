@@ -5,12 +5,13 @@ type={{type}}
 accept={{accept}}
 placeholder="uploaded"
 class="form-control" 
+tooltip="Please upload your file here."
 [ngClass]="(control.touched) ? control.invalid ? 'is-invalid' : 'is-valid' : null">
 
-<div class="form-floating mb-3">
-
+<div class="form-floating mb-3" >
     <input
     type={{type}} 
+    tooltip="Please enter your {{label}}."
     *ngIf="type !== 'file'"
     src="{{src}}"
     [formControl]="control"

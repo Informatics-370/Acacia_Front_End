@@ -7,6 +7,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ShopRoutingModule } from './shop-routing.module';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -23,6 +24,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ModalModule.forRoot(),
     ShopRoutingModule,
     AccordionModule.forRoot(),
+    CoreModule
   ]
 })
 export class ShopModule { }

@@ -26,7 +26,7 @@
 
                 <!-- Single Card for All Details -->
                 <div class="card mb-4">
-                    <div class="card-header"><h3>SUPPLIER ORDER DETAILS</h3></div>
+                    <div class="card-header"><h3>SUPPLIER ORDER DETAILS <i class="fa fa-lg fa-question-circle-o" (mouseenter)="lgModal.show()"  aria-hidden="true"></i></h3></div>
                     <div class="card-body">
                 <div class="row">
                <!-- Order Details Column -->
@@ -37,27 +37,27 @@
                     <p>Total Ordered: {{order.total | currency: "R"}} </p>
                     <p *ngIf="order.status == 'Order Recieved'" style="color: red">Total not Delivered: {{order.totalNotDelivered | currency: "R"}} </p>
                     <p *ngIf="order.status == 'Order Recieved'" style="font-weight: bold;">Gross Total: {{order.total - order.totalNotDelivered | currency:"R"}} </p>
-                <br>         
+                <br>
                 <!-- Manager Details Column -->
                     <h5 class="card-title">Manager Details</h5>
                         <p>Manager Email: {{order.managerEmail}} </p>
                 </div>
 
-                
-          
+
+
                 <!-- Company Details Column -->
                <div class="col-md-3">
                 <h5 class="card-title">Company Details</h5>
                     <p>Vat Number: {{order.companyDetails.vatNumber}}</p>
                     <p>Street Address 1: {{order.companyDetails.addressLine1}}</p>
                     <p>Street Address 2: {{order.companyDetails.addressLine2}}</p>
-                    <p>Suburb: {{order.companyDetails.suburb}}</p>   
+                    <p>Suburb: {{order.companyDetails.suburb}}</p>
                     <p>City: {{order.companyDetails.city}}</p>
                     <p>Province: {{order.companyDetails.province}}</p>
                     <p>PostalCode: {{order.companyDetails.postalCode}}</p>
-                    
+
                 </div>
-                 
+
                  <!-- Ordered Products Column -->
                 <div class="col-md-6">
                 <h5>Ordered Products</h5>
@@ -118,9 +118,9 @@
                             </tbody>
                         </table>
                     </div>
-                </div>        
+                </div>
            </div>
-            
+
 
             <div class="row">
                 <!-- Supplier Details Column -->
@@ -129,8 +129,8 @@
                     <p>Supplier Name: {{order.supplier.name}} </p>
                     <p>Supplier Email: {{order.supplier.email}}</p>
                     <p>Supplier Number: 0{{order.supplier.phoneNumber}}</p>
-                </div>   
-           
+                </div>
+
             </div>
          </div>
     </div>
@@ -187,10 +187,28 @@
             <app-text-input (change)="uploadPOP($event)" [accept]="'application/pdf'" [type]="'file'" [formControl]="documentationForm.controls['proofOfPaymentUrl']"></app-text-input>
             <ul class="text-danger list-unstyled" *ngIf="errors">
                 <li *ngFor="let error of errors">
-                    {{error}}  
+                    {{error}}
                 </li>
             </ul>
             <button type="submit" class="btn btn-primary" [disabled]="documentationForm.invalid!">Upload</button>
         </form>
-    </div>             
+    </div>
   </ng-template>
+
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1cSuGqHKMcwBrrwI5vtctK0PQG7akV_Ss/preview#bookmark=id.345nadlejtqm"
+                style="width:100%; height:100%;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

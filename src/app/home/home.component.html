@@ -1,46 +1,48 @@
+
 <div class="jumbotron">
-    <img id="bannerimg" src="..\..\assets\images\Banner.jpg">
-    <div class="centered"><h1 id="bannerhead">Beyond Corporate Purpose</h1></div>
-  </div>
-  
-  
+  <img id="bannerimg" src="..\..\assets\images\Banner.jpg">
+  <div class="centered"><h1 id="bannerhead">Beyond Corporate Purpose</h1></div>
+</div>
+
+
+
+
+
+<div id="homegrid" class="container">
   <div id="subtitle" class="hidden">
+    <h2 style="text-align: center; font-size: 40px;">BUY A DIFFERENCE WITH ERP</h2>
     <p>100% of all proceeds are donated to Save The Elephants and Rhinos and supporting rural communities.</p>
+    <br>
+    <br>
   </div>
-  
-  
-  
-  <div id="homegrid">
-    <div class="row justify-content-center">
+
+
+  <div class="row justify-content-center">
       <div class="col-sm-3 mb-4">
-        <div class="card">
-          <a routerLink="/shop" routerLinkActive="active">
-            <div class="card-image" style="background-image: url('../../assets/images/giftbox.png');"></div>
-            <div class="card-title-overlay">
-              <h2 class="card-title about">GIFT BOX SETS</h2>
-            </div>
-          </a>
-        </div>
+          <div class="card">
+              <a routerLink="/shop" routerLinkActive="active">
+                  <div class="card-image" style="background-image: url('../../assets/images/giftbox.png');"></div>
+                  <div class="card-title-overlay">
+                      <h2 class="card-title about">GIFT BOX SETS</h2>
+                  </div>
+              </a>
+          </div>
       </div>
-      <div class="col-sm-3 mb-4">
-        <div class="card">
+      <div class="col-sm-2">
+        <div class="thumbnails">
           <a routerLink="/shop" routerLinkActive="active">
-            <div class="card-image" style="background-image: url('../../assets/images/bath.png');"></div>
-            <div class="card-title-overlay">
-              <h2 class="card-title about">BATH & BODY</h2>
-            </div>
+            <div class="overlays"><p class="thumbnailtext">BATH & BODY</p></div>
+            <img src="../../assets/images/bath.png"alt="Nature" style="width:100%">
           </a>
         </div>
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-sm-3 mb-4">
-        <div class="card">
-          <a routerLink="/shop" routerLinkActive="active">
-            <div class="card-image" style="background-image: url('../../assets/images/stationery.png');"></div>
-            <div class="card-title-overlay">
-              <h2 class="card-title about">STATIONERY</h2>
-            </div>
+      <div class="col-sm-2">
+        <div class="thumbnails">
+          <a routerLink="/shop"  routerLinkActive="active">
+            <div class="overlays"><p class="thumbnailtext">STATIONERY</p></div>
+            <img src="../../assets/images/stationery.png" alt="gift box sets" style="width:100%">
           </a>
         </div>
       </div>
@@ -56,35 +58,88 @@
       </div>
     </div>
   </div>
-  
-  
-  
-  <div id="carousel">
-    <carousel [isAnimated]="true" class="carousel">
-        <slide>
-            <img src="..\..\assets\images\1.png" alt="slide" style="display: block; width: 100%;">
-          </slide>
-        <slide>
-            <img src="..\..\assets\images\2.png" alt="slide" style="display: block; width: 100%;">
-        </slide>
-        <slide>
-            <img src="..\..\assets\images\3.png" alt="slide" style="display: block; width: 100%;" alt="slide" style="display: block; width: 100%;">
-        </slide>
-        <slide>
-          <img src="..\..\assets\images\4.png" alt="slide" style="display: block; width: 100%;" alt="slide" style="display: block; width: 100%;">
-      </slide>
-    </carousel>
-  </div>
-  
-  
-  <div class="row justify-content-center" id="aboutERP">
-      <div class="col-sm-8">
-        <section class="article">
-            <p class="lead">
-                Elephants, Rhinos & People (ERP) was founded to preserve and protect Southern Africa’s wild elephants and rhinos through a strategy that is based on rural poverty alleviation. In order to accomplish its mission, ERP carefully selects projects based on their potential to create economic engines for impoverished rural communities in areas adjacent to threatened elephant and rhino populations. Armed with an Ashoka-accredited poverty alleviation model, and by having a multifaceted team positioned to tackle poverty, ERP is able to address the welfare of elephants and rhinos in an unusual but effective manner. ERP brings over 20 years of experience in community relations, poverty alleviation, and impact investment in infrastructure, so as to achieve sustainable, non-lethal wildlife conservation.
-  
-                Given that the poverty alleviation-based strategy is a medium to long-term proposition, ERP also implements a range of tactical interventions designed to combat the poaching problem, and to improve the welfare of elephants and rhinos in the short term.  These interventions include but are not limited to, elephant relocations, a veterinary emergency response unit and drought relief programs.
-            </p>
-      </section>
+  <div class="row justify-content-center">
+    <div class="col-md-4 text-center">
+      <a routerLink="/shop">
+        <button class="btn btn-outline-primary btn-lg custom-btn" style="width: 200px; font-size: 20px;">
+            VIEW ALL
+        </button>
+    </a>
+
     </div>
   </div>
+
+      <div id="carousel">
+        <carousel [isAnimated]="true" class="carousel">
+            <slide>
+                <img src="..\..\assets\images\1.png" alt="slide" style="display: block; width: 100%;">
+              </slide>
+            <slide>
+                <img src="..\..\assets\images\2.png" alt="slide" style="display: block; width: 100%;">
+            </slide>
+            <slide>
+                <img src="..\..\assets\images\3.png" alt="slide" style="display: block; width: 100%;" alt="slide" style="display: block; width: 100%;">
+            </slide>
+            <slide>
+              <img src="..\..\assets\images\4.png" alt="slide" style="display: block; width: 100%;" alt="slide" style="display: block; width: 100%;">
+          </slide>
+        </carousel>
+      </div>
+       <!-- Services Section -->
+
+<div class="container">
+<div class="row" style="margin-top:-200px; margin-bottom: 100px;">
+  <div class="col-lg-12 text-center">
+    <h2 class="section-title">Fufilment Options</h2>
+  </div>
+  <div class="col-lg-4 col-sm-6 mb-4">
+    <div class="card border-0 shadow rounded-xs pt-5">
+      <div class="card-body">
+        <i class="fa fa-truck icon-lg icon-primary icon-bg-primary icon-bg-circle mb-3"></i>
+        <h4 class="mt-4 mb-3">Delivery</h4>
+        <p>With the delivery option, your purchases will be brought directly to your doorstep.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-6 mb-4">
+    <div class="card border-0 shadow rounded-xs pt-5">
+      <div class="card-body">
+        <i class="fa fa-archive icon-lg icon-yellow icon-bg-yellow icon-bg-circle mb-3"></i>
+        <h4 class="mt-4 mb-3">Collection</h4>
+        <p>The collection option allows customers to pick up their orders from a our in office store.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-6 mb-4">
+    <div class="card border-0 shadow rounded-xs pt-5">
+      <div class="card-body">
+        <i class="fa fa-shopping-cart icon-lg icon-purple icon-bg-purple icon-bg-circle mb-3"></i>
+        <h4 class="mt-4 mb-3">In-Store</h4>
+        <p>Available to employees and exclusive clients who wish to visit the physical store.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+ <app-footer></app-footer>
+
+
+
+
+
+
+
+<!-- <div class="row justify-content-center" id="aboutERP">
+    <div class="col-sm-8">
+      <section class="article">
+          <p class="lead">
+              Elephants, Rhinos & People (ERP) was founded to preserve and protect Southern Africa’s wild elephants and rhinos through a strategy that is based on rural poverty alleviation. In order to accomplish its mission, ERP carefully selects projects based on their potential to create economic engines for impoverished rural communities in areas adjacent to threatened elephant and rhino populations. Armed with an Ashoka-accredited poverty alleviation model, and by having a multifaceted team positioned to tackle poverty, ERP is able to address the welfare of elephants and rhinos in an unusual but effective manner. ERP brings over 20 years of experience in community relations, poverty alleviation, and impact investment in infrastructure, so as to achieve sustainable, non-lethal wildlife conservation.
+
+              Given that the poverty alleviation-based strategy is a medium to long-term proposition, ERP also implements a range of tactical interventions designed to combat the poaching problem, and to improve the welfare of elephants and rhinos in the short term.  These interventions include but are not limited to, elephant relocations, a veterinary emergency response unit and drought relief programs.
+          </p>
+    </section>
+  </div>
+</div> -->

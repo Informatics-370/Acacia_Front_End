@@ -19,7 +19,10 @@
     </div>
     <div id="content" #content>
         <div class="row" >
-            <h4 > Promotions Report </h4>
+            <br/>
+            <br/>
+            <h4 > Promotions Report <i class="fa fa-lg fa-question-circle-o" (mouseenter)="lgModal.show()"  aria-hidden="true"></i></h4>
+            <br/>
             <div id="divChart">
                 <canvas id="myChart"></canvas>
             </div>
@@ -30,6 +33,7 @@
         <div class="row" *ngIf="Report">
             <h4 *ngIf="Report.data.length > 0"> Promotions applied at Checkout </h4>
             <div class="table-responsive" *ngIf="Report.data.length > 0">
+                <br/>
                 <table class="table">
                     <thead class="text-uppercase">
                         <tr>
@@ -51,6 +55,7 @@
             </div>
         </div>
         <div>
+            <br/>
             <hr>
             <h4> Total Promotions Applied: {{Total}}</h4>   
             <hr>
@@ -58,3 +63,20 @@
     </div>
 </div>
 
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1cSuGqHKMcwBrrwI5vtctK0PQG7akV_Ss/preview#bookmark=id.rt4sismeun6q"
+                style="width:100%; height:100%;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

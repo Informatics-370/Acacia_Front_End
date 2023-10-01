@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CartComponent } from './cart.component';
 import { CartRoutingModule } from './cart-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -13,7 +15,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     CartRoutingModule,
-    SharedModule
+    SharedModule,
+    CoreModule,
+    ModalModule.forRoot(),
   ]
 })
 export class CartModule { }
