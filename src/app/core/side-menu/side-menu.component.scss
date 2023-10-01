@@ -5,10 +5,12 @@
   left: 0;
   height:100%;
   background-color: #f7f7f9;
+  height: calc(100% - 65px); /* Adjust the height to fit the available space */
   overflow-y: scroll;
   transition: width 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: fixed;
 }
 
 
