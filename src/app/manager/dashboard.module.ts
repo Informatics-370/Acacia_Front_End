@@ -68,8 +68,6 @@ import { MediaDetailsComponent } from './media-details/media-details.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { AuditTrailsComponent } from './audit-trails/audit-trails.component';
 import { DashboardScreenComponent } from './dashboard-screen/dashboard-screen.component';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { HelpComponent } from './help/help.component';
 
 
@@ -140,8 +138,6 @@ import { HelpComponent } from './help/help.component';
     ],
     imports: [
         CommonModule,
-        NgxDocViewerModule,
-        NgxExtendedPdfViewerModule,
         DashboardRoutingModule,
         FormsModule,
         ModalModule.forRoot(),
