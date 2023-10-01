@@ -31,7 +31,12 @@
                         <td *ngIf="product.quantity <= product.tresholdValue" style="color: red; font-weight: bolder;" class="align-middle"><strong>{{product.quantity}}</strong></td>
                         <td *ngIf="product.quantity > product.tresholdValue" style="color: green; font-weight: bolder;" class="align-middle"><strong>{{product.quantity}}</strong></td>
                         <td class="align-middle"><strong>{{product.tresholdValue}}</strong></td>
-                        <td class="align-middle"><strong>{{product.price | currency: "R"}}</strong></td>
+                        <td class="align-middle">                                <strong>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="text-align: left;">R</span>
+                                <span style="text-align: right;">{{product.price | number:'1.2-2' }}</span>
+                            </div>
+                        </strong></td>
                     </tr>
                 </tbody>
             </table>

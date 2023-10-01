@@ -53,7 +53,12 @@
                                 <strong>{{ label }}</strong>
                                 </td>
                                 <td class="align-middle">
-                                <strong>{{ Report.data[i] | currency:'R' }}</strong>
+                                <strong>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span style="text-align: left;">R</span>
+                                        <span style="text-align: right;">{{Report.data[i]  | number:'1.2-2' }}</span>
+                                    </div>
+                                </strong>
                             </td>
                         </tr>
                     </tbody>
