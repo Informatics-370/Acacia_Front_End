@@ -8,112 +8,137 @@
             <p class="text"> {{order?.status}} </p>
         </div>
     </div>
+    <div class="top-right-buttons">
     <div class="container" *ngIf="order">
         <button *ngIf="order.status == 'Order Recieved' || order.status == 'Payment Confirmed'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="printInvoice()">Print Invoice </button>
         <button *ngIf="order.status == 'Order Recieved' || order.status == 'Payment Confirmed'"  class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="printPOP()">Print POP </button>
         <button *ngIf="order.status == 'Pending' || order.status == 'Email Sent'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="openModal(template)">Cancel Order </button>
-        <button *ngIf="order.status == 'Email Sent'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="openModal(documentation)">Upload Documents </button>
-        <button *ngIf="order.status == 'Payment Confirmed'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="openModal(confirmDelivery)">Confirm Delivery</button>
+        <button *ngIf="order.status == 'Email Sent'" class="btn btn-sm mx-1 btn-outline-primary" (click)="openModal(documentation)">Upload Documents</button>
+        <button *ngIf="order.status == 'Payment Confirmed'" class="btn btn-sm mx-1 btn-outline-primary" style="background-color: #676767; color:white" (click)="openModal(confirmDelivery)">Confirm Delivery</button>
     </div>
+   </div>
     <div class="row" *ngIf="order && order.status == 'Pending'">
         <app-approve-supplier-order [supplierid]="order.supplier.id" [orderid]="order.id"></app-approve-supplier-order>
     </div>
     <div class="row" *ngIf="order?.status != 'Pending'">
-        <div class="col-6">
+        <div class="col-12">
             <div *ngIf="order">
-                <div class="container mb-4">
-                    <h5>Order Details</h5>
+
+                <!-- Single Card for All Details -->
+                <div class="card mb-4">
+                    <div class="card-header"><h3>SUPPLIER ORDER DETAILS <i class="fa fa-lg fa-question-circle-o" (mouseenter)="lgModal.show()"  aria-hidden="true"></i></h3></div>
+                    <div class="card-body">
+                <div class="row">
+               <!-- Order Details Column -->
+               <div class="col-md-3">
+                <h5 class="card-title">Order Details</h5>
                     <p>ID: {{order.id }} </p>
                     <p>Date: {{order.orderDate | date }} </p>
                     <p>Total Ordered: {{order.total | currency: "R"}} </p>
                     <p *ngIf="order.status == 'Order Recieved'" style="color: red">Total not Delivered: {{order.totalNotDelivered | currency: "R"}} </p>
                     <p *ngIf="order.status == 'Order Recieved'" style="font-weight: bold;">Gross Total: {{order.total - order.totalNotDelivered | currency:"R"}} </p>
+                <br>         
+                <!-- Manager Details Column -->
+                    <h5 class="card-title">Manager Details</h5>
+                        <p>Manager Email: {{order.managerEmail}} </p>
                 </div>
-                <div class="container mb-4">
-                    <h5>Manager Details</h5>
-                    <p>Manager Email: {{order.managerEmail}} </p>
-                </div>
-                <div class="container mb-4">
-                    <h5>Supplier Details</h5>
-                    <p>Supplier Name: {{order.supplier.name}} </p>
-                    <p>Supplier Email: {{order.supplier.email}}</p>
-                    <p>Supplier Number: 0{{order.supplier.phoneNumber}}</p>
-                </div>
-                <div class="container mb-4">
-                    <h5>Company Details</h5>
+
+                
+          
+                <!-- Company Details Column -->
+               <div class="col-md-3">
+                <h5 class="card-title">Company Details</h5>
                     <p>Vat Number: {{order.companyDetails.vatNumber}}</p>
                     <p>Street Address 1: {{order.companyDetails.addressLine1}}</p>
-                    <p>Street Address 1: {{order.companyDetails.addressLine2}}</p>
-                    <p>Suburb: {{order.companyDetails.suburb}}</p>
+                    <p>Street Address 2: {{order.companyDetails.addressLine2}}</p>
+                    <p>Suburb: {{order.companyDetails.suburb}}</p>   
                     <p>City: {{order.companyDetails.city}}</p>
                     <p>Province: {{order.companyDetails.province}}</p>
                     <p>PostalCode: {{order.companyDetails.postalCode}}</p>
+                    
                 </div>
+                 
+                 <!-- Ordered Products Column -->
+                <div class="col-md-6">
+                <h5>Ordered Products</h5>
+                    <div class="table-responsive" *ngIf="order">
+                        <table class="table table-hover">
+                            <thead class="text-uppercase">
+                                <tr>
+                                    <th>Picture</th>
+                                    <th>Name</th>
+                                    <th>Quantity Ordered</th>
+                                    <th *ngIf="order.status == 'Order Recieved'">Quantity not Delivered</th>
+                                    <th>Product Price</th>
+                                    <th *ngIf="order.status != 'Payment Confirmed'">View</th>
+                                    <th *ngIf="order.status == 'Payment Confirmed'">Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of order.orderItems">
+                                    <td class="align-middle"><img src='{{item.pictureUrl}}' class="img-fluid bg-info" style="max-height: 50px;"></td>
+                                    <td class="align-middle"><strong>{{item.productName}}</strong></td>
+                                    <td class="align-middle"><strong>{{item.quantity}}</strong></td>
+                                    <td *ngIf="order.status == 'Order Recieved'" style="color: red" class="align-middle"><strong>{{item.quantityNotDelivered}}</strong></td>
+                                    <td class="align-middle"><strong>{{item.price| currency: "R"}}</strong></td>
+                                    <td class="align-middle" *ngIf="order.status != 'Payment Confirmed'">
+                                        <button type="button" routerLink="/dashboard/product-details/{{item.productId}}" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> View </button>
+                                    </td>
+                                    <td class="align-middle" *ngIf="order.status == 'Payment Confirmed'">
+                                        <button type="button" (click)="openModal(delivery)" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> Edit Quantities </button>
+                                    </td>
+                                    <ng-template #delivery>
+                                        <div class="modal-header" *ngIf="order.status == 'Payment Confirmed'">
+                                          <h4 class="modal-title pull-left">Quantity Recieved</h4>
+                                          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                                            <span aria-hidden="true" class="visually-hidden">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                                Please select the quantity recieved
+                                                <app-text-input [label]="'Quantity'" [type]="'number'" [formControl]="QuantityForm.controls['quantity']"></app-text-input>
+                                            </p>
+                                          <button type="button" class="btn btn-primary" [disabled]="QuantityForm.invalid!" (click)="editQuantity(item, QuantityForm.value.quantity!)" > Confirm Quantity</button>
+                                        </div>
+                                    </ng-template>
+                                </tr>
+                                <tr style="font-weight: bolder;">
+                                    <td colspan="3" class="align-middle"><strong>Total Ordered</strong></td>
+                                    <td colspan="3" class="align-middle"><strong>{{order.total | currency: "R"}}</strong></td>
+                                </tr>
+                                <tr *ngIf="order.status == 'Order Recieved'" style="font-weight: bolder;">
+                                    <td colspan="3" style="color: red" class="align-middle"><strong>Total Not Delivered </strong></td>
+                                    <td colspan="3" style="color: red" class="align-middle"><strong>{{order.totalNotDelivered | currency: "R"}}</strong></td>
+                                </tr>
+                                <tr *ngIf="order.status == 'Order Recieved'" style="font-weight: bolder;">
+                                    <td colspan="3" class="align-middle"><strong>Gross Total</strong></td>
+                                    <td colspan="3" class="align-middle"><strong>{{order.total - order.totalNotDelivered | currency:"R"}}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>        
+           </div>
+            
+
+            <div class="row">
+                <!-- Supplier Details Column -->
+                <div class="col-md-3">
+                    <h5 class="card-title">Supplier Details</h5>
+                    <p>Supplier Name: {{order.supplier.name}} </p>
+                    <p>Supplier Email: {{order.supplier.email}}</p>
+                    <p>Supplier Number: 0{{order.supplier.phoneNumber}}</p>
+                </div>   
+           
             </div>
-            <button  class="mx-2 btn btn-primary" routerLink="/dashboard/SupplierOrders">Back</button>
-        </div>
-        <div class="col-6">
-            <h5>Ordered Products</h5>
-            <div class="table-responsive" *ngIf="order">
-                <table class="table table-hover">
-                    <thead class="text-uppercase">
-                        <tr>
-                            <th>Picture</th>
-                            <th>Name</th>
-                            <th>Quantity Ordered</th>
-                            <th *ngIf="order.status == 'Order Recieved'">Quantity not Delivered</th>
-                            <th>Product Price</th>
-                            <th *ngIf="order.status != 'Payment Confirmed'">View</th>
-                            <th *ngIf="order.status == 'Payment Confirmed'">Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of order.orderItems">
-                            <td class="align-middle"><img src='{{item.pictureUrl}}' class="img-fluid bg-info" style="max-height: 50px;"></td>
-                            <td class="align-middle"><strong>{{item.productName}}</strong></td>
-                            <td class="align-middle"><strong>{{item.quantity}}</strong></td>
-                            <td *ngIf="order.status == 'Order Recieved'" style="color: red" class="align-middle"><strong>{{item.quantityNotDelivered}}</strong></td>
-                            <td class="align-middle"><strong>{{item.price| currency: "R"}}</strong></td>
-                            <td class="align-middle" *ngIf="order.status != 'Payment Confirmed'">
-                                <button type="button" routerLink="/dashboard/product-details/{{item.productId}}" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> View </button>
-                            </td>
-                            <td class="align-middle" *ngIf="order.status == 'Payment Confirmed'">
-                                <button type="button" (click)="openModal(delivery)" class="btn btn-sm mx-1" style="background-color: #676767; color:white"><i class="fa fa-edit align-middle" style="cursor: pointer; color: white;"></i> Edit Quantities </button>
-                            </td>
-                            <ng-template #delivery>
-                                <div class="modal-header" *ngIf="order.status == 'Payment Confirmed'">
-                                  <h4 class="modal-title pull-left">Quantity Recieved</h4>
-                                  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-                                    <span aria-hidden="true" class="visually-hidden">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>
-                                        Please select the quantity recieved
-                                        <app-text-input [label]="'Quantity'" [type]="'number'" [formControl]="QuantityForm.controls['quantity']"></app-text-input>
-                                    </p>
-                                  <button type="button" class="btn btn-primary" [disabled]="QuantityForm.invalid!" (click)="editQuantity(item, QuantityForm.value.quantity!)" > Confirm Quantity</button>
-                                </div>
-                            </ng-template>
-                        </tr>
-                        <tr style="font-weight: bolder;">
-                            <td colspan="3" class="align-middle"><strong>Total Ordered</strong></td>
-                            <td colspan="3" class="align-middle"><strong>{{order.total | currency: "R"}}</strong></td>
-                        </tr>
-                        <tr *ngIf="order.status == 'Order Recieved'" style="font-weight: bolder;">
-                            <td colspan="3" style="color: red" class="align-middle"><strong>Total Not Delivered </strong></td>
-                            <td colspan="3" style="color: red" class="align-middle"><strong>{{order.totalNotDelivered | currency: "R"}}</strong></td>
-                        </tr>
-                        <tr *ngIf="order.status == 'Order Recieved'" style="font-weight: bolder;">
-                            <td colspan="3" class="align-middle"><strong>Gross Total</strong></td>
-                            <td colspan="3" class="align-middle"><strong>{{order.total - order.totalNotDelivered | currency:"R"}}</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+         </div>
+    </div>
+        <button  class="mx-2 btn btn-primary" routerLink="/dashboard/SupplierOrders">Back</button>
         </div>
     </div>
 </div>
+
 
 
 <ng-template #template>
@@ -169,3 +194,21 @@
         </form>
     </div>             
   </ng-template>
+
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1cSuGqHKMcwBrrwI5vtctK0PQG7akV_Ss/preview#bookmark=id.345nadlejtqm"
+                style="width:100%; height:100%;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,18 @@
 <div class="container">
   <h5 class="my-2">FAQs</h5>
+  <div class="d-flex justify-content-between align-items-center pb-2">
+    <app-paging-header [totalCount]="totalCount" [pageNumber]="specParams.pageNumber" [pageSize]="specParams.pageSize"></app-paging-header>
+    <div class="d-flex mt-2">
+        <input (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control" #search>
+        <button class="btn mx-2" style="background-color: #958F8A; color: white;" (click)="onSearch()" >Search</button>
+        <button style="background-color: #958F8A; color: white;" (click)="onReset()" class="btn mx-2">Reset</button>
+        <select class="form-select mx-2"  (change)="onSortSelected($event)">
+            <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                {{sort.name}}
+            </option>
+        </select>
+    </div>
+</div>
   <div *ngIf="faqs.length > 0"  class="row">
     <accordion panelClass="accordion" [isAnimated]="true">
       <accordion-group panelClass="accordion-item" *ngFor="let faq of faqs" heading="{{faq.question}}">

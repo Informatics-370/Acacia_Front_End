@@ -41,12 +41,6 @@ export class PersonalDetailsComponent implements OnInit {
     if(this.DetailsForm.valid)
     {
       const displayNameControl = this.DetailsForm.get('displayName')?.value;
-      if(displayNameControl){
-        if (/[^A-Za-z]/.test(displayNameControl)) {
-          this.toaster.error('Please use only letters and spaces for the display name');
-          return
-        } 
-      }
       this.formData.append('displayName', this.DetailsForm.value.displayName!);
       this.formData.append('email', this.DetailsForm.value.email!);
       console.log(this.formData)

@@ -1,16 +1,18 @@
 <div class="container mt-4">
     <div class="row">
         <div class="d-flex justify-content-between align-items-center pb-2">
-            <h2> User List Report </h2>
-            <br>
-            <button class="btn" style="background-color: #958F8A; color: white;" (click)="printPdf()">Print Report</button>
-            <select class="form-select mx-2" (change)="onSortSelected($event)">
-                <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
-                    {{sort.name}}
-                </option>
-            </select>
-        </div>
+            <h2 class="mb-0">User List Report <i class="fa fa-lg fa-question-circle-o" (mouseenter)="lgModal.show()"  aria-hidden="true"></i></h2>
+            <div class="d-flex align-items-center">
+                <select style="min-width:auto; max-width: fit-content;" class="form-select mx-2" (change)="onSortSelected($event)">
+                    <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                        {{sort.name}}
+                    </option>
+                </select>
+                <button class="btn form-control" style="background-color: #958F8A; color: white; max-height: 48px;" (click)="printPdf()">Print Report</button>
+            </div>
+        </div>        
         <div *ngIf="users.length > 0" class="table-responsive"  id="content" #content>
+            <br/>
             <table class="table">
                 <thead class="text-uppercase">
                     <tr>
@@ -33,8 +35,27 @@
         </div>
     </div>
     <div class="row">
+        <br/>
         <hr>
         <h4> Total Users: {{users.length}}</h4>   
         <hr>
+    </div>
+</div>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1cSuGqHKMcwBrrwI5vtctK0PQG7akV_Ss/preview#bookmark=id.85qqtz1vh7nu"
+                style="width:100%; height:100%;"></iframe>
+            </div>
+        </div>
     </div>
 </div>

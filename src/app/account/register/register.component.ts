@@ -66,13 +66,6 @@ export class RegisterComponent implements OnInit{
     if(this.registerForm.valid)
     {
       const displayNameControl = this.registerForm.get('displayName')?.value;
-      if(displayNameControl){
-        if (/[^A-Za-z]/.test(displayNameControl)) {
-          this.toaster.error('Please use only letters and spaces for the display name');
-          return
-        } 
-      }
-
       this.formData.append('displayName', this.registerForm.value.displayName!);
       this.formData.append('email', this.registerForm.value.email!);
       this.formData.append('password', this.registerForm.value.password!);

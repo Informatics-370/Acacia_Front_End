@@ -18,7 +18,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AboutUsComponent } from './about-us/about-us.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

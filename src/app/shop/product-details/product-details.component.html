@@ -22,7 +22,7 @@
                 Out of Stock
             </p>
             <div class="row mt-4">
-                <h4>Description</h4>
+                <h4>Description <i class="fa fa-lg fa-question-circle-o" (mouseenter)="lgModal.show()"  aria-hidden="true"></i></h4>
                 <p>{{product.description}}</p>
             </div>
             <div class="row mt-4">
@@ -87,5 +87,23 @@
         </form>
     </div>
   </ng-template>
+
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg" style="max-width: 90%; height: 100vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left"> Help </h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh">
+                <iframe src="https://docs.google.com/document/d/1cSuGqHKMcwBrrwI5vtctK0PQG7akV_Ss/preview#bookmark=id.3y9apewuvrzl"
+                style="width:100%; height:100%;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 
 
