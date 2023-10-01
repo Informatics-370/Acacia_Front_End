@@ -16,30 +16,32 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProductReviewsComponent } from './product-reviews/product-reviews.component';
 import { ProductReviewDetailsComponent } from './product-review-details/product-review-details.component';
+import { CoreModule } from "../core/core.module";
 
 
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent,
-    AccountComponent,
-    ResetPasswordComponent,
-    AddressBookComponent,
-    PersonalDetailsComponent,
-    FaqsComponent,
-    ForgotPasswordComponent,
-    OrdersComponent,
-    OrderDetailsComponent,
-    ProductReviewsComponent,
-    ProductReviewDetailsComponent,
-  ],
-  imports: [
-    CommonModule,
-    AccountRoutingModule,
-    ModalModule.forRoot(),
-    SharedModule,
-    AccordionModule.forRoot(),
-  ]
+    declarations: [
+        LoginComponent,
+        RegisterComponent,
+        AccountComponent,
+        ResetPasswordComponent,
+        AddressBookComponent,
+        PersonalDetailsComponent,
+        FaqsComponent,
+        ForgotPasswordComponent,
+        OrdersComponent,
+        OrderDetailsComponent,
+        ProductReviewsComponent,
+        ProductReviewDetailsComponent,
+    ],
+    imports: [
+        CommonModule,
+        AccountRoutingModule,
+        ModalModule.forRoot(),
+        SharedModule,
+        AccordionModule.forRoot(),
+        CoreModule
+    ]
 })
 export class AccountModule { }
