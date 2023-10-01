@@ -46,7 +46,14 @@
                         <td class="align-middle"><strong>{{order.orderDate | date}}</strong></td>
                         <td class="align-middle"><strong>{{order.customerEmail }}</strong></td>
                         <td class="align-middle"><strong>{{order.deliveryMethod}}</strong></td>
-                        <td class="align-middle"><strong>{{order.total | currency: "R"}}</strong></td>
+                        <td class="align-middle">
+                            <strong>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="text-align: left;">R</span>
+                                    <span style="text-align: right;">{{ order.total | number:'1.2-2' }}</span>
+                                </div>
+                            </strong>
+                        </td>
                         <td class="align-middle"><strong>{{order.status}}</strong></td>
 
                         <td class="align-middle">

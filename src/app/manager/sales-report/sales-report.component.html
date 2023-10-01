@@ -38,7 +38,7 @@
                                     <strong>{{ subcategory.productName }}</strong>
                                     </td>
                                     <td class="align-middle">
-                                    <strong>{{ subcategory.total  | currency:'R'}}</strong>
+                                        <strong><div style="text-align: right;">{{ subcategory.total | currency:'R' }}</div></strong>
                                     </td>
                             </tr>
                             <tr style="font-weight: bolder;">
@@ -46,8 +46,16 @@
                                     <strong>Total Product Category Revenue</strong>
                                 </td>
                                     <td class="align-middle">
-                                    <strong>{{ category.total | currency:'R' }}</strong>
-                                </td>
+                                   
+                                    <td class="align-middle">
+                                        <strong>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <span style="text-align: left;">R</span>
+                                                <span style="text-align: right;">{{category.total | number:'1.2-2' }}</span>
+                                            </div>
+                                        </strong>
+                                    </td>
+                               
                             </tr>
                         </tbody>
                     </table>

@@ -45,7 +45,17 @@
                         <td class="align-middle"><strong>{{writeOff.product }}</strong></td>
                         <td class="align-middle"><strong>{{writeOff.reason}}</strong></td> 
                         <td class="align-middle"><strong>{{writeOff.quantity}}</strong></td>
-                        <td class="align-middle"><strong>{{writeOff.productPrice * writeOff.quantity| currency:"R"}}</strong></td>
+                        <!-- <td class="align-middle">
+                            <strong><div style="text-align: right;">{{ writeOff.productPrice * writeOff.quantity | currency: 'R' }}</div></strong>
+                        </td> -->
+                        <td class="align-middle">
+                            <strong>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="text-align: left;">R</span>
+                                    <span style="text-align: right;">{{ writeOff.productPrice * writeOff.quantity | number:'1.2-2' }}</span>
+                                </div>
+                            </strong>
+                        </td>
                     </tr>
                 </tbody>
             </table>

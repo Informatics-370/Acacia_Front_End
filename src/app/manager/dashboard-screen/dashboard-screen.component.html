@@ -65,6 +65,14 @@
         <div class="col-4" *ngIf="Report">
             <h2> Top Products </h2>
             <div *ngFor="let label of Report?.labels; let i = index">
+              <!-- <td class="align-middle">
+                <strong>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="text-align: left;">R</span>
+                        <span style="text-align: right;">{{ i + 1}} {{ label }} -{{ Report.data[i] | number:'1.2-2' }}</span>
+                    </div>
+                </strong>
+            </td> -->
                 <h5><strong>{{ i + 1}} {{ label }} - {{Report.data[i]| currency:"R"}}</strong></h5>
                 <progressbar  [striped]="true" [animate]="true" [max]="Total"  [value]="Report.data[i]" type="danger"></progressbar>
             </div>
