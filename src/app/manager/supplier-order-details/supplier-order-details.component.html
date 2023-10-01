@@ -8,6 +8,7 @@
             <p class="text"> {{order?.status}} </p>
         </div>
     </div>
+    <button  class="mx-2 btn btn-primary" routerLink="/dashboard/SupplierOrders" style="margin-bottom: -60px;">Back</button>
     <div class="top-right-buttons">
     <div class="container" *ngIf="order">
         <button *ngIf="order.status == 'Order Recieved' || order.status == 'Payment Confirmed'" class="btn btn-sm mx-1" style="background-color: #676767; color:white" (click)="printInvoice()">Print Invoice </button>
@@ -134,7 +135,7 @@
             </div>
          </div>
     </div>
-        <button  class="mx-2 btn btn-primary" routerLink="/dashboard/SupplierOrders">Back</button>
+      
         </div>
     </div>
 </div>
