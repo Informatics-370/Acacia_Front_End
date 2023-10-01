@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ToastrService } from 'ngx-toastr';
 import { Media } from 'src/app/shared/models/Media';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-media-details',
@@ -23,7 +24,7 @@ export class MediaDetailsComponent {
   media?: Media;
 
   
-  constructor(private mediaService: MediaService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService) { 
+  constructor(private sanitizer: DomSanitizer, private mediaService: MediaService, private activatedRoute: ActivatedRoute, private bcService: BreadcrumbService, private router: Router, private toaster: ToastrService) { 
     this.bcService.set('@mediaDetails', '');
   }
 
@@ -42,6 +43,10 @@ export class MediaDetailsComponent {
       },
       error: err => console.log(err)
     })
+  }
+
+  getSafeFileUrl(mediaLink: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(mediaLink);
   }
   
   updateMedia(){
