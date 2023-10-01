@@ -41,7 +41,12 @@
                         <td class="align-middle"><strong>{{audit.transactionDate | date }}</strong></td>
                         <td class="align-middle"><strong>{{audit.email}}</strong></td>
                         <td class="align-middle"><strong>{{audit.type}}</strong></td>
-                        <td class="align-middle"><strong>{{audit.amount | currency:"R"}}</strong></td>
+                        <td class="align-middle">                        <strong>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="text-align: left;">R</span>
+                                <span style="text-align: right;">{{audit.amount  | number:'1.2-2' }}</span>
+                            </div>
+                        </strong></td>
                         <td class="align-middle"><strong>{{audit.quantity}}</strong></td>
                     </tr>
                 </tbody>

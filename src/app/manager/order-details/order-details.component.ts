@@ -71,7 +71,8 @@ export class OrderDetailsComponent {
   packageOrder(){
     this.orderService.packageOrder(this.packageForm.value).subscribe({
       next: order => {
-        this.toastrService.success('The order status has been changed and the customer has been informed')
+        this.toastrService.success('The order status has been changed and the customer has been informed'),
+        this.loadOrder()
       },
       error: err => console.log(err)
     })

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Media } from 'src/app/shared/models/Media';
 import { specParams } from 'src/app/shared/models/specParams';
 import { MediaService } from '../manager/media.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about-us',
@@ -12,7 +13,7 @@ import { MediaService } from '../manager/media.service';
   styleUrls: ['./about-us.component.scss']
 })
 export class AboutUsComponent {
-  constructor(private mediaService: MediaService) { } 
+  constructor(private mediaService: MediaService, private sanitizer: DomSanitizer, ) { } 
   ngOnInit(): void {
     this.getMediaList();
   }
@@ -38,6 +39,10 @@ export class AboutUsComponent {
       },
       error: error => console.log(error)
     })
+  }
+
+  getSafeFileUrl(mediaLink: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(mediaLink);
   }
 
   onSortSelected(event: any)

@@ -38,7 +38,12 @@
                             <strong>Revenue</strong>
                             </td>
                             <td class="align-middle" style="color: green;">
-                            <strong>{{Report.income | currency: "R"}}</strong>
+                                <strong>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span style="text-align: left;">R</span>
+                                        <span style="text-align: right;">{{ Report.income | number:'1.2-2' }}</span>
+                                    </div>
+                                </strong>
                             </td>
                         </tr>
                         <tr style="color: rgb(11, 218, 81);">
@@ -46,7 +51,12 @@
                             <strong>Sales Returns</strong>
                             </td>
                             <td class="align-middle" style="color: green;">
-                            <strong>{{Report.salesReturns | currency: "R"}}</strong>
+                                <strong>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span style="text-align: left;">R</span>
+                                        <span style="text-align: right;">{{ Report.salesReturns | number:'1.2-2' }}</span>
+                                    </div>
+                                </strong>
                             </td>
                         </tr>
                         <tr style="color: rgb(11, 218, 81);">
@@ -54,7 +64,12 @@
                             <strong>Supplier Returns</strong>
                             </td>
                             <td class="align-middle" style="color: green;">
-                            <strong>{{Report.supplierReturns | currency: "R"}}</strong>
+                                <strong>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span style="text-align: left;">R</span>
+                                        <span style="text-align: right;">{{ Report.supplierReturns | number:'1.2-2' }}</span>
+                                    </div>
+                                </strong>
                             </td>
                         </tr>
                         <tr style="color: rgb(242, 0, 60);">
@@ -62,7 +77,12 @@
                             <strong>Expenses</strong>
                             </td>
                             <td class="align-middle" style="color: red;">
-                            <strong>{{Report.expenses | currency: "R"}}</strong>
+                            <strong>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="text-align: left;">R</span>
+                                    <span style="text-align: right;">{{ Report.expenses | number:'1.2-2' }}</span>
+                                </div>
+                            </strong>
                             </td>
                         </tr>
                     </tbody>

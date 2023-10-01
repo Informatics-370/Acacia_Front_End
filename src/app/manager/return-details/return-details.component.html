@@ -28,7 +28,12 @@
                     <tbody>
                         <tr *ngFor="let product of CustReturn?.returnItems">
                             <td class="align-middle">{{product.productName}}</td>
-                            <td class="align-middle">{{product.price}}</td>
+                            <td class="align-middle">                                <strong>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="text-align: left;">R</span>
+                                    <span style="text-align: right;">{{ product.price | number:'1.2-2' }}</span>
+                                </div>
+                            </strong></td>
                             <td class="align-middle">{{product.quantity}}</td>
                         </tr>
                     </tbody>
