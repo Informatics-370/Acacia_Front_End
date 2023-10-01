@@ -14,12 +14,12 @@ export class PersonalDetailsComponent implements OnInit {
   whitespace = "[a-zA-Z0-9][a-zA-Z0-9 ]+"
   formData = new FormData();
   DetailsForm = new FormGroup({
-    displayName: new FormControl('', [ Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-    email: new FormControl('', [Validators.email, Validators.maxLength(30)]),
+    displayName: new FormControl('', [ Validators.required]),
+    email: new FormControl(''),
     profilePicture: new FormControl('', Validators.required),
   });
 
-  constructor(public accountService: AccountService, private formBuilder: FormBuilder, private toaster: ToastrService) { }
+  constructor(public accountService: AccountService, private toaster: ToastrService, private router: Router) { }
   ngOnInit(): void {
     this.getUser();
   }
@@ -30,6 +30,7 @@ export class PersonalDetailsComponent implements OnInit {
         userDetails && this.DetailsForm.patchValue(userDetails);
       }
     })
+    this.DetailsForm?.get('email')?.disable();
   }
 
   uploadFile = (event: any) => {
@@ -40,15 +41,15 @@ export class PersonalDetailsComponent implements OnInit {
   updateUserDetails(){
     if(this.DetailsForm.valid)
     {
-      const displayNameControl = this.DetailsForm.get('displayName')?.value;
+      this.DetailsForm?.get('email')?.enable();
       this.formData.append('displayName', this.DetailsForm.value.displayName!);
-      this.formData.append('email', this.DetailsForm.value.email!);
+      this.formData.append('email',  "mzamogamin@gmail.com");
       console.log(this.formData)
       console.log(this.DetailsForm.value)
       this.accountService.updateUser(this.formData).subscribe({
         next: () => {
           this.toaster.success('User Details updated');
-          this.DetailsForm.reset(this.DetailsForm.value);
+          window.location.reload();
         },
         error: error => this.errors = error.errors
     })
